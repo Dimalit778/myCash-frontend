@@ -1,0 +1,26 @@
+.footer-container {
+  background-color: bisque;
+  padding: 2rem 0.5rem;
+}
+.ft1 h2 {
+  font-weight: 600;
+  font-family: cursive;
+}
+.row h2 {
+  font-family: cursive;
+}
+.footer-icos p {
+  padding: 0.5rem;
+  font-size: 2rem;
+}
+ul,
+li {
+  font-weight: 500;
+  padding: 5px;
+}
+.underline {
+  height: 04px;
+  width: 17rem;
+  background-color: rgb(77, 75, 64);
+  margin-bottom: 10px;
+}

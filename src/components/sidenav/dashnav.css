@@ -1,0 +1,51 @@
+.dash {
+  border-radius: 5px;
+  background-color: rgb(159, 157, 153);
+}
+.nav {
+  cursor: pointer;
+}
+.text {
+  color: black;
+  font-size: 1.3rem;
+}
+.icons {
+  color: aqua;
+  font-size: 1.5rem;
+  margin-right: 20px;
+}
+.avatarImg {
+  height: 125px;
+  width: 125px;
+  border-radius: 1.5rem;
+}
+.underlineDash {
+  height: 04px;
+  background-color: rgb(27, 27, 23);
+}
+.name {
+  font-size: 1.3rem;
+  color: black;
+  font-weight: 600;
+}
+.logoutBtn {
+  background-color: rgb(130, 105, 105);
+  color: white;
+  border-radius: 7px;
+}
+.active {
+  color: rgba(34, 34, 96, 1) !important;
+  i {
+    color: rgba(34, 34, 96, 1) !important;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #222260;
+    border-radius: 0 10px 10px 0;
+  }
+}

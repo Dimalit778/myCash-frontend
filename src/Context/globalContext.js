@@ -15,7 +15,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getUserData = async () => {
     const id = localStorage.getItem('id');
-    const userData = await axios.get(`${BASE_URL}/users/${id}`);
+    const userData = await axios.get(`${BASE_URL}/api/user/getuser/${id}`);
     setUser(userData.data);
   };
 
@@ -38,6 +38,13 @@ export const GlobalProvider = ({ children }) => {
     getCategories(userId);
   };
 
+  // Find Expenses by User ID
+  const getExpenses = async (id) => {
+    const respone = await axios.get(
+      `${BASE_URL}/transactions/get-expenses/${id}`
+    );
+    setExpenses(respone.data);
+  };
   const addExpense = async (expense) => {
     const response = await axios
       .post(`${BASE_URL}/transactions/add-expense`, expense)
@@ -46,13 +53,6 @@ export const GlobalProvider = ({ children }) => {
       });
     getExpenses();
   };
-  // Find Expenses by User ID
-  const getExpenses = async (id) => {
-    const respone = await axios.get(
-      `${BASE_URL}/transactions/get-expenses/${id}`
-    );
-    setExpenses(respone.data);
-  };
 
   const deleteExpense = async (id) => {
     const res = await axios.delete(`${BASE_URL}'/delete-expense/${id}`);
@@ -60,10 +60,10 @@ export const GlobalProvider = ({ children }) => {
   };
   const totalExpense = () => {
     let totalExp = 0;
-    expenses.forEach((exp) => {
+    expenses.map((exp) => {
       totalExp = totalExp + exp.amount;
+      return totalExp;
     });
-    return totalExp;
   };
   return (
     <GlobalContext.Provider

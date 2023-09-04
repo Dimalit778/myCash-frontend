@@ -4,7 +4,6 @@ import { set, useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import regImg from '../../assets/regImg.jpg';
 
 const Register = () => {
   const [data, setData] = useState({});
@@ -21,7 +20,7 @@ const Register = () => {
     const { name, email, password } = data;
 
     try {
-      const { data } = await axios.post('/api/auth/registerdb', {
+      const { data } = await axios.post('/api/user/register', {
         name,
         email,
         password,

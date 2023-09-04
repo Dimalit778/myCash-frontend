@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Calender from '../../calendar/Calender';
 import { useGlobalContext } from '../../../Context/globalContext';
 
 const Overview = () => {
   const { totalExpense } = useGlobalContext();
+  useEffect(() => {
+    totalExpense();
+  }, []);
   return (
     <div className="dashbord  m-5 ">
       <div className="overview d-flex justify-content-center  ">

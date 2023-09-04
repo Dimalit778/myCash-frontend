@@ -16,9 +16,7 @@ const DashSidenav = ({ active, setActive }) => {
   const { user, getUserData } = useGlobalContext();
 
   useEffect(() => {
-    // async function getData=>{
     getUserData();
-    // }
   }, []);
 
   const logOut = () => {

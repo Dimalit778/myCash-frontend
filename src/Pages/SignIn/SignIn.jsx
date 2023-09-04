@@ -27,10 +27,9 @@ const SignIn = () => {
   // };
   const loginUser = async (e) => {
     e.preventDefault();
-
     const { email, password } = userData;
     try {
-      const { data } = await axios.post('/api/auth/logindb', {
+      const { data } = await axios.post('/api/user/login', {
         email,
         password,
       });

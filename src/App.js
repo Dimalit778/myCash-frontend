@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Routes, Route } from 'react-router-dom';
@@ -18,14 +18,6 @@ axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const arr = undefined;
-
-  if (arr) {
-    arr.forEach((element) => {
-      console.log(element);
-    });
-  }
-
   return (
     <>
       <NavbarComp />

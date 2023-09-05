@@ -1,7 +1,10 @@
 .dash {
-  border-radius: 5px;
-  background-color: rgb(159, 157, 153);
+  background-color: bisque;
 }
+.link {
+  color: black;
+}
+
 .nav {
   cursor: pointer;
 }
@@ -10,7 +13,7 @@
   font-size: 1.3rem;
 }
 .icons {
-  color: aqua;
+  color: rgb(25, 28, 28);
   font-size: 1.5rem;
   margin-right: 20px;
 }
@@ -28,24 +31,14 @@
   color: black;
   font-weight: 600;
 }
+/* ------ Close Side Nav ------ */
 .logoutBtn {
   background-color: rgb(130, 105, 105);
   color: white;
   border-radius: 7px;
 }
-.active {
-  color: rgba(34, 34, 96, 1) !important;
-  i {
-    color: rgba(34, 34, 96, 1) !important;
-  }
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: #222260;
-    border-radius: 0 10px 10px 0;
-  }
+.iconClose {
+  color: rgb(25, 28, 28);
+  font-size: 2rem;
+  margin-right: 20px;
 }

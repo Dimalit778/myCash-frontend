@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Routes, Route } from 'react-router-dom';
+import { Outlet, Route, createRoutesFromElements } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import Register from './Pages/Register/Register';
@@ -13,32 +14,43 @@ import Footer from './components/footer/footer';
 import Expenses from './components/dashManu/expenses/Expenses';
 import Overview from './components/dashManu/overView/Overview';
 import Incomes from './components/dashManu/income/Incomes';
+import Account from './components/dashManu/account/Account';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
 
-function App() {
+const Root = () => {
   return (
     <>
-      <NavbarComp />
-      {/* Get the errors message from server side */}
       <Toaster position="botton-right" toastOptions={{ duration: 3000 }} />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<SignIn />} />
-        <Route path="/register" element={<Register />} />
-
-        <Route path="/dashborad" element={<Dashboard />}>
-          <Route path="/dashborad/overview" element={<Overview />} />
-          <Route path="/dashborad/expenses" element={<Expenses />} />
-          <Route path="/dashborad/incomes" element={<Incomes />} />
-          {/* <Route path=":/account" element={<Aco />} /> */}
-        </Route>
-      </Routes>
+      <NavbarComp />
+      <Outlet />
       <Footer />
     </>
   );
+};
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    // Home Routes
+    <Route path="/" element={<Root />}>
+      <Route index element={<Home />} />
+      <Route path="login" element={<SignIn />} />
+      <Route path="register" element={<Register />} />
+      {/* Dashborad Routes */}
+      <Route path="dashboard" element={<Dashboard />}>
+        <Route index element={<Overview />} />
+        <Route path="/dashboard/overview" element={<Overview />} />
+        <Route path="/dashboard/expenses" element={<Expenses />} />
+        <Route path="/dashboard/incomes" element={<Incomes />} />
+        <Route path="/dashboard/account" element={<Account />} />
+      </Route>
+    </Route>
+  )
+);
+
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App;

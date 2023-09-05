@@ -60,10 +60,11 @@ export const GlobalProvider = ({ children }) => {
   };
   const totalExpense = () => {
     let totalExp = 0;
-    expenses.map((exp) => {
+    expenses.forEach((exp) => {
       totalExp = totalExp + exp.amount;
-      return totalExp;
     });
+
+    return totalExp;
   };
   return (
     <GlobalContext.Provider

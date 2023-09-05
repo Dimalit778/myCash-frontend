@@ -37,8 +37,8 @@ const NavbarComp = () => {
                 </Nav.Link>
               </>
             ) : (
-              <Nav.Link as={Link} to="/dashborad" className="links me-2">
-                dashborad
+              <Nav.Link as={Link} to="/dashboard" className="links me-2">
+                {user.firstName}
               </Nav.Link>
             )}
           </Nav>

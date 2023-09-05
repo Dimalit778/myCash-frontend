@@ -4,9 +4,7 @@ import { useGlobalContext } from '../../../Context/globalContext';
 
 const Overview = () => {
   const { totalExpense } = useGlobalContext();
-  useEffect(() => {
-    totalExpense();
-  }, []);
+  useEffect(() => {}, [totalExpense]);
   return (
     <div className="dashbord  m-5 ">
       <div className="overview d-flex justify-content-center  ">
@@ -19,7 +17,7 @@ const Overview = () => {
           <div className="row text-center   ">
             <div className="col">
               <p>income: </p>
-              <p>expenss : $ {totalExpense()} </p>
+              <p>expenses : $ {totalExpense()} </p>
             </div>
             <div className="col">
               <h3>Status :</h3>

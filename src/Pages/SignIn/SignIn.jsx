@@ -37,7 +37,7 @@ const SignIn = () => {
         toast.error(data.error);
       } else {
         localStorage.setItem('id', data._id);
-        navigate('/dashborad');
+        navigate('/dashboard');
       }
     } catch (error) {
       console.log(error);

@@ -29,42 +29,16 @@ const Expenses = () => {
   return (
     <div className="">
       <div className=" text-center mt-5 m-5 ">
-        <div className="headExp  ">
+        <div className="headExp   ">
           <h2>My Expenses</h2>
         </div>
         <div>
           <AddExpenseForm userId={user._id} />
         </div>
 
-        <div>
-          <ul className="d-flex justify-content-between list-unstyled   ">
-            {column.map((c, i) => (
-              <li key={i}>{c.title}</li>
-            ))}
-          </ul>
+        <div className="cakeChart d-flex justify-content-center mt-5 ">
+          <ExpenseList />
         </div>
-        <div className="list">
-          {expenses.map((exp, i) => (
-            <ul
-              className="expensesList d-flex justify-content-between list-unstyled text-center    "
-              key={i}
-            >
-              <li>{i + 1}</li>
-              <li>{exp.title}</li>
-              <li>{exp.category}</li>
-              <li>{exp.amount}</li>
-              <li>{exp.description}</li>
-              <li>{exp.date}</li>
-            </ul>
-          ))}
-        </div>
-
-        <div className="d-flex justify-content-center ">
-          <h5>Total expense: ${totalExpense()}</h5>
-        </div>
-      </div>
-      <div className="cakeChart">
-        <ExpenseList />
       </div>
     </div>
   );

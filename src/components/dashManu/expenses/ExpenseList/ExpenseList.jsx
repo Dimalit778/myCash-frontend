@@ -26,62 +26,67 @@ const ExpenseList = () => {
   }, []);
 
   const [page, setPage] = useState(0);
-  const [expensesPerPage, setexpensesPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  const handleChangeexpensesPerPage = (event) => {
-    setexpensesPerPage(++event.target.value);
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
   return (
-    <Paper sx={{ width: '70%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell key={column.id}>{column.label}</TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {expenses
-              .slice(
-                page * expensesPerPage,
-                page * expensesPerPage + expensesPerPage
-              )
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        component="div"
-        count={expenses.length}
-        expensesPerPage={expensesPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onexpensesPerPageChange={handleChangeexpensesPerPage}
-      />
-    </Paper>
+    <div className=" d-flex w-75 justify-content-center  ">
+      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    style={{ backgroundColor: 'gold' }}
+                    key={column.id}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {expenses
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => {
+                  return (
+                    <TableRow hover role="checkbox" key={row.id}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={value}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          component="div"
+          count={expenses.length}
+          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </div>
   );
 };
 

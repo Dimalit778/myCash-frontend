@@ -1,0 +1,24 @@
+.topStats {
+  flex: 6;
+  gap: 20px;
+  padding: 20px;
+}
+.data {
+  display: flex;
+  justify-content: space-around;
+}
+.stats {
+  color: rgb(121, 114, 106);
+  flex: 1;
+  box-shadow: 2px 2px 13px -2px rgba(128, 0, 0, 0.74);
+  height: 125px;
+  border-radius: 5px;
+}
+.upDownIcons {
+  &.positive {
+    color: green;
+  }
+  &.negative {
+    color: red;
+  }
+}

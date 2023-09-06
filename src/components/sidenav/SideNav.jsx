@@ -1,62 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './sidenav.css';
 import logo from '../../assets/logo.jpg';
 import { Link } from 'react-router-dom';
 import { menuItems } from '../../utilits/menuItems';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { motion } from 'framer-motion';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import { useGlobalContext } from '../../Context/globalContext';
 
 function SideNav() {
-  const [selected, setSelected] = useState(0);
+  const { getUserData } = useGlobalContext();
 
-  const [expanded, setExpaned] = useState(true);
+  useEffect(() => {
+    getUserData();
+  }, []);
 
-  const sidebarVariants = {
-    true: {
-      left: '0',
-    },
-    false: {
-      left: '-60%',
-    },
-  };
-  console.log(window.innerWidth);
   return (
     <>
-      <div
-        className="bars"
-        style={expanded ? { left: '60%' } : { left: '5%' }}
-        onClick={() => setExpaned(!expanded)}
-      >
-        {/* <UilBars /> */}
-      </div>
-      <motion.div
-        className="sidebar"
-        variants={sidebarVariants}
-        animate={window.innerWidth <= 768 ? `${expanded}` : ''}
-      >
-        <div className="sideBar">
-          <div className="logo">
-            <img src={logo} alt="logo" />
-            <span>MyCash</span>
+      <div className="sideBar min-vh-100 ">
+        <div className="top logo d-flex ">
+          <img src={logo} alt="logo" className="logoImg" />
+          <span>MyCash</span>
+        </div>
+        <hr />
+        <div className="center ps-3 ">
+          {menuItems.map((item, index) => {
+            return (
+              <div key={index} className="manuItem   p-0 m-0 ">
+                <span className="icons">{item.icon}</span>
+                <Link to={item.link} className="link ">
+                  <span>{item.title}</span>
+                </Link>
+              </div>
+            );
+          })}
+          <div className="manuItem">
+            <span className="icons">
+              <ExitToAppOutlinedIcon />
+            </span>
+
+            <span>Logout</span>
           </div>
-          <div className="manu">
-            {menuItems.map((item, index) => {
-              return (
-                <div className="manuItem">
-                  <span className="icons">{item.icon}</span>
-                  <Link to={item.link} className="link">
-                    <span>{item.title}</span>
-                  </Link>
-                </div>
-              );
-            })}
-            <div className="menuItem">
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />
-            </div>
+          <div className="bottom d-flex  align-items-center m-5">
+            <div className="colorOption"></div>
+            <div className="colorOption"></div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 }

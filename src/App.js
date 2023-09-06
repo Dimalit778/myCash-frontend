@@ -9,6 +9,7 @@ import Register from './Pages/Register/Register';
 import Dashboard from './Pages/Dashborad/Dashborad';
 import SignIn from './Pages/SignIn/SignIn';
 import Home from './Pages/Home/Home';
+import About from './Pages/About/About';
 import NavbarComp from './components/navbar/NavbarComp';
 import Footer from './components/footer/footer';
 import Expenses from './components/dashManu/expenses/Expenses';
@@ -23,7 +24,7 @@ const Root = () => {
   return (
     <>
       <Toaster position="botton-right" toastOptions={{ duration: 3000 }} />
-      <NavbarComp />
+
       <Outlet />
       <Footer />
     </>
@@ -37,7 +38,9 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="login" element={<SignIn />} />
       <Route path="register" element={<Register />} />
+      <Route path="about" element={<About />} />
       {/* Dashborad Routes */}
+
       <Route path="dashboard" element={<Dashboard />}>
         <Route index element={<Overview />} />
         <Route path="/dashboard/overview" element={<Overview />} />

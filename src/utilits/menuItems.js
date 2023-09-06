@@ -1,33 +1,30 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCoins,
-  faDownload,
-  faMoneyBillTrendUp,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import GridViewIcon from '@mui/icons-material/GridView';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 export const menuItems = [
   {
     id: 1,
     title: 'Dashboard',
-    icon: <FontAwesomeIcon icon={faDownload} />,
+    icon: <GridViewIcon />,
     link: 'overview',
   },
   {
     id: 2,
     title: 'Epxenses',
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <PaidOutlinedIcon />,
     link: 'expenses',
   },
   {
     id: 3,
     title: 'Incomes',
-    icon: <FontAwesomeIcon icon={faMoneyBillTrendUp} />,
+    icon: <PaymentsOutlinedIcon />,
     link: 'incomes',
   },
   {
     id: 4,
     title: 'account',
-    icon: <FontAwesomeIcon icon={faUser} />,
+    icon: <AccountBoxOutlinedIcon />,
     link: 'account',
   },
 ];

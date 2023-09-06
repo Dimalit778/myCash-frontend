@@ -3,17 +3,16 @@ import { useGlobalContext } from '../../../Context/globalContext';
 import './expense.css';
 import AddExpenseForm from './addForm';
 import TestChart from '../../Charts/TestChart';
+import ExpenseList from './ExpenseList/ExpenseList';
 
 const Expenses = () => {
-  const { expenses, getExpenses, deleteExpense, totalExpense } =
+  const { expenses, getExpenses, deleteExpense, totalExpense, user } =
     useGlobalContext();
-
-  const { user } = useGlobalContext();
 
   useEffect(() => {
     // Get user epxenses
     getExpenses(user._id);
-  }, [expenses]);
+  }, []);
 
   const column = [
     { title: 'ID' },
@@ -28,7 +27,7 @@ const Expenses = () => {
   };
 
   return (
-    <div className="d-flex">
+    <div className="">
       <div className=" text-center mt-5 m-5 ">
         <div className="headExp  ">
           <h2>My Expenses</h2>
@@ -64,8 +63,8 @@ const Expenses = () => {
           <h5>Total expense: ${totalExpense()}</h5>
         </div>
       </div>
-      <div className="cakeChart w-100 h-100 ">
-        <TestChart />
+      <div className="cakeChart">
+        <ExpenseList />
       </div>
     </div>
   );

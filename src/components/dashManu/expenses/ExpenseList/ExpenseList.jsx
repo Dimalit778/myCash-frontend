@@ -18,11 +18,11 @@ const columns = [
 ];
 
 const ExpenseList = () => {
-  const { expenses, getExpenses, user } = useGlobalContext();
+  const { expenses, getExpenses } = useGlobalContext();
 
   useEffect(() => {
     // Get user epxenses
-    getExpenses(user._id);
+    getExpenses();
   }, []);
 
   const [page, setPage] = useState(0);
@@ -59,11 +59,11 @@ const ExpenseList = () => {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover role="checkbox" key={row.id}>
+                    <TableRow hover role="checkbox">
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
-                          <TableCell key={value}>
+                          <TableCell key={row.id}>
                             {column.format && typeof value === 'number'
                               ? column.format(value)
                               : value}

@@ -9,9 +9,9 @@ const Chart = () => {
       <div className="topChart d-flex justify-content-center  ">
         <h1 className="title ">total</h1>
       </div>
-      <div className="bottomChart">
+      {/* <div className="bottomChart">
         <CircularProgressbar className="bar" value={70} text={'70%'} />
-      </div>
+      </div> */}
     </div>
   );
 };

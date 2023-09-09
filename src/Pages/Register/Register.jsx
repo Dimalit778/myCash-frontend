@@ -40,7 +40,6 @@ const Register = () => {
 
   return (
     <>
-      <NavbarComp />
       <div className="loginForm d-flex align-items-center justify-content-center  ">
         <div className="form  d-flex justify-content-center  p-2 mb-2  ">
           <div className="form  col-md-8  col-lg-9 col-7 ">

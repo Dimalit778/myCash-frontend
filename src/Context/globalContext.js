@@ -13,33 +13,15 @@ export const GlobalProvider = ({ children }) => {
   const [totalExp, setTotalExp] = useState([]);
   const [error, setError] = useState(null);
 
-  const getUserData = async () => {
-    const id = localStorage.getItem('id');
+  const getUserData = async (id) => {
+    // const id = localStorage.getItem('id');
     const userData = await axios.get(`${BASE_URL}/api/user/getuser/${id}`);
     setUser(userData.data);
   };
 
-  // Add category by User ID
-  const addCategory = async (category) => {
-    const response = await axios
-      .post(`${BASE_URL}/api/newCategory`, category)
-      .catch((err) => {
-        setError(err.response.data.message);
-      });
-  };
-  // Find categories by User ID
-  const getCategories = async (id) => {
-    const respone = await axios.get(`${BASE_URL}/api/getCategories/${id}`);
-    setCategoryList(respone.data);
-  };
-  // Delete categories by User ID
-  const deleteCategory = async (id, userId) => {
-    const res = await axios.delete(`${BASE_URL}/api/deleteCategory/${id}`);
-    getCategories(userId);
-  };
-
   // Find Expenses by User ID
-  const getExpenses = async (id) => {
+  const getExpenses = async () => {
+    const id = localStorage.getItem('id');
     const respone = await axios.get(
       `${BASE_URL}/transactions/get-expenses/${id}`
     );
@@ -69,9 +51,6 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        addCategory,
-        getCategories,
-        deleteCategory,
         categoryList,
         getUserData,
         user,
@@ -92,3 +71,22 @@ export const GlobalProvider = ({ children }) => {
 export const useGlobalContext = () => {
   return useContext(GlobalContext);
 };
+
+// // Add category by User ID
+// const addCategory = async (category) => {
+//   const response = await axios
+//     .post(`${BASE_URL}/api/newCategory`, category)
+//     .catch((err) => {
+//       setError(err.response.data.message);
+//     });
+// };
+// // Find categories by User ID
+// const getCategories = async (id) => {
+//   const respone = await axios.get(`${BASE_URL}/api/getCategories/${id}`);
+//   setCategoryList(respone.data);
+// };
+// // Delete categories by User ID
+// const deleteCategory = async (id, userId) => {
+//   const res = await axios.delete(`${BASE_URL}/api/deleteCategory/${id}`);
+//   getCategories(userId);
+// };

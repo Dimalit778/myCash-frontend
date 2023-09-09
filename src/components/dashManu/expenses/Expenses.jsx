@@ -2,16 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import './expense.css';
 import AddExpenseForm from './addForm';
-import TestChart from '../../Charts/TestChart';
 import ExpenseList from './ExpenseList/ExpenseList';
 
 const Expenses = () => {
-  const { expenses, getExpenses, deleteExpense, totalExpense, user } =
-    useGlobalContext();
+  const { getExpenses, deleteExpense, user } = useGlobalContext();
 
   useEffect(() => {
     // Get user epxenses
-    getExpenses(user._id);
   }, []);
 
   const column = [

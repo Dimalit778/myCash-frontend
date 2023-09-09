@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 import './stats.css';
-const Stats = ({ type }) => {
+
+const Stats = ({ type, totalExp }) => {
   let data;
   switch (type) {
     case 'total':
@@ -13,6 +14,7 @@ const Stats = ({ type }) => {
     case 'expenses':
       data = {
         title: 'Expenses',
+        expenses: totalExp,
       };
       break;
     case 'incomes':
@@ -27,7 +29,7 @@ const Stats = ({ type }) => {
     <div className="stats text-center ">
       <span>{data.title}</span>
       <div className="data">
-        <div>1000</div>
+        <div>{data.expenses}</div>
         <span className="upDownIcons positive">
           <ArrowDownwardOutlinedIcon fontSize="large" />
         </span>

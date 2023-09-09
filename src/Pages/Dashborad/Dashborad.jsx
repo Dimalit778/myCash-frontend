@@ -1,26 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import DashSidenav from '../../components/sidenav/DashSidenav';
-import './dashborad.css';
-import { useGlobalContext } from '../../Context/globalContext.js';
-import { Outlet } from 'react-router-dom';
-import SideNav from '../../components/sidenav/SideNav';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useMemo, useState } from 'react';
+import NavbarApp from '../../components/navbar/NavbarApp';
+import { Toaster } from 'react-hot-toast';
+import { useGlobalContext } from '../../Context/globalContext';
 
-const Dashborad = () => {
-  const { totalExpense } = useGlobalContext();
+export default function Dashboard() {
+  const [open, setOpen] = useState(false);
+  const [dark, setDark] = useState(false);
 
-  useEffect(() => {}, [totalExpense]);
-
-  return (
-    <>
-      <div className="d-flex ">
-        {/* <DashSidenav /> */}
-        <SideNav />
-        <main className=" w-100 ">
-          <Outlet />
-        </main>
-      </div>
-    </>
+  const darkTheme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: dark ? 'dark' : 'light',
+        },
+      }),
+    [dark]
   );
-};
 
-export default Dashborad;
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  // const navigate = useNavigate();
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <Toaster position="botton-right" toastOptions={{ duration: 3000 }} />
+      <NavbarApp />
+    </ThemeProvider>
+  );
+}

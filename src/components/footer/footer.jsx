@@ -1,18 +1,5 @@
 import React from 'react';
 import './footer.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faFacebookSquare,
-  faInstagramSquare,
-  faTwitterSquare,
-  faYoutube,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faCity,
-  faEarthAmericas,
-  faEnvelope,
-  faPhoneVolume,
-} from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
   return (
@@ -22,19 +9,10 @@ const Footer = () => {
         <div className=" mx-auto  ft1  ">
           <h2>Contact Us</h2>
           <ul className="list list-unstyled ">
-            <li>
-              <FontAwesomeIcon icon={faEarthAmericas} /> Israel
-            </li>
-            <li>
-              <FontAwesomeIcon icon={faCity} />
-              Tel Aviv
-            </li>
-            <li>
-              <FontAwesomeIcon icon={faEnvelope} /> Travel@gmail.com
-            </li>
-            <li>
-              <FontAwesomeIcon icon={faPhoneVolume} /> Phone : +925 525555555
-            </li>
+            <li>Israel</li>
+            <li>Tel Aviv</li>
+            <li>Travel@gmail.com</li>
+            <li>Phone : +925 525555555</li>
           </ul>
         </div>
         {/* // !! { ------- EXPLOR FOOTER -------} */}
@@ -60,18 +38,10 @@ const Footer = () => {
       </div>
       {/* // !! { ------- ICONS -------} */}
       <div className="footer-icos d-flex justify-content-center">
-        <p>
-          <FontAwesomeIcon icon={faFacebookSquare} />
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faInstagramSquare} />
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faTwitterSquare} />
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faYoutube} />
-        </p>
+        <p>facebook</p>
+        <p>instegram</p>
+        <p>twitter</p>
+        <p>youtube</p>
       </div>
       {/* // !! { ------- UNDER LINE -------} */}
       <div className="underline mx-auto"></div>

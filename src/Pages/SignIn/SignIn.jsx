@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 // import { UserAuth } from '../../Context/FireBaseAuthContext';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import NavbarComp from '../../components/navbar/NavbarComp';
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
@@ -38,6 +37,7 @@ const SignIn = () => {
         toast.error(data.error);
       } else {
         localStorage.setItem('id', data._id);
+
         navigate('/dashboard');
       }
     } catch (error) {
@@ -46,7 +46,6 @@ const SignIn = () => {
   };
   return (
     <>
-      <NavbarComp />
       <div className="loginForm d-flex align-items-center justify-content-center ">
         <div className=" d-flex justify-content-center  p-2 mb-2 w-50 h-75">
           <div className="form col-md-6 col-lg-4 ">

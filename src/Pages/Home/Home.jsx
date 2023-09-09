@@ -3,7 +3,6 @@ import './home.css';
 import groupImg from '../../assets/group.jpg';
 import headerImg from '../../assets/main.jgp.avif';
 import { useNavigate } from 'react-router-dom';
-import NavbarComp from '../../components/navbar/NavbarComp';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,7 +10,6 @@ const Home = () => {
 
   return (
     <>
-      <NavbarComp />
       <div className="container">
         <div className="section_1">
           <div className="box d-flex flex-column justify-content-center align-items-center gap-4    ">

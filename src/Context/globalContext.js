@@ -8,7 +8,9 @@ const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
-  const [totalExp, setTotalExp] = useState([]);
+  const [totalExp, setTotalExp] = useState('');
+  const [totalInc, setTotalInc] = useState('');
+  const [totalCash, setTotalCash] = useState('');
   const [error, setError] = useState(null);
 
   const user = JSON.parse(localStorage.getItem('user'));
@@ -20,6 +22,8 @@ export const GlobalProvider = ({ children }) => {
       `${BASE_URL}/transactions/get-expenses/${id}`
     );
     setExpenses(respone.data);
+    totalExpense();
+    total();
   };
   const addExpense = async (expense) => {
     const response = await axios
@@ -35,12 +39,11 @@ export const GlobalProvider = ({ children }) => {
     getExpenses();
   };
   const totalExpense = () => {
-    let totalExp = 0;
+    let total = 0;
     expenses.forEach((exp) => {
-      totalExp = totalExp + exp.amount;
+      total = total + exp.amount;
     });
-
-    return totalExp;
+    setTotalExp(total);
   };
 
   const addIncome = async (income) => {
@@ -58,6 +61,8 @@ export const GlobalProvider = ({ children }) => {
       `${BASE_URL}/transactions/get-incomes/${id}`
     );
     setIncomes(respone.data);
+    totalIncome();
+    total();
   };
   const deleteIncome = async (id) => {
     const res = await axios.delete(
@@ -72,7 +77,12 @@ export const GlobalProvider = ({ children }) => {
       totalIncomes = totalIncomes + inc.amount;
     });
 
-    return totalExp;
+    setTotalInc(totalIncomes);
+  };
+  const total = () => {
+    let total = 0;
+    total = totalExp - setTotalInc;
+    setTotalCash(total);
   };
   return (
     <GlobalContext.Provider
@@ -82,12 +92,13 @@ export const GlobalProvider = ({ children }) => {
         addExpense,
         getExpenses,
         deleteExpense,
-        totalExpense,
         totalExp,
         incomes,
+        totalInc,
         addIncome,
         getIncomes,
         deleteIncome,
+        totalCash,
       }}
     >
       {children}
@@ -98,22 +109,3 @@ export const GlobalProvider = ({ children }) => {
 export const useGlobalContext = () => {
   return useContext(GlobalContext);
 };
-
-// // Add category by User ID
-// const addCategory = async (category) => {
-//   const response = await axios
-//     .post(`${BASE_URL}/api/newCategory`, category)
-//     .catch((err) => {
-//       setError(err.response.data.message);
-//     });
-// };
-// // Find categories by User ID
-// const getCategories = async (id) => {
-//   const respone = await axios.get(`${BASE_URL}/api/getCategories/${id}`);
-//   setCategoryList(respone.data);
-// };
-// // Delete categories by User ID
-// const deleteCategory = async (id, userId) => {
-//   const res = await axios.delete(`${BASE_URL}/api/deleteCategory/${id}`);
-//   getCategories(userId);
-// };

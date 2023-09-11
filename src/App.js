@@ -11,14 +11,15 @@ import Dashboard from './Pages/Dashborad/Dashborad';
 import SignIn from './Pages/SignIn/SignIn';
 import Home from './Pages/Home/Home';
 import NavbarComp from './components/navbar/NavbarComp';
-import NavbarApp from './components/navbar/NavbarApp';
+
 import Main from './components/dashManu/Main/Main';
 import About from './Pages/About/About';
 import Footer from './components/footer/footer';
 import Expenses from './components/dashManu/expenses/Expenses';
-import Overview from './components/dashManu/overView/Overview';
+
 import Incomes from './components/dashManu/income/Incomes';
 import Account from './components/dashManu/account/Account';
+import Settings from './components/dashManu/Settings/Settings';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
@@ -49,7 +50,7 @@ const router = createBrowserRouter(
       {/* Dashborad Routes */}
       <Route path="/dashboard" element={<Dashboard />}>
         <Route path="" element={<Main />} />
-        <Route path="overview" element={<Overview />} />
+        <Route path="settings" element={<Settings />} />
         <Route path="expenses" element={<Expenses />} />
         <Route path="incomes" element={<Incomes />} />
         <Route path="account" element={<Account />} />

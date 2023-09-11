@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useGlobalContext } from '../../../../Context/globalContext';
+import UserActions from '../../../DataTable/UserActions';
 
 const columns = [
   { id: 'title', label: 'Name', minWidth: 170 },
@@ -15,6 +16,12 @@ const columns = [
   { id: 'amount', label: 'Amount', minWidth: 100 },
   { id: 'description', label: 'Description', minWidth: 100 },
   { id: 'date', label: 'Date', minWidth: 100 },
+  {
+    id: 'actions',
+    label: 'Actions',
+    minWidth: 200,
+    renderCell: (params) => <UserActions {...{ params }} />,
+  },
 ];
 
 const ExpenseList = () => {
@@ -62,13 +69,7 @@ const ExpenseList = () => {
                     <TableRow hover role="checkbox">
                       {columns.map((column) => {
                         const value = row[column.id];
-                        return (
-                          <TableCell key={row.id}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
+                        return <TableCell key={row.id}>{value}</TableCell>;
                       })}
                     </TableRow>
                   );

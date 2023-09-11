@@ -36,7 +36,7 @@ const SignIn = () => {
       if (data.error) {
         toast.error(data.error);
       } else {
-        localStorage.setItem('id', data._id);
+        localStorage.setItem('user', JSON.stringify(data));
 
         navigate('/dashboard');
       }

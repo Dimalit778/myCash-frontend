@@ -1,12 +1,17 @@
 import {
+  AccountBox,
   ChevronLeft,
+  CurrencyExchange,
   Dashboard,
   KingBed,
   Logout,
   MarkChatUnread,
   NotificationsActive,
-  PeopleAlt,
+  Payment,
+  SettingsApplications,
 } from '@mui/icons-material';
+// import MonetizationOnIcon from '@mui/icons-material';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import {
   Avatar,
   Box,
@@ -22,10 +27,11 @@ import {
   Typography,
 } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import Footer from '../footer/footer';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -88,29 +94,31 @@ const NavSideList = ({ open, setOpen }) => {
       },
       {
         title: 'Expenses',
-        icon: <PeopleAlt />,
+        icon: <Payment />,
         link: 'expenses',
       },
       {
         title: 'Incomes',
-        icon: <KingBed />,
+        icon: <CurrencyExchange />,
         link: 'incomes',
       },
       {
         title: 'Account',
-        icon: <NotificationsActive />,
+        icon: <AccountBox />,
         link: 'account',
       },
       {
-        title: 'OverView',
-        icon: <MarkChatUnread />,
-        link: 'overview',
+        title: 'Settings',
+        icon: <SettingsApplications />,
+        link: 'settings',
       },
     ],
     []
   );
 
   const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleLogout = () => {
     localStorage.clear();
@@ -156,19 +164,14 @@ const NavSideList = ({ open, setOpen }) => {
         </List>
         <Divider />
         <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
-          {/* {currentUser?.name || '' */}
           <Tooltip title="test">
             <Avatar {...(open && { sx: { width: 100, height: 100 } })} />
           </Tooltip>
         </Box>
         <Box sx={{ textAlign: 'center' }}>
-          {open && (
-            <Typography>
-              <p>dima</p>
-            </Typography>
-          )}
-          <Typography variant="body2"> role</Typography>
-          {open && <Typography variant="body2">email</Typography>}
+          {/* {open && <Typography>{user.firstName}</Typography>} */}
+          <Typography variant="body2"> {user.firstName}</Typography>
+          {open && <Typography variant="body2">{user.email}</Typography>}
           <Tooltip title="Logout" sx={{ mt: 1 }}>
             <IconButton onClick={handleLogout}>
               <Logout />

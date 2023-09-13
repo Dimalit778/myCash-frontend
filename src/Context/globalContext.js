@@ -6,26 +6,32 @@ const BASE_URL = 'http://localhost:5000';
 const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-  const [incomes, setIncomes] = useState([]);
-  const [expenses, setExpenses] = useState([]);
-  const [totalExp, setTotalExp] = useState('');
-  const [totalInc, setTotalInc] = useState('');
-  const [totalCash, setTotalCash] = useState('');
-  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(''); // USER DATA
+  const [incomes, setIncomes] = useState([]); // INCOMES LIST
+  const [expenses, setExpenses] = useState([]); // EXPENSES LIST
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const [error, setError] = useState(null); // ERROR
 
-  // Find Expenses by User ID
+  const getUserData = () => {
+    const Data = JSON.parse(localStorage.getItem('user'));
+    setUserData(Data);
+    return Data;
+  };
+
+  //* * * * { ---  EXPENSES requests --- } * * * * //
+
   const getExpenses = async () => {
-    const id = user._id;
+    // ------------------------> Find Expenses by User ID
+    const { _id } = userData;
     const respone = await axios.get(
-      `${BASE_URL}/transactions/get-expenses/${id}`
+      `${BASE_URL}/transactions/get-expenses/${_id}`
     );
     setExpenses(respone.data);
     totalExpense();
-    total();
   };
+
   const addExpense = async (expense) => {
+    // ------------------------>  ADD Expenses
     const response = await axios
       .post(`${BASE_URL}/transactions/add-expense`, expense)
       .catch((err) => {
@@ -35,18 +41,24 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const deleteExpense = async (id) => {
+    // ------------------------>  DELETE Expenses
     const res = await axios.delete(`${BASE_URL}'/delete-expense/${id}`);
     getExpenses();
   };
+
   const totalExpense = () => {
-    let total = 0;
+    // ------------------------>  TOTAL Expenses
+    let totalExpenses = 0;
     expenses.forEach((exp) => {
-      total = total + exp.amount;
+      totalExpenses += exp.amount;
     });
-    setTotalExp(total);
+    return totalExpenses;
   };
 
+  //* * * * { ---  INCOMES requests --- } * * * * //
+
   const addIncome = async (income) => {
+    //  ------------------------>  ADD Income
     const response = await axios
       .post(`${BASE_URL}/transactions/add-income`, income)
       .catch((err) => {
@@ -54,51 +66,61 @@ export const GlobalProvider = ({ children }) => {
       });
     getIncomes();
   };
-  // Find Expenses by User ID
+
   const getIncomes = async () => {
-    const id = user._id;
+    // ------------------------> Get INCOMES by User ID
+    const { _id } = userData;
+
     const respone = await axios.get(
-      `${BASE_URL}/transactions/get-incomes/${id}`
+      `${BASE_URL}/transactions/get-incomes/${_id}`
     );
     setIncomes(respone.data);
     totalIncome();
-    total();
   };
+
   const deleteIncome = async (id) => {
+    // ------------------------> DELETE Income
     const res = await axios.delete(
       `${BASE_URL}/transactions/delete-income/${id}`
     );
 
     getIncomes();
   };
+
   const totalIncome = () => {
+    // ------------------------> TOTAL Incomes
     let totalIncomes = 0;
-    incomes.forEach((inc) => {
-      totalIncomes = totalIncomes + inc.amount;
+    incomes.forEach((income) => {
+      totalIncomes += income.amount;
     });
 
-    setTotalInc(totalIncomes);
+    return totalIncomes;
   };
-  const total = () => {
-    let total = 0;
-    total = totalExp - setTotalInc;
-    setTotalCash(total);
+  //* * * * { ---  TOTAL requests --- } * * * * //
+
+  const totalBalance = () => {
+    // ------------------------> TOTAL balance
+    return totalIncome() - totalExpense();
   };
+
   return (
     <GlobalContext.Provider
       value={{
-        user,
+        getUserData,
+        userData,
         expenses,
+        totalExpense,
         addExpense,
         getExpenses,
         deleteExpense,
-        totalExp,
+
         incomes,
-        totalInc,
+        totalIncome,
+
         addIncome,
         getIncomes,
         deleteIncome,
-        totalCash,
+        totalBalance,
       }}
     >
       {children}

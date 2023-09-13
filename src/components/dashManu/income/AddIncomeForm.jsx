@@ -5,6 +5,8 @@ import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
 
 const AddIncomeForm = ({ userId }) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -80,6 +82,7 @@ const AddIncomeForm = ({ userId }) => {
               <input
                 onChange={(e) => setIncome({ ...income, date: e.target.value })}
                 type="date"
+                dateFormat="yyyy-MM-dd"
                 className=" form-control"
               />
             </div>

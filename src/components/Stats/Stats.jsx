@@ -1,27 +1,22 @@
 import React, { useEffect } from 'react';
-import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
-import './stats.css';
 
-const Stats = ({ type, totalExp, totalInc, TotalCash }) => {
+import './stats.css';
+import { useGlobalContext } from '../../Context/globalContext';
+
+export const Stats = ({ type }) => {
+  const { totalExpense, totalIncome, totalBalance } = useGlobalContext();
   let data;
   switch (type) {
-    case 'total':
-      data = {
-        title: 'Total',
-        stats: TotalCash,
-      };
-      break;
     case 'expenses':
       data = {
         title: 'Expenses',
-        stats: totalExp,
+        stats: totalExpense(),
       };
       break;
     case 'incomes':
       data = {
         title: 'Encomes',
-        stats: totalInc,
+        stats: totalIncome(),
       };
       break;
     default:
@@ -32,12 +27,7 @@ const Stats = ({ type, totalExp, totalInc, TotalCash }) => {
       <span>{data.title}</span>
       <div className="data">
         <div>{data.stats}</div>
-        <span className="upDownIcons positive">
-          <ArrowDownwardOutlinedIcon fontSize="large" />
-        </span>
       </div>
     </div>
   );
 };
-
-export default Stats;

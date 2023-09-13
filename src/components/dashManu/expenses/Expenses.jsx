@@ -12,6 +12,7 @@ const Expenses = () => {
     // Get user epxenses
     getExpenses();
   }, []);
+  //  שגיאה לא עובד למטה
   const [chartData, setChartData] = useState({
     lables: expenses.map((data) => data.title),
     datasets: [

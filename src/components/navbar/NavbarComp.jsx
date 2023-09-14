@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../../Context/globalContext.js';
 
 const NavbarComp = () => {
-  const { user } = useGlobalContext();
-  useEffect(() => {}, [user]);
+  const { userData } = useGlobalContext();
+  useEffect(() => {}, [userData]);
   return (
     <div>
       <Navbar expand="lg" className="nav sticky-top">
@@ -27,7 +27,7 @@ const NavbarComp = () => {
             </Nav.Link>
           </Nav>
           <Nav>
-            {!user ? (
+            {!userData ? (
               <>
                 <Nav.Link as={Link} to="/register" className="links me-2">
                   SignUp
@@ -38,7 +38,7 @@ const NavbarComp = () => {
               </>
             ) : (
               <Nav.Link as={Link} to="/dashboard" className="links me-2">
-                {user.firstName}
+                {userData.firstName}
               </Nav.Link>
             )}
           </Nav>

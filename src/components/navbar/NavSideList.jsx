@@ -31,6 +31,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import Footer from '../footer/footer';
+import { useGlobalContext } from '../../Context/globalContext';
 
 const drawerWidth = 240;
 
@@ -83,6 +84,7 @@ const Drawer = styled(MuiDrawer, {
 
 const NavSideList = ({ open, setOpen }) => {
   const [selectedLink, setSelectedLink] = useState('');
+  const user = JSON.parse(localStorage.getItem('user'));
 
   // List of nav side components
   const list = useMemo(
@@ -117,8 +119,6 @@ const NavSideList = ({ open, setOpen }) => {
   );
 
   const navigate = useNavigate();
-
-  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleLogout = () => {
     localStorage.clear();
@@ -181,11 +181,7 @@ const NavSideList = ({ open, setOpen }) => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {/* <Routes>
-          {list.map((item) => (
-            <Route key={item.title} path={item.link} element={<Outlet />} />
-          ))}
-        </Routes> */}
+        {/* Outlet - Display all components */}
         <Outlet />
         <Footer />
       </Box>

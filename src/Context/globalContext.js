@@ -1,22 +1,21 @@
 import axios from 'axios';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const BASE_URL = 'http://localhost:5000';
 
 const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-  const [userData, setUserData] = useState(''); // USER DATA
+  const [userData, setUserData] = useState({}); // USER DATA
   const [incomes, setIncomes] = useState([]); // INCOMES LIST
   const [expenses, setExpenses] = useState([]); // EXPENSES LIST
-
   const [error, setError] = useState(null); // ERROR
 
-  const getUserData = () => {
+  useEffect(() => {
+    console.log('heee');
     const Data = JSON.parse(localStorage.getItem('user'));
     setUserData(Data);
-    return Data;
-  };
+  }, []);
 
   //* * * * { ---  EXPENSES requests --- } * * * * //
 
@@ -32,8 +31,16 @@ export const GlobalProvider = ({ children }) => {
 
   const addExpense = async (expense) => {
     // ------------------------>  ADD Expenses
-    const response = await axios
-      .post(`${BASE_URL}/transactions/add-expense`, expense)
+    const { title, amount, category, description, date } = expense;
+    await axios
+      .post(`${BASE_URL}/transactions/add-expense`, {
+        userId: userData._id,
+        title,
+        amount,
+        category,
+        description,
+        date,
+      })
       .catch((err) => {
         setError(err.response.data.message);
       });
@@ -59,8 +66,15 @@ export const GlobalProvider = ({ children }) => {
 
   const addIncome = async (income) => {
     //  ------------------------>  ADD Income
-    const response = await axios
-      .post(`${BASE_URL}/transactions/add-income`, income)
+    const { title, amount, description, date } = income;
+    await axios
+      .post(`${BASE_URL}/transactions/add-income`, {
+        userId: userData._id,
+        title,
+        amount,
+        description,
+        date,
+      })
       .catch((err) => {
         setError(err.response.data.message);
       });
@@ -96,8 +110,8 @@ export const GlobalProvider = ({ children }) => {
 
     return totalIncomes;
   };
-  //* * * * { ---  TOTAL requests --- } * * * * //
 
+  //* * * * { ---  TOTAL requests --- } * * * * //
   const totalBalance = () => {
     // ------------------------> TOTAL balance
     return totalIncome() - totalExpense();
@@ -106,7 +120,6 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        getUserData,
         userData,
         expenses,
         totalExpense,

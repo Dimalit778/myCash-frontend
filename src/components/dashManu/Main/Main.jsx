@@ -5,24 +5,22 @@ import { useGlobalContext } from '../../../Context/globalContext';
 import BalanceStats from '../../Stats/BalanceStats';
 
 const Main = () => {
-  const { getUserData, getExpenses, getIncomes, totalBalance } =
-    useGlobalContext();
+  const { getExpenses, getIncomes, totalBalance } = useGlobalContext();
 
   useEffect(() => {
-    getUserData();
     getExpenses();
     getIncomes();
   }, []);
 
   return (
-    <div className="dashbord  m-5 ">
+    <div className="dashbord min-vh-100 m-5 ">
       <div className=" d-flex gap-5 ">
         <Stats type="expenses" />
         <BalanceStats totalBalance={totalBalance} />
         <Stats type="incomes" />
       </div>
 
-      <div className="charts mt-4">
+      <div className="charts  mt-4">
         <Chart />
       </div>
     </div>

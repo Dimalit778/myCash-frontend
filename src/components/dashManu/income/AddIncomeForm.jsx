@@ -1,14 +1,13 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
+import { useGlobalContext } from '../../../Context/globalContext';
 
-const AddIncomeForm = ({ userId }) => {
-  const user = JSON.parse(localStorage.getItem('user'));
+const AddIncomeForm = () => {
+  const { addIncome } = useGlobalContext();
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -18,25 +17,16 @@ const AddIncomeForm = ({ userId }) => {
     description: '',
     date: '',
   });
-  const addIncome = async (e) => {
-    const { title, amount, description, date } = income;
+  // --------- Add new Income
+  const addIncomeHandler = (e) => {
+    e.preventDefault();
     try {
-      const { data } = await axios.post('/transactions/add-income', {
-        userId: userId,
-        title,
-        amount,
-        description,
-        date,
-      });
-      if (data.error) {
-        toast.error(data.error);
-      } else {
-        toast.success('Successfully added');
+      addIncome(income);
+      toast.success('Successfully added');
 
-        setIncome({});
-      }
-    } catch (error) {
-      console.log(error);
+      setIncome({});
+    } catch (e) {
+      toast.error(e.error);
     }
   };
 
@@ -55,7 +45,7 @@ const AddIncomeForm = ({ userId }) => {
           <Modal.Title>Add Income</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="addExpense" onSubmit={addIncome}>
+          <form className="addExpense" onSubmit={addIncomeHandler}>
             <div className="form-group ">
               <label className="label ms-1">Title</label>
               <input

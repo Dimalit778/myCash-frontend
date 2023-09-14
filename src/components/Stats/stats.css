@@ -11,7 +11,7 @@
 }
 .upDownIcons {
   &.positive {
-    color: green;
+    color: gold;
   }
   &.negative {
     color: red;
@@ -19,4 +19,21 @@
 }
 .iconUpDown {
   size: 150px;
+}
+.balanceDown {
+  color: rgb(121, 114, 106);
+  flex: 1;
+  box-shadow: 2px 2px 13px -2px rgba(128, 0, 0, 0.74);
+  height: 125px;
+  border-radius: 5px;
+  border: 5px solid red;
+  /* border-color: red; */
+}
+.balanceUp {
+  color: rgb(121, 114, 106);
+  flex: 1;
+  box-shadow: 2px 2px 13px -2px rgba(128, 0, 0, 0.74);
+  height: 125px;
+  border-radius: 5px;
+  border: 5px solid gold;
 }

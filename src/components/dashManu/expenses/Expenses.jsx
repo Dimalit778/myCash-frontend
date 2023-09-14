@@ -6,34 +6,13 @@ import ExpenseList from './ExpenseList/ExpenseList';
 import PieActiveArc from '../../Charts/PieActiveArc';
 
 const Expenses = () => {
-  const { userData, getExpenses, totalExpense } = useGlobalContext();
+  const { getExpenses, totalExpense } = useGlobalContext();
 
   useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('user'));
     // Get user epxenses
     getExpenses();
   }, []);
-  //  שגיאה לא עובד למטה
-  // const [chartData, setChartData] = useState({
-  //   lables: expenses.map((data) => data.title),
-  //   datasets: [
-  //     {
-  //       lables: 'Amount',
-  //       data: expenses.map((data) => data.amount),
-  //     },
-  //   ],
-  // });
-
-  // const column = [
-  //   { title: 'ID' },
-  //   { title: 'Title' },
-  //   { title: 'Category' },
-  //   { title: 'Amount' },
-  //   { title: 'description' },
-  //   { title: 'date' },
-  // ];
-  // const deleteExp = (id) => {
-  //   deleteExpense(id);
-  // };
 
   return (
     <div className="">
@@ -45,7 +24,7 @@ const Expenses = () => {
           </h3>
         </div>
         <div>
-          <AddExpenseForm userId={userData._id} />
+          <AddExpenseForm />
         </div>
 
         <div className="cakeChart d-flex justify-content-center mt-5 ">

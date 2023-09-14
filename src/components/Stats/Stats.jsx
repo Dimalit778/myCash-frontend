@@ -4,7 +4,7 @@ import './stats.css';
 import { useGlobalContext } from '../../Context/globalContext';
 
 export const Stats = ({ type }) => {
-  const { totalExpense, totalIncome, totalBalance } = useGlobalContext();
+  const { totalExpense, totalIncome } = useGlobalContext();
   let data;
   switch (type) {
     case 'expenses':
@@ -24,9 +24,9 @@ export const Stats = ({ type }) => {
   }
   return (
     <div className="stats text-center ">
-      <span>{data.title}</span>
+      <h3>{data.title}</h3>
       <div className="data">
-        <div>{data.stats}</div>
+        <h4>{data.stats}</h4>
       </div>
     </div>
   );

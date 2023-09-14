@@ -90,6 +90,7 @@ export default function NavbarApp() {
             </IconButton>
           </Toolbar>
         </AppBar>
+        {/* --- NavSideList Display Nav side and components ----*/}
         <NavSideList {...{ open, setOpen }} />
       </Box>
     </ThemeProvider>

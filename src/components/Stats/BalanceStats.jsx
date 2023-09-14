@@ -9,22 +9,25 @@ const BalanceStats = ({ totalBalance }) => {
   //   const balance = isNegative ? -total : total;
 
   return (
-    <div className="stats text-center ">
-      <h2>Balance</h2>
+    <>
       {total > 0 ? (
-        <span className="upDownIcons positive">
-          <p>positive</p>
-          <h3>{total}</h3>
-          <ArrowUpwardOutlinedIcon className="iconUpDown" />
-        </span>
+        <div className="balanceUp text-center ">
+          <h3>Balance</h3>
+          <span className="upDownIcons positive">
+            <h4>{total}</h4>
+            <ArrowUpwardOutlinedIcon className="iconUpDown" />
+          </span>
+        </div>
       ) : (
-        <span className="upDownIcons negative">
-          <p>negative</p>
-          <h3>{-total}</h3>
-          <ArrowDownwardOutlinedIcon className="iconUpDown" />
-        </span>
+        <div className="balanceDown text-center ">
+          <h3>Balance</h3>
+          <span className="upDownIcons negative">
+            <h4>{-total}</h4>
+            <ArrowDownwardOutlinedIcon className="iconUpDown" />
+          </span>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

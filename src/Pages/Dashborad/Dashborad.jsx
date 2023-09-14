@@ -1,8 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import NavbarApp from '../../components/navbar/NavbarApp';
 import { Toaster } from 'react-hot-toast';
-import { useGlobalContext } from '../../Context/globalContext';
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
@@ -18,11 +17,6 @@ export default function Dashboard() {
     [dark]
   );
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  // const navigate = useNavigate();
   return (
     <ThemeProvider theme={darkTheme}>
       <Toaster position="botton-right" toastOptions={{ duration: 3000 }} />

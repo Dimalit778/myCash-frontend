@@ -5,13 +5,13 @@ import './incomesTable.css';
 
 const IncomesTable = () => {
   const { deleteIncome, getIncomes, incomes } = useGlobalContext();
+  useEffect(() => {
+    getIncomes();
+  }, []);
 
   const handleDelete = (id) => {
     deleteIncome(id);
   };
-  useEffect(() => {
-    getIncomes();
-  }, []);
 
   return (
     <div className="container">

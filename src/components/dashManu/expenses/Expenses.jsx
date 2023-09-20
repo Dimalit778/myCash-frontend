@@ -2,33 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import './expense.css';
 import AddExpenseForm from './addForm';
-import ExpenseList from './ExpenseList/ExpenseList';
-import PieActiveArc from '../../Charts/PieActiveArc';
+import ExpenseTable from './ExpenseTable';
+
+import Calendar from 'react-calendar';
 
 const Expenses = () => {
-  const { getExpenses, totalExpense } = useGlobalContext();
+  const { getExpenses } = useGlobalContext();
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('user'));
     // Get user epxenses
     getExpenses();
   }, []);
 
+  // -------->Calender get Date
+  const [date, setDate] = useState(new Date());
+  const onChange = (date) => {
+    setDate(date);
+  };
+
   return (
     <div className="">
+      <div className="headExp ">
+        <h2>My Expenses</h2>
+      </div>
+      <div className="react-calendar">
+        <Calendar
+          maxDetail="year"
+          locale="en"
+          onChange={onChange}
+          defaultActiveStartDate={date}
+          value={date}
+        />
+      </div>
       <div className=" text-center mt-5 m-5 ">
-        <div className="headExp   ">
-          <h2>My Expenses</h2>
-          <h3>
-            Total :<span> ${totalExpense()}</span>
-          </h3>
-        </div>
-        <div>
-          <AddExpenseForm />
-        </div>
-
         <div className="cakeChart d-flex justify-content-center mt-5 ">
-          <ExpenseList />
+          <ExpenseTable date={date} />
         </div>
         <div className="pieChart">
           {/* <PieActiveArc chartData={expenses} /> */}

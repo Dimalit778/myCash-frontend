@@ -8,7 +8,6 @@ const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [userData, setUserData] = useState({}); // USER DATA
   const [incomes, setIncomes] = useState([]); // INCOMES LIST
-  const [incomesByDateList, setIncomesByDateList] = useState([]);
   const [expenses, setExpenses] = useState([]); // EXPENSES LIST
 
   const [error, setError] = useState(null); // ERROR
@@ -19,9 +18,8 @@ export const GlobalProvider = ({ children }) => {
   }, []);
 
   //* * * * { ---  EXPENSES requests --- } * * * * //
-
+  // ------------------------> Find Expenses by User ID
   const getExpenses = async () => {
-    // ------------------------> Find Expenses by User ID
     const { _id } = userData;
     const respone = await axios.get(
       `${BASE_URL}/transactions/get-expenses/${_id}`
@@ -29,9 +27,8 @@ export const GlobalProvider = ({ children }) => {
     setExpenses(respone.data);
     totalExpense();
   };
-
+  // ------------------------>  ADD Expenses
   const addExpense = async (expense) => {
-    // ------------------------>  ADD Expenses
     const { title, amount, category, description, date } = expense;
     await axios
       .post(`${BASE_URL}/transactions/add-expense`, {
@@ -47,26 +44,33 @@ export const GlobalProvider = ({ children }) => {
       });
     getExpenses();
   };
-
+  // ------------------------>  DELETE Expenses
   const deleteExpense = async (id) => {
-    // ------------------------>  DELETE Expenses
-    const res = await axios.delete(`${BASE_URL}'/delete-expense/${id}`);
+    const res = await axios.delete(
+      `${BASE_URL}/transactions/delete-expense/${id}`
+    );
     getExpenses();
   };
-
+  // ------------------------>  TOTAL Expenses
   const totalExpense = () => {
-    // ------------------------>  TOTAL Expenses
     let totalExpenses = 0;
     expenses.forEach((exp) => {
       totalExpenses += exp.amount;
     });
     return totalExpenses;
   };
+  // ------------------------> TOTAL Incomes by Month
+  const totalExpenseByMonth = (filterdExpense) => {
+    let total = 0;
+    filterdExpense.forEach((expense) => {
+      total += expense.amount;
+    });
+    return total;
+  };
 
   //* * * * { ---  INCOMES requests --- } * * * * //
-
+  //  ------------------------>  ADD Income
   const addIncome = async (income) => {
-    //  ------------------------>  ADD Income
     const { title, amount, description, date } = income;
     await axios
       .post(`${BASE_URL}/transactions/add-income`, {
@@ -81,9 +85,8 @@ export const GlobalProvider = ({ children }) => {
       });
     getIncomes();
   };
-
+  // ------------------------> Get INCOMES by User ID
   const getIncomes = async () => {
-    // ------------------------> Get INCOMES by User ID
     const { _id } = userData;
 
     const respone = await axios.get(
@@ -94,38 +97,30 @@ export const GlobalProvider = ({ children }) => {
 
     totalIncome();
   };
-  const getIncomesByDate = async (date) => {
-    console.log(date);
-    incomes.map((income) => {
-      const d = new Date(income.date);
-      // console.log(d.getMonth());
-      // if (
-      //   d.getMonth() === date.getMonth() &&
-      //   d.getFullYear() === date.getFullYear()
-      // ) {
-      //   console.log('yes');
-      //   setIncomesByDateList(income);
-      // }
-    });
-  };
-
+  // ------------------------> DELETE Income
   const deleteIncome = async (id) => {
-    // ------------------------> DELETE Income
     const res = await axios.delete(
       `${BASE_URL}/transactions/delete-income/${id}`
     );
 
     getIncomes();
   };
-
+  // ------------------------> TOTAL Incomes
   const totalIncome = () => {
-    // ------------------------> TOTAL Incomes
     let totalIncomes = 0;
     incomes.forEach((income) => {
       totalIncomes += income.amount;
     });
 
     return totalIncomes;
+  };
+  // ------------------------> TOTAL Incomes by Month
+  const totalIncomeByMonth = (filterdIncome) => {
+    let total = 0;
+    filterdIncome.forEach((income) => {
+      total += income.amount;
+    });
+    return total;
   };
 
   //* * * * { ---  TOTAL requests --- } * * * * //
@@ -138,21 +133,21 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         userData,
+        totalBalance,
+
         expenses,
         totalExpense,
+        totalExpenseByMonth,
         addExpense,
         getExpenses,
         deleteExpense,
 
         incomes,
         totalIncome,
-        getIncomesByDate,
-        incomesByDateList,
-
+        totalIncomeByMonth,
         addIncome,
         getIncomes,
         deleteIncome,
-        totalBalance,
       }}
     >
       {children}

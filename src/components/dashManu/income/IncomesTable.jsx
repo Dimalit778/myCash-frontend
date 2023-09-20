@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import { Delete, Edit } from '@mui/icons-material';
-import './incomesTable.css';
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
+
+import AddIncomeForm from './AddIncomeForm';
 
 const IncomesTable = ({ date }) => {
-  const {
-    deleteIncome,
-    getIncomes,
-    incomes,
-    getIncomesByDate,
-    incomesByDateList,
-  } = useGlobalContext();
+  const { deleteIncome, getIncomes, incomes, totalIncomeByMonth } =
+    useGlobalContext();
 
   useEffect(() => {
     getIncomes();
-    getIncomesByDate(date);
   }, [date]);
 
   const handleDelete = (id) => {
     deleteIncome(id);
   };
+  // -----> Filter the incomes by month and year <-------- //
+  const filterd = incomes.filter((income) => {
+    const d = new Date(income.date);
+    return (
+      d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear()
+    );
+  });
+  // -----> Get total incomes by month <-------- //
+  const totalIncomesMonth = totalIncomeByMonth(filterd);
 
   return (
     <div className="container">
+      <div className="total d-flex justify-content-between  ">
+        <h2> Total incomes : ${totalIncomesMonth}</h2>
+        <AddIncomeForm />
+      </div>
       <table className="table">
         <thead className="tableHeader">
           <tr className="">
@@ -37,7 +43,7 @@ const IncomesTable = ({ date }) => {
           </tr>
         </thead>
         <tbody className="">
-          {incomesByDateList.map((income) => (
+          {filterd.map((income) => (
             <tr className=" bg-body-secondary " key={income._id}>
               <td className="td ">{income.title}</td>
               <td>{income.amount}</td>

@@ -12,6 +12,7 @@ const IncomesTable = ({ date }) => {
     getIncomes();
   }, [date]);
 
+  // ----> Delete Income Function <----
   const handleDelete = (id) => {
     deleteIncome(id);
   };
@@ -32,7 +33,7 @@ const IncomesTable = ({ date }) => {
         <AddIncomeForm />
       </div>
       <table className="table">
-        <thead className="tableHeader">
+        <thead>
           <tr className="">
             <th>Title</th>
             <th>Amount</th>
@@ -42,7 +43,7 @@ const IncomesTable = ({ date }) => {
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody className="">
+        <tbody className="tableBody">
           {filterd.map((income) => (
             <tr className=" bg-body-secondary " key={income._id}>
               <td className="td ">{income.title}</td>

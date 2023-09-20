@@ -3,11 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
 import { useGlobalContext } from '../../../Context/globalContext';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const AddIncomeForm = () => {
   const { addIncome } = useGlobalContext();
 
   const [show, setShow] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -68,11 +71,11 @@ const AddIncomeForm = () => {
               />
             </div>
             <div className="form-group ">
-              <label className="label ms-1">Date</label>
               <input
                 onChange={(e) => setIncome({ ...income, date: e.target.value })}
                 type="date"
                 dateFormat="yyyy-MM-dd"
+                minDate={new Date()}
                 className=" form-control"
               />
             </div>

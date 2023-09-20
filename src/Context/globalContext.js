@@ -8,11 +8,12 @@ const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [userData, setUserData] = useState({}); // USER DATA
   const [incomes, setIncomes] = useState([]); // INCOMES LIST
+  const [incomesByDateList, setIncomesByDateList] = useState([]);
   const [expenses, setExpenses] = useState([]); // EXPENSES LIST
+
   const [error, setError] = useState(null); // ERROR
 
   useEffect(() => {
-    console.log('heee');
     const Data = JSON.parse(localStorage.getItem('user'));
     setUserData(Data);
   }, []);
@@ -88,8 +89,24 @@ export const GlobalProvider = ({ children }) => {
     const respone = await axios.get(
       `${BASE_URL}/transactions/get-incomes/${_id}`
     );
+
     setIncomes(respone.data);
+
     totalIncome();
+  };
+  const getIncomesByDate = async (date) => {
+    console.log(date);
+    incomes.map((income) => {
+      const d = new Date(income.date);
+      // console.log(d.getMonth());
+      // if (
+      //   d.getMonth() === date.getMonth() &&
+      //   d.getFullYear() === date.getFullYear()
+      // ) {
+      //   console.log('yes');
+      //   setIncomesByDateList(income);
+      // }
+    });
   };
 
   const deleteIncome = async (id) => {
@@ -129,6 +146,8 @@ export const GlobalProvider = ({ children }) => {
 
         incomes,
         totalIncome,
+        getIncomesByDate,
+        incomesByDateList,
 
         addIncome,
         getIncomes,

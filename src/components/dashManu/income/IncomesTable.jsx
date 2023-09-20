@@ -1,13 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import { Delete, Edit } from '@mui/icons-material';
 import './incomesTable.css';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 
-const IncomesTable = () => {
-  const { deleteIncome, getIncomes, incomes } = useGlobalContext();
+const IncomesTable = ({ date }) => {
+  const {
+    deleteIncome,
+    getIncomes,
+    incomes,
+    getIncomesByDate,
+    incomesByDateList,
+  } = useGlobalContext();
+
   useEffect(() => {
     getIncomes();
-  }, []);
+    getIncomesByDate(date);
+  }, [date]);
 
   const handleDelete = (id) => {
     deleteIncome(id);
@@ -27,7 +37,7 @@ const IncomesTable = () => {
           </tr>
         </thead>
         <tbody className="">
-          {incomes.map((income) => (
+          {incomesByDateList.map((income) => (
             <tr className=" bg-body-secondary " key={income._id}>
               <td className="td ">{income.title}</td>
               <td>{income.amount}</td>

@@ -8,12 +8,10 @@ import {
   Tooltip,
 } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
-import { Brightness4, Brightness7, Home, Menu } from '@mui/icons-material';
+import { Brightness4, Brightness7, Menu } from '@mui/icons-material';
 import { useMemo, useState } from 'react';
 import NavSideList from '../../components/navbar/NavSideList';
 import { useNavigate } from 'react-router-dom';
-
-import logo from '../../assets/logo.jpg';
 
 const drawerWidth = 240;
 
@@ -74,7 +72,12 @@ export default function NavbarApp() {
             </IconButton>
             <Tooltip title="Go back to home page">
               <IconButton sx={{ mr: 1 }} onClick={() => navigate('/')}>
-                <img src={logo} alt="" style={{ height: 45, width: 45 }} />
+                <img
+                  width="40"
+                  height="40"
+                  src="https://img.icons8.com/officel/80/000000/money-bag.png"
+                  alt="money-bag"
+                />
               </IconButton>
             </Tooltip>
             <Typography

@@ -3,15 +3,11 @@ import {
   ChevronLeft,
   CurrencyExchange,
   Dashboard,
-  KingBed,
   Logout,
-  MarkChatUnread,
-  NotificationsActive,
   Payment,
   SettingsApplications,
 } from '@mui/icons-material';
 // import MonetizationOnIcon from '@mui/icons-material';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import {
   Avatar,
   Box,
@@ -26,12 +22,20 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import MuiDrawer from '@mui/material/Drawer';
-import { useEffect, useMemo, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
 
+import incomeIcon from '../../assets/manuIcons/incomeIcom.png';
+import accountIcon from '../../assets/manuIcons/accountIcon.png';
+import dashIcon1 from '../../assets/manuIcons/dashIcon1.png';
+import dashIcon2 from '../../assets/manuIcons/dashIcon2.png';
+import expenseIcon from '../../assets/manuIcons/expenseIcon.png';
+import settingIcon from '../../assets/manuIcons/settingIcon.png';
+import contactIcon from '../../assets/manuIcons/contact.png';
+import logoutIcon from '../../assets/manuIcons/logoutIcon.png';
+
+import MuiDrawer from '@mui/material/Drawer';
+import { useMemo, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
-import { useGlobalContext } from '../../Context/globalContext';
 
 const drawerWidth = 240;
 
@@ -91,27 +95,33 @@ const NavSideList = ({ open, setOpen }) => {
     () => [
       {
         title: 'Main',
-        icon: <Dashboard />,
+        icon: <img src={dashIcon2} alt="" />,
         link: '',
       },
+
       {
         title: 'Expenses',
-        icon: <Payment />,
+        icon: <img src={expenseIcon} alt="" />,
         link: 'expenses',
       },
       {
         title: 'Incomes',
-        icon: <CurrencyExchange />,
+        icon: <img src={incomeIcon} alt="" />,
         link: 'incomes',
       },
       {
         title: 'Account',
-        icon: <AccountBox />,
+        icon: <img src={accountIcon} alt="" />,
         link: 'account',
       },
       {
+        title: 'Contact',
+        icon: <img src={contactIcon} alt="" />,
+        link: 'contact',
+      },
+      {
         title: 'Settings',
-        icon: <SettingsApplications />,
+        icon: <img src={settingIcon} alt="" />,
         link: 'settings',
       },
     ],
@@ -174,7 +184,7 @@ const NavSideList = ({ open, setOpen }) => {
           {open && <Typography variant="body2">{user.email}</Typography>}
           <Tooltip title="Logout" sx={{ mt: 1 }}>
             <IconButton onClick={handleLogout}>
-              <Logout />
+              <img src={logoutIcon} alt="" />
             </IconButton>
           </Tooltip>
         </Box>

@@ -1,7 +1,9 @@
 import React from 'react';
 import './stats.css';
-import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
+
+import ArrowUpIcon from '../../assets/BalanceIcons/arrowUpIcon.png';
+import ArrowDownIcon from '../../assets/BalanceIcons/arrowDownIcon.png';
+import BalanceIcon from '../../assets/BalanceIcons/balance.png';
 
 const BalanceStats = ({ totalBalance }) => {
   const total = totalBalance();
@@ -11,20 +13,33 @@ const BalanceStats = ({ totalBalance }) => {
   return (
     <>
       {total > 0 ? (
-        <div className="balanceUp text-center ">
-          <h3>Balance</h3>
-          <span className="upDownIcons positive">
-            <h4>{total}</h4>
-            <ArrowUpwardOutlinedIcon className="iconUpDown" />
-          </span>
+        <div className="statHeader text-center  ">
+          <span className="title_Main">Balance</span>
+
+          <div className="balanceUp d-flex  justify-content-around    ">
+            <div className="textIcon d-flex  align-items-center ">
+              <img src={BalanceIcon} alt="BalanceIcon" />
+            </div>
+            <div className=" d-flex  align-items-center justify-content-between  ">
+              <h4>{total}</h4>
+            </div>
+            <div className=" d-flex  align-items-center justify-content-between  ">
+              <img src={ArrowUpIcon} alt="ArrowUp" height={80} width={80} />
+            </div>
+          </div>
         </div>
       ) : (
-        <div className="balanceDown text-center ">
-          <h3>Balance</h3>
-          <span className="upDownIcons negative">
+        <div className="balanceDown d-flex  justify-content-around   ">
+          <div className="textIcon d-flex  align-items-center ">
+            <h3>Balance</h3>
+            <img src={BalanceIcon} alt="BalanceIcon" />
+          </div>
+          <div className=" d-flex  align-items-center justify-content-between  ">
             <h4>{-total}</h4>
-            <ArrowDownwardOutlinedIcon className="iconUpDown" />
-          </span>
+          </div>
+          <div className=" d-flex  align-items-center justify-content-between  ">
+            <img src={ArrowDownIcon} alt="ArrowDown" height={80} width={80} />
+          </div>
         </div>
       )}
     </>

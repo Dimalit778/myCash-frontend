@@ -1,0 +1,37 @@
+.container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.total {
+  margin-bottom: 20px;
+}
+
+.income-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.income-table th,
+.income-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.action-button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-income-form {
+  /* Style your form here */
+}

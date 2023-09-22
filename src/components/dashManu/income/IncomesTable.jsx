@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import { Delete, Edit } from '@mui/icons-material';
-
+import './table.css';
 import AddIncomeForm from './AddIncomeForm';
 
 const IncomesTable = ({ date }) => {
@@ -32,7 +32,7 @@ const IncomesTable = ({ date }) => {
         <h2> Total incomes : ${totalIncomesMonth}</h2>
         <AddIncomeForm />
       </div>
-      <table className="table">
+      <table className="income-table">
         <thead>
           <tr className="">
             <th>Title</th>
@@ -51,13 +51,13 @@ const IncomesTable = ({ date }) => {
               <td>{income.description}</td>
               <td>{income.date}</td>
               <td>
-                <button className="btn_Updade ">
+                <button className="action-button ">
                   <Edit />
                 </button>
               </td>
               <td>
                 <button
-                  className="btn_Delete "
+                  className="action-button "
                   onClick={() => handleDelete(income._id)}
                 >
                   <Delete />

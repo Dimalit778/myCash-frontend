@@ -14,10 +14,16 @@ const Main = () => {
 
   return (
     <div className="dashbord min-vh-100 m-5 ">
-      <div className=" d-flex gap-5 ">
-        <Stats type="expenses" />
-        <BalanceStats totalBalance={totalBalance} />
-        <Stats type="incomes" />
+      <div className="row gap-5  ">
+        <div className="col">
+          <Stats type="expenses" />
+        </div>
+        <div className="col">
+          <BalanceStats totalBalance={totalBalance} />
+        </div>
+        <div className="col">
+          <Stats type="incomes" />
+        </div>
       </div>
 
       <div className="charts  mt-4">

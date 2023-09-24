@@ -20,6 +20,7 @@ import Expenses from './components/dashManu/expenses/Expenses';
 import Incomes from './components/dashManu/income/Incomes';
 import Account from './components/dashManu/account/Account';
 import Settings from './components/dashManu/Settings/Settings';
+import ContactUs from './components/dashManu/contact/ContactUs';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
         <Route path="expenses" element={<Expenses />} />
         <Route path="incomes" element={<Incomes />} />
         <Route path="account" element={<Account />} />
+        <Route path="contact" element={<ContactUs />} />
       </Route>
     </Route>
   )

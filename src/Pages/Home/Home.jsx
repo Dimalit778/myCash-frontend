@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container-fluid">
         <div className="section_1">
           <div className="box d-flex flex-column justify-content-center align-items-center gap-4    ">
             <div className="header  ">Manage Your Money</div>

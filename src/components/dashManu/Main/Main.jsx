@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Stats, totalBalance } from '../../Stats/Stats';
-import Chart from '../../Charts/Chart';
+
 import { useGlobalContext } from '../../../Context/globalContext';
 import BalanceStats from '../../Stats/BalanceStats';
+import LineChart from '../../Charts/LineChart';
 
 const Main = () => {
-  const { getExpenses, getIncomes, totalBalance } = useGlobalContext();
+  const { getExpenses, getIncomes, totalBalance, incomes } = useGlobalContext();
 
   useEffect(() => {
     getExpenses();
@@ -26,8 +27,8 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="charts  mt-4">
-        <Chart />
+      <div className=" d-flex justify-content-center   ">
+        <LineChart />
       </div>
     </div>
   );

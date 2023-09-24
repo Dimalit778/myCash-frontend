@@ -1,33 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import IncomesTable from './IncomesTable';
-import Calendar from 'react-calendar';
 import './incomes.css';
-// import 'react-calendar/dist/Calendar.css';
+import CalendarYearMonth from '../../calendar/CalendarYearMonth';
 
 const Incomes = () => {
   const { getIncomes } = useGlobalContext();
   const [date, setDate] = useState(new Date());
 
+  useEffect(() => {
+    // Get user incomes
+    getIncomes();
+  }, []);
+
+  // --------> Calender get Date
   const onChange = (date) => {
     setDate(date);
   };
 
-  useEffect(() => {
-    getIncomes();
-  }, []);
-
   return (
     <div className="incomes  ">
-      <div className="react-calendar">
-        <Calendar
-          maxDetail="year"
-          locale="en"
-          onChange={onChange}
-          defaultActiveStartDate={date}
-          value={date}
-        />
-      </div>
+      <CalendarYearMonth onChange={onChange} date={date} />
       <div className="header">
         <h1>Incomes list</h1>
       </div>

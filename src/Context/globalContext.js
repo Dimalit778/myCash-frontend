@@ -9,8 +9,13 @@ export const GlobalProvider = ({ children }) => {
   const [userData, setUserData] = useState({}); // USER DATA
   const [incomes, setIncomes] = useState([]); // INCOMES LIST
   const [expenses, setExpenses] = useState([]); // EXPENSES LIST
-
   const [error, setError] = useState(null); // ERROR
+
+  const [expensesMonth, setExpensesMonth] = useState([
+    {
+      month: '',
+    },
+  ]);
 
   useEffect(() => {
     const Data = JSON.parse(localStorage.getItem('user'));

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import './expense.css';
-import AddExpenseForm from './addForm';
 import ExpenseTable from './ExpenseTable';
-
-import Calendar from 'react-calendar';
+import CalendarYearMonth from '../../calendar/CalendarYearMonth';
 
 const Expenses = () => {
   const { getExpenses } = useGlobalContext();
@@ -14,7 +12,7 @@ const Expenses = () => {
     getExpenses();
   }, []);
 
-  // -------->Calender get Date
+  // --------> Calender get Date
   const [date, setDate] = useState(new Date());
   const onChange = (date) => {
     setDate(date);
@@ -25,15 +23,7 @@ const Expenses = () => {
       <div className="headExp ">
         <h2>My Expenses</h2>
       </div>
-      <div className="react-calendar">
-        <Calendar
-          maxDetail="year"
-          locale="en"
-          onChange={onChange}
-          defaultActiveStartDate={date}
-          value={date}
-        />
-      </div>
+      <CalendarYearMonth onChange={onChange} date={date} />
       <div className=" text-center mt-5 m-5 ">
         <div className="cakeChart d-flex justify-content-center mt-5 ">
           <ExpenseTable date={date} />

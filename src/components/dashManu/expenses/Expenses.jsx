@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
-import './expense.css';
 import ExpenseTable from './ExpenseTable';
 import CalendarYearMonth from '../../calendar/CalendarYearMonth';
 

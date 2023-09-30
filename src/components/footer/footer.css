@@ -6,14 +6,12 @@
   font-weight: 600;
   font-family: cursive;
 }
-.row h2 {
-  font-family: cursive;
-}
+
 .footer-icos p {
   padding: 0.5rem;
   font-size: 2rem;
 }
-ul,
+Footerlist,
 li {
   font-weight: 500;
   padding: 5px;

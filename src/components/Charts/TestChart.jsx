@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { useGlobalContext } from '../../Context/globalContext';
-import './cake.css';
 
 const TestChart = () => {
   const data = [

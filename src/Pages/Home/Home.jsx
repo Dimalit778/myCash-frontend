@@ -12,8 +12,8 @@ const Home = () => {
     <>
       <div className="container-fluid">
         <div className="section_1">
-          <div className="box d-flex flex-column justify-content-center align-items-center gap-4    ">
-            <div className="header  ">Manage Your Money</div>
+          <div className="Home_box d-flex flex-column justify-content-center align-items-center gap-4    ">
+            <span className="Home_header  ">Manage Your Money</span>
             <button onClick={() => navigate('/register')} className="btnStart">
               Start Here
             </button>
@@ -26,7 +26,7 @@ const Home = () => {
               <img src={groupImg} className="img-fluid " alt="" />
             </div>
             <div className="col-12 col-lg-6  ">
-              <div className=" d-inline-flex flex-column gap-4 mt-3 ">
+              <div className="Home_text d-inline-flex flex-column gap-4 mt-3 ">
                 <div className=" d-flex justify-content-center ">
                   <h3>About Us</h3>
                 </div>

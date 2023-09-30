@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -52,6 +52,7 @@ const LineChart = () => {
     datasets: [
       {
         label: 'Monthly Incomes',
+
         data: dataIncomes,
         backgroundColor: 'rgba(75, 192, 192, 0.6)', // Change the color as needed
         borderColor: 'rgba(75, 192, 192, 1)', // Change the color as needed
@@ -72,10 +73,11 @@ const LineChart = () => {
     plugins: {
       legend: {
         position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart',
+        labels: {
+          font: {
+            size: 20,
+          },
+        },
       },
     },
   };

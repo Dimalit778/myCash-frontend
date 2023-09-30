@@ -1,4 +1,4 @@
-p {
+.Home_text p {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
 }
@@ -10,7 +10,7 @@ p {
   height: 100%;
   width: 100%;
 }
-.box {
+.Home_box {
   position: absolute;
   height: 50%;
   width: 50%;
@@ -18,7 +18,7 @@ p {
   top: 25%;
 }
 
-.header {
+.Home_header {
   text-align: center;
   font-size: 2rem;
 }
@@ -27,7 +27,7 @@ p {
   margin-top: 1rem;
   min-height: 40vh;
 }
-.btnStart {
+.Home_box .btnStart {
   width: 150px;
   height: 50px;
   font-size: larger;
@@ -35,7 +35,7 @@ p {
   background-color: gold;
   border-radius: 1rem;
 }
-.btnStart:hover {
+.Home_box .btnStart:hover {
   background-color: rgb(43, 39, 36);
   color: white;
 }

@@ -6,9 +6,9 @@ const Footer = () => {
     <div className="footer-container mt-5 ">
       <div className=" d-lg-flex  flex-row justify-content-evenly ">
         {/* // !! { ------- CONTACT FOOTER -------} */}
-        <div className=" mx-auto  ft1  ">
+        <div className="ft1 mx-auto    ">
           <h2>Contact Us</h2>
-          <ul className="list list-unstyled ">
+          <ul className="Footerlist list-unstyled ">
             <li>Israel</li>
             <li>Tel Aviv</li>
             <li>Travel@gmail.com</li>
@@ -18,7 +18,7 @@ const Footer = () => {
         {/* // !! { ------- EXPLOR FOOTER -------} */}
         <div className=" mx-auto ">
           <h2>Explore</h2>
-          <ul className="list list-unstyled">
+          <ul className="Footerlist list-unstyled ">
             <li>Write a review</li>
             <li>Add a Place</li>
             <li>Blog</li>
@@ -28,7 +28,7 @@ const Footer = () => {
         {/* // !! { ------- DESCRIPTION FOOTER -------} */}
         <div className=" mx-auto ">
           <h2>Staff</h2>
-          <ul className="list list-unstyled">
+          <ul className="Footerlist list-unstyled">
             <li>Write a review</li>
             <li>Add a Place</li>
             <li>Blog</li>

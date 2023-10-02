@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalContext';
 import IncomesTable from './IncomesTable';
-import './incomes.css';
+
 import CalendarYearMonth from '../../calendar/CalendarYearMonth';
 
 const Incomes = () => {

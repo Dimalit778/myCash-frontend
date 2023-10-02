@@ -2,19 +2,34 @@ import React, { useEffect } from 'react';
 import './navbar.css';
 import { Navbar, Nav } from 'react-bootstrap';
 // import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../../Context/globalContext.js';
+import { IconButton } from '@mui/material';
 
 const NavbarComp = () => {
   const { userData } = useGlobalContext();
+  const navigate = useNavigate();
   useEffect(() => {}, [userData]);
   return (
     <div>
       <Navbar expand="lg" className="nav sticky-top">
         {/* <Helmet> */}
+
         <title>MyCash</title>
         {/* </Helmet> */}
-        <Navbar.Brand className="fs-4 fw-semibold ms-5">MyCash</Navbar.Brand>
+
+        <Navbar.Brand className="fs-4 fw-semibold ms-3 ">
+          <div className="">
+            <img
+              width="35"
+              height="35"
+              src="https://img.icons8.com/officel/80/000000/money-bag.png"
+              alt="money-bag"
+              className="me-3"
+            />
+            MyCash
+          </div>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto  ">

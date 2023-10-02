@@ -152,7 +152,9 @@ const NavSideList = ({ open, setOpen }) => {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                onClick={() => navigate(item.link)}
+                onClick={() => (
+                  navigate(item.link), setSelectedLink(item.link)
+                )}
                 selected={selectedLink === item.link}
               >
                 <ListItemIcon

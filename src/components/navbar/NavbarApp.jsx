@@ -58,6 +58,8 @@ export default function NavbarApp() {
         <CssBaseline />
         <AppBar position="fixed" open={open}>
           <Toolbar>
+            {/* IF USER EXSIT */}
+
             <IconButton
               color="inherit"
               aria-label="open drawer"

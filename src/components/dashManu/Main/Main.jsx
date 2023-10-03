@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
-import { Stats, totalBalance } from '../../Stats/Stats';
+import { Stats } from '../../Stats/Stats';
 
 import { useGlobalContext } from '../../../Context/globalContext';
 import BalanceStats from '../../Stats/BalanceStats';
 import LineChart from '../../Charts/LineChart';
+import { useLoaderData } from 'react-router-dom';
+
+export function loader() {
+  return 'lodaer';
+}
 
 const Main = () => {
-  const { getExpenses, getIncomes, totalBalance, incomes } = useGlobalContext();
+  const { getExpenses, getIncomes, totalBalance } = useGlobalContext();
+  const data = useLoaderData();
 
   useEffect(() => {
     getExpenses();

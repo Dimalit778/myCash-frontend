@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import './navbar.css';
 import { Navbar, Nav } from 'react-bootstrap';
 // import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../../Context/globalContext.js';
-import { IconButton } from '@mui/material';
 
 const NavbarComp = () => {
   const { userData } = useGlobalContext();
-  const navigate = useNavigate();
+
   useEffect(() => {}, [userData]);
   return (
     <div>

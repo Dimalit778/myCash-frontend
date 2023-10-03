@@ -1,10 +1,16 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import 'bootstrap/dist/css/bootstrap.css';
-import { Outlet, Route, createRoutesFromElements } from 'react-router-dom';
+import {
+  Outlet,
+  Route,
+  createRoutesFromElements,
+  redirect,
+} from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { loader } from './Hooks/Loader.js';
 
 import Register from './Pages/Register/Register';
 import Dashboard from './Pages/Dashborad/Dashborad';
@@ -21,6 +27,7 @@ import Incomes from './components/dashManu/income/Incomes';
 import Account from './components/dashManu/account/Account';
 import Settings from './components/dashManu/Settings/Settings';
 import ContactUs from './components/dashManu/contact/ContactUs';
+import NotFound from './Pages/NotFound/NotFound';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
@@ -57,6 +64,7 @@ const router = createBrowserRouter(
         <Route path="account" element={<Account />} />
         <Route path="contact" element={<ContactUs />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

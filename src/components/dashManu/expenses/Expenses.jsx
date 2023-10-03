@@ -4,12 +4,12 @@ import ExpenseTable from './ExpenseTable';
 import CalendarYearMonth from '../../calendar/CalendarYearMonth';
 
 const Expenses = () => {
-  const { getExpenses } = useGlobalContext();
+  // const { getExpenses } = useGlobalContext();
 
-  useEffect(() => {
-    // Get user epxenses
-    getExpenses();
-  }, []);
+  // useEffect(() => {
+  //   // Get user epxenses
+  //   getExpenses();
+  // }, []);
 
   // --------> Calender get Date
   const [date, setDate] = useState(new Date());

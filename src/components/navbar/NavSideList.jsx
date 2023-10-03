@@ -1,13 +1,5 @@
-import {
-  AccountBox,
-  ChevronLeft,
-  CurrencyExchange,
-  Dashboard,
-  Logout,
-  Payment,
-  SettingsApplications,
-} from '@mui/icons-material';
-// import MonetizationOnIcon from '@mui/icons-material';
+import { ChevronLeft } from '@mui/icons-material';
+
 import {
   Avatar,
   Box,
@@ -25,7 +17,7 @@ import {
 
 import incomeIcon from '../../assets/manuIcons/incomeIcom.png';
 import accountIcon from '../../assets/manuIcons/accountIcon.png';
-import dashIcon1 from '../../assets/manuIcons/dashIcon1.png';
+
 import dashIcon2 from '../../assets/manuIcons/dashIcon2.png';
 import expenseIcon from '../../assets/manuIcons/expenseIcon.png';
 import settingIcon from '../../assets/manuIcons/settingIcon.png';
@@ -132,7 +124,6 @@ const NavSideList = ({ open, setOpen }) => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/');
   };
   return (
     <>

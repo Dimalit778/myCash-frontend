@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useGlobalContext } from '../../../Context/globalContext';
 import AddExpenseForm from './addForm';
@@ -13,6 +13,7 @@ const ExpenseList = ({ date }) => {
     // Get user epxenses
     getExpenses();
   }, [date]);
+
   // ----> Delete Expense Function <----
   const handleDelete = (id) => {
     deleteExpense(id);

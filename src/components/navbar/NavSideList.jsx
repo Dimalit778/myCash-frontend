@@ -17,7 +17,6 @@ import {
 
 import incomeIcon from '../../assets/manuIcons/incomeIcom.png';
 import accountIcon from '../../assets/manuIcons/accountIcon.png';
-
 import dashIcon2 from '../../assets/manuIcons/dashIcon2.png';
 import expenseIcon from '../../assets/manuIcons/expenseIcon.png';
 import settingIcon from '../../assets/manuIcons/settingIcon.png';
@@ -28,6 +27,9 @@ import MuiDrawer from '@mui/material/Drawer';
 import { useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLogoutMutation } from '../../slices/userApiSlice';
+import { logout } from '../../slices/authSlice';
 
 const drawerWidth = 240;
 
@@ -79,8 +81,13 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const NavSideList = ({ open, setOpen }) => {
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [logoutApiCall] = useLogoutMutation();
+
   const [selectedLink, setSelectedLink] = useState('');
-  const user = JSON.parse(localStorage.getItem('user'));
 
   // List of nav side components
   const list = useMemo(
@@ -120,10 +127,14 @@ const NavSideList = ({ open, setOpen }) => {
     []
   );
 
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.clear();
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -173,10 +184,10 @@ const NavSideList = ({ open, setOpen }) => {
         </Box>
         <Box sx={{ textAlign: 'center' }}>
           {/* {open && <Typography>{user.firstName}</Typography>} */}
-          <Typography variant="body2"> {user.firstName}</Typography>
-          {open && <Typography variant="body2">{user.email}</Typography>}
+          <Typography variant="body2"> {userInfo.name}</Typography>
+          {open && <Typography variant="body2">{userInfo.email}</Typography>}
           <Tooltip title="Logout" sx={{ mt: 1 }}>
-            <IconButton onClick={handleLogout}>
+            <IconButton onClick={logoutHandler}>
               <img src={logoutIcon} alt="" />
             </IconButton>
           </Tooltip>

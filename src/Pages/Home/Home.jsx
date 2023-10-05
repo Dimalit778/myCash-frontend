@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './home.css';
 import groupImg from '../../assets/group.jpg';
 import headerImg from '../../assets/main.jgp.avif';
@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
-  useEffect(() => {}, []);
 
   return (
     <>

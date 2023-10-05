@@ -4,36 +4,36 @@ import { useGlobalContext } from '../../../Context/globalContext';
 import AddExpenseForm from './addForm';
 import { Delete, Edit } from '@mui/icons-material';
 import './expenses_Table.css';
+import { useSelector } from 'react-redux';
+import { useGetExpensesQuery } from '../../../slices/expenseApiSlice';
 
 const ExpenseList = ({ date }) => {
-  const { expenses, getExpenses, deleteExpense, totalExpenseByMonth } =
-    useGlobalContext();
-
+  const { userInfo } = useSelector((state) => state.auth);
+  const { data: getExpenses } = useGetExpensesQuery(userInfo._id);
   useEffect(() => {
     // Get user epxenses
-    getExpenses();
   }, [date]);
 
   // ----> Delete Expense Function <----
   const handleDelete = (id) => {
-    deleteExpense(id);
+    // deleteExpense(id);
   };
 
   // -----> Filter the incomes by month and year <-------- //
-  const filterd = expenses.filter((expense) => {
+  const filterd = getExpenses.filter((expense) => {
     const d = new Date(expense.date);
     return (
       d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear()
     );
   });
   // -----> Get total expenses by month <-------- //
-  const totalExpensesMonth = totalExpenseByMonth(filterd);
+  // const totalExpensesMonth = totalExpenseByMonth(filterd);
 
   return (
     <div className="container">
       <div className="expenses_Box">
         <div className="total d-flex justify-content-between  ">
-          <h2> Total Expenses : ${totalExpensesMonth}</h2>
+          {/* <h2> Total Expenses : ${totalExpensesMonth}</h2> */}
           <AddExpenseForm />
         </div>
         <table className="expense-table">

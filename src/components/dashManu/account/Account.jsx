@@ -1,11 +1,11 @@
 import React from 'react';
 import './account.css';
-import { useGlobalContext } from '../../../Context/globalContext';
+
 import avatarLogo from '../../../assets/avatar.jpg';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Account = () => {
-  const { userData } = useGlobalContext();
-  const { firstName, email } = userData;
+  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <div className="container ">
@@ -19,9 +19,9 @@ const Account = () => {
             <h3 className="h3Info">Email :</h3>
           </div>
           <div className="right w-100  text-center   ">
-            <h3 className="h3Info">{firstName} </h3>
+            <h3 className="h3Info">{userInfo.name} </h3>
 
-            <h3 className="h3Info">{email} </h3>
+            <h3 className="h3Info">{userInfo.email} </h3>
           </div>
         </div>
       </div>

@@ -1,21 +1,36 @@
 import React, { useEffect } from 'react';
 import './navbar.css';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 // import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { useGlobalContext } from '../../Context/globalContext.js';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLogoutMutation } from '../../slices/userApiSlice';
+import { logout } from '../../slices/authSlice';
 
 const NavbarComp = () => {
-  const { userData } = useGlobalContext();
+  const { userInfo } = useSelector((state) => state.auth);
 
-  useEffect(() => {}, [userData]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Navbar expand="lg" className="nav sticky-top">
         {/* <Helmet> */}
 
         <title>MyCash</title>
-        {/* </Helmet> */}
 
         <Navbar.Brand className="fs-4 fw-semibold ms-3 ">
           <div className="">
@@ -40,8 +55,8 @@ const NavbarComp = () => {
               about
             </Nav.Link>
           </Nav>
-          <Nav>
-            {!userData ? (
+          <Nav className="ms-auto">
+            {!userInfo ? (
               <>
                 <Nav.Link as={Link} to="/register" className="links me-2">
                   SignUp
@@ -51,9 +66,19 @@ const NavbarComp = () => {
                 </Nav.Link>
               </>
             ) : (
-              <Nav.Link as={Link} to="/dashboard" className="links me-2">
-                {userData.firstName}
-              </Nav.Link>
+              <NavDropdown title={userInfo.name} id="username" className="me-5">
+                {/* <Nav.Link as={Link} to="/login"> */}
+                <NavDropdown.Item
+                  onClick={() => navigate('/dashboard')}
+                  className="me-2"
+                >
+                  Profile
+                </NavDropdown.Item>
+                {/* </Nav.Link> */}
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
             )}
           </Nav>
         </Navbar.Collapse>

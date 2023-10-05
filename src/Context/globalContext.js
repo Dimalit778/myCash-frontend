@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:5000';
 const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-  const [userData, setUserData] = useState({}); // USER DATA
+  const [user, setUser] = useState(null); // USER DATA
   const [incomes, setIncomes] = useState([]); // INCOMES LIST
   const [expenses, setExpenses] = useState([]); // EXPENSES LIST
   const [error, setError] = useState(null); // ERROR
@@ -18,14 +18,16 @@ export const GlobalProvider = ({ children }) => {
   ]);
 
   useEffect(() => {
-    const Data = JSON.parse(localStorage.getItem('user'));
-    setUserData(Data);
+    if (!user) {
+      const data = JSON.parse(localStorage.getItem('user'));
+      setUser(data);
+    }
   }, []);
 
   //* * * * { ---  EXPENSES requests --- } * * * * //
   // ------------------------> Find Expenses by User ID
   const getExpenses = async () => {
-    const { _id } = userData;
+    const { _id } = user;
     const respone = await axios.get(
       `${BASE_URL}/transactions/get-expenses/${_id}`
     );
@@ -37,7 +39,7 @@ export const GlobalProvider = ({ children }) => {
     const { title, amount, category, description, date } = expense;
     await axios
       .post(`${BASE_URL}/transactions/add-expense`, {
-        userId: userData._id,
+        userId: user._id,
         title,
         amount,
         category,
@@ -79,7 +81,7 @@ export const GlobalProvider = ({ children }) => {
     const { title, amount, description, date } = income;
     await axios
       .post(`${BASE_URL}/transactions/add-income`, {
-        userId: userData._id,
+        userId: user._id,
         title,
         amount,
         description,
@@ -92,7 +94,7 @@ export const GlobalProvider = ({ children }) => {
   };
   // ------------------------> Get INCOMES by User ID
   const getIncomes = async () => {
-    const { _id } = userData;
+    const { _id } = user;
 
     const respone = await axios.get(
       `${BASE_URL}/transactions/get-incomes/${_id}`
@@ -137,7 +139,8 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        userData,
+        user,
+        setUser,
         totalBalance,
 
         expenses,

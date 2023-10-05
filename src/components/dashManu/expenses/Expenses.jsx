@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useGlobalContext } from '../../../Context/globalContext';
+import React, { useState } from 'react';
+
 import ExpenseTable from './ExpenseTable';
 import CalendarYearMonth from '../../calendar/CalendarYearMonth';
 
 const Expenses = () => {
-  // const { getExpenses } = useGlobalContext();
-
-  // useEffect(() => {
-  //   // Get user epxenses
-  //   getExpenses();
-  // }, []);
-
   // --------> Calender get Date
   const [date, setDate] = useState(new Date());
   const onChange = (date) => {

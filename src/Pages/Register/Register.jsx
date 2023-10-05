@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './register.css';
-import { set, useForm } from 'react-hook-form';
-import axios from 'axios';
+
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import NavbarComp from '../../components/navbar/NavbarComp';
+import Loader from '../../utilits/Loader';
+import { useRegisterMutation } from '../../slices/userApiSlice';
+import { setCredentials } from '../../slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form } from 'react-bootstrap';
 
 const Register = () => {
-  const [data, setData] = useState({});
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { userInfo } = useSelector((state) => state.auth);
+  const [register, { isLoading }] = useRegisterMutation();
 
-  const registerUser = async (data) => {
-    const { name, email, password } = data;
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard');
+    }
+  }, [navigate, userInfo]);
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
     try {
-      const { data } = await axios.post('/api/user/register', {
-        name,
-        email,
-        password,
-      });
-      if (data.error) {
-        toast.error(data.error);
-      } else {
-        setData({});
-        toast.success('Welcome ');
-        navigate('/login');
-      }
-    } catch (error) {
-      console.log(error);
+      const res = await register({ name, email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate('/');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -44,45 +43,44 @@ const Register = () => {
         <div className="form  d-flex justify-content-center  p-2 mb-2  ">
           <div className="form  col-md-8  col-lg-9 col-7 ">
             <h3 className="p my-4  text-center">Register Here</h3>
-            <form onSubmit={handleSubmit(registerUser)} className="signin-form">
-              <div className="form-two d-flex gap-2">
-                {/* ! ----- NAME FORM ------!*/}
-                <input
-                  id="name"
-                  {...register('name', { required: true })}
-                  type="text"
-                  className=" form-control"
-                  placeholder="Full Name"
-                />
-                {errors.fullName?.message}
-              </div>
+            <form onSubmit={submitHandler} className="signin-form">
+              <Form.Group className="form-group" controlId="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="name"
+                  placeholder="Enter name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
               {/* ! ----- EMAIL FORM ------!*/}
-              <div className="form-group ">
-                <input
-                  id="email"
-                  {...register('email')}
+              <Form.Group className="form-group" controlId="email">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
                   type="email"
-                  className=" form-control"
-                  placeholder="Email"
-                  required
-                />
-                {errors.email?.message}
-              </div>
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
               {/* ! ----- PASSWORD FORM ------!*/}
-              <div className="form-group">
-                <input
-                  id="password-field"
-                  {...register('password', { required: true })}
+              <Form.Group className="my-2" controlId="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
                   type="password"
-                  className=" form-control"
-                  placeholder="Password"
-                />
-                {errors.password?.message}
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></Form.Control>
                 <span
                   toggle="#password-field"
                   className="fa fa-fw fa-eye field-icon toggle-password"
                 ></span>
-              </div>
+              </Form.Group>
+
+              {isLoading && <Loader />}
               {/* ! ----- SUBMIT ------!*/}
               <div className="formSubmit">
                 <button

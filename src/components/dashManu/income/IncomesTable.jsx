@@ -3,34 +3,33 @@ import { useGlobalContext } from '../../../Context/globalContext';
 import { Delete, Edit } from '@mui/icons-material';
 import './income_Table.css';
 import AddIncomeForm from './AddIncomeForm';
+import { useSelector } from 'react-redux';
+import { useGetIncomesQuery } from '../../../slices/incomeApiSlice';
 
 const IncomesTable = ({ date }) => {
-  const { deleteIncome, getIncomes, incomes, totalIncomeByMonth } =
-    useGlobalContext();
-
-  useEffect(() => {
-    getIncomes();
-  }, [date]);
-
+  const { userInfo } = useSelector((state) => state.auth);
+  const { data: allIncomes } = useGetIncomesQuery(userInfo._id);
+  useEffect(() => {}, [date]);
+  console.log(allIncomes);
   // ----> Delete Income Function <----
   const handleDelete = (id) => {
-    deleteIncome(id);
+    // deleteIncome(id);
   };
   // -----> Filter the incomes by month and year <-------- //
-  const filterd = incomes.filter((income) => {
+  const filterd = allIncomes.filter((income) => {
     const d = new Date(income.date);
     return (
       d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear()
     );
   });
   // -----> Get total incomes by month <-------- //
-  const totalIncomesMonth = totalIncomeByMonth(filterd);
+  // const totalIncomesMonth = totalIncomeByMonth(filterd);
 
   return (
     <div className="container">
       <div className="income_Box">
         <div className="total d-flex justify-content-between  ">
-          <h2> Total incomes : ${totalIncomesMonth}</h2>
+          {/* <h2> Total incomes : ${totalIncomesMonth}</h2> */}
           <AddIncomeForm />
         </div>
         <table className="income-table">

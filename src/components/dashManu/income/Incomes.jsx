@@ -5,13 +5,13 @@ import IncomesTable from './IncomesTable';
 import CalendarYearMonth from '../../calendar/CalendarYearMonth';
 
 const Incomes = () => {
-  const { getIncomes } = useGlobalContext();
+  // const { getIncomes } = useGlobalContext();
   const [date, setDate] = useState(new Date());
 
-  useEffect(() => {
-    // Get user incomes
-    getIncomes();
-  }, []);
+  // useEffect(() => {
+  //   // Get user incomes
+  //   getIncomes();
+  // }, []);
 
   // --------> Calender get Date
   const onChange = (date) => {
@@ -25,7 +25,7 @@ const Incomes = () => {
         <h1>Incomes list</h1>
       </div>
       <div className=" d-flex justify-content-center   ">
-        <IncomesTable date={date} />
+        {/* <IncomesTable date={date} /> */}
       </div>
     </div>
   );

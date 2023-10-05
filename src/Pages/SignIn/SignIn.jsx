@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './signin.css';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-// import { UserAuth } from '../../Context/FireBaseAuthContext';
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLoginMutation } from '../../slices/userApiSlice';
+import { setCredentials } from '../../slices/authSlice';
+import Loader from '../../utilits/Loader';
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
@@ -13,35 +15,27 @@ const SignIn = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // ! ----> sign in with google <---- !
-  // const { signWithGoogle } = UserAuth();
-  // const signGoogleClick = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await signWithGoogle();
-  //     navigate('/dashboard');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard');
+    }
+  }, [navigate, userInfo]);
+
   const loginUser = async (e) => {
     e.preventDefault();
     const { email, password } = userData;
     try {
-      const { data } = await axios.post('/api/user/login', {
-        email,
-        password,
-      });
-      if (data.error) {
-        toast.error(data.error);
-      } else {
-        localStorage.setItem('user', JSON.stringify(data));
-
-        navigate('/dashboard');
-      }
-    } catch (error) {
-      console.log(error);
+      const res = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate('/dashboard');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
   return (
@@ -77,6 +71,7 @@ const SignIn = () => {
                   className="fa fa-fw fa-eye field-icon toggle-password"
                 ></span>
               </div>
+              {isLoading && <Loader />}
               <div className="formSubmit">
                 <button
                   type="submit"
@@ -118,3 +113,15 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+// ! ----> sign in with google <---- !
+// const { signWithGoogle } = UserAuth();
+// const signGoogleClick = async (e) => {
+//   e.preventDefault();
+//   try {
+//     await signWithGoogle();
+//     navigate('/dashboard');
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

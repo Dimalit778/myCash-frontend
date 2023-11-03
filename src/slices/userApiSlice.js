@@ -1,7 +1,4 @@
-import { createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 import { apiSlice } from './apiSlice';
-
-// const userAdapter = createEntityAdapter({});
 
 const USER_URL = '/api/user';
 

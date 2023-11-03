@@ -1,0 +1,83 @@
+import React from 'react';
+import { Delete, Edit, Today } from '@mui/icons-material';
+import './dataTable.css';
+import { useDeleteExpenseMutation } from '../slices/expenseApiSlice';
+import { useDeleteIncomeMutation } from '../slices/incomeApiSlice';
+//  List - list of Expenses or Incomes
+//  Date - date of Today
+//  actionType - the List type ( 'Income' of 'Expense')
+function DataTable({ list, date, actionType }) {
+  //! ------{ use RTK Query to Delete Item from the list }
+  const [deleteExpense] = useDeleteExpenseMutation();
+  const [deleteIncome] = useDeleteIncomeMutation();
+  //! ------{  Filter the list by Month and Year }
+  const filter = list.filter((item) => {
+    let d = new Date(item.date);
+    return (
+      d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear()
+    );
+  });
+
+  // ----> Delete Item Function <----
+  const handleDelete = async (id) => {
+    switch (actionType) {
+      case 'income':
+        return await deleteIncome(id);
+
+      case 'expense':
+        return await deleteExpense(id);
+
+      default:
+        return null;
+    }
+  };
+
+  // ----> Update Item Function <----
+  const handleUpdate = async (id) => {
+    // deleteIncome(id);
+  };
+  return (
+    <>
+      <table className="data-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody className="tableBody">
+          {filter?.map((item) => (
+            <tr className=" bg-body-secondary " key={item._id}>
+              <td className="td ">{item.title}</td>
+              <td>{item.amount}</td>
+              <td>{item.description}</td>
+              <td>{item.date}</td>
+              <td>
+                <button
+                  className="btn_Updade"
+                  onClick={() => handleUpdate(item._id)}
+                >
+                  <Edit />
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn_Delete  "
+                  onClick={() => handleDelete(item._id)}
+                >
+                  <Delete />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+}
+
+export default DataTable;

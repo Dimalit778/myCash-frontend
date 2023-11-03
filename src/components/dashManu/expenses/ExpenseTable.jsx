@@ -1,76 +1,32 @@
-import React, { useEffect } from 'react';
-
-import { useGlobalContext } from '../../../Context/globalContext';
-import AddExpenseForm from './addForm';
-import { Delete, Edit } from '@mui/icons-material';
-import './expenses_Table.css';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useGetExpensesQuery } from '../../../slices/expenseApiSlice';
+import DataTable from '../../../Hooks/DataTable';
+import AddForm from '../../../forms/AddForm';
 
 const ExpenseList = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);
-  const { data: getExpenses } = useGetExpensesQuery(userInfo._id);
-  useEffect(() => {
-    // Get user epxenses
-  }, [date]);
+  const actionType = 'expense';
+  const {
+    data: allExpenses,
+    error,
+    isLoading,
+  } = useGetExpensesQuery(userInfo._id);
 
-  // ----> Delete Expense Function <----
-  const handleDelete = (id) => {
-    // deleteExpense(id);
-  };
-
-  // -----> Filter the incomes by month and year <-------- //
-  const filterd = getExpenses.filter((expense) => {
-    const d = new Date(expense.date);
-    return (
-      d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear()
-    );
-  });
-  // -----> Get total expenses by month <-------- //
-  // const totalExpensesMonth = totalExpenseByMonth(filterd);
+  if (error) return <div>error..!!</div>;
 
   return (
     <div className="container">
-      <div className="expenses_Box">
+      <div className="data-box">
         <div className="total d-flex justify-content-between  ">
           {/* <h2> Total Expenses : ${totalExpensesMonth}</h2> */}
-          <AddExpenseForm />
+          <AddForm actionType={actionType} />
         </div>
-        <table className="expense-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Amount</th>
-              <th>Description</th>
-              <th>Date</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody className="tableBody">
-            {filterd.map((expense) => (
-              <tr className=" bg-body-secondary " key={expense._id}>
-                <td className="td ">{expense.title}</td>
-                <td>{expense.amount}</td>
-                <td>{expense.description}</td>
-                <td>{expense.date}</td>
-                <td>
-                  <button className="btn_Updade ">
-                    <Edit />
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="btn_Delete "
-                    onClick={() => handleDelete(expense._id)}
-                  >
-                    <Delete />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {isLoading ? (
+          <>Loading..</>
+        ) : (
+          <DataTable list={allExpenses} date={date} actionType={actionType} />
+        )}
       </div>
     </div>
   );

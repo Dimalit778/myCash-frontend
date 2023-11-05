@@ -1,23 +1,20 @@
+import { Edit } from '@mui/icons-material';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { toast } from 'react-hot-toast';
-import { useAddIncomeMutation } from '../slices/incomeApiSlice';
-import { useSelector } from 'react-redux';
-import { useAddExpenseMutation } from '../slices/expenseApiSlice';
 
-const AddForm = ({ actionType }) => {
+import { useSelector } from 'react-redux';
+
+const EditForm = ({ item }) => {
   const { userInfo } = useSelector((state) => state.auth);
-  const [addIncome] = useAddIncomeMutation();
-  const [addExpense] = useAddExpenseMutation();
+  console.log(item);
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
-    setNewAction({});
     setShow(false);
   };
   const handleShow = () => {
-    setNewAction({ ...newAction, userId: userInfo._id });
+    // setNewAction({ ...newAction, userId: userInfo._id });
     setShow(true);
   };
 
@@ -29,28 +26,16 @@ const AddForm = ({ actionType }) => {
     description: '',
     date: '',
   });
+  const { title, amount, date, category, description } = item;
 
   const addNewAction = async (e) => {
     e.preventDefault();
-    switch (actionType) {
-      case 'income':
-        await addIncome(newAction);
-        handleClose();
-        return toast.success('Successfully added Income');
-
-      case 'expense':
-        await addExpense(newAction);
-        handleClose();
-        return toast.success('Successfully added Expense');
-      default:
-        return null;
-    }
   };
 
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add
+        <Edit />
       </Button>
       <Modal
         show={show}
@@ -60,7 +45,7 @@ const AddForm = ({ actionType }) => {
         className="mt-5"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add new {actionType}</Modal.Title>
+          <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="addForm" onSubmit={addNewAction}>
@@ -70,6 +55,7 @@ const AddForm = ({ actionType }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, title: e.target.value })
                 }
+                value={item.title}
                 type="text"
                 required={true}
                 className="form-control  "
@@ -81,6 +67,7 @@ const AddForm = ({ actionType }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, amount: e.target.value })
                 }
+                value={item.amount}
                 type="text"
                 required={true}
                 className=" form-control"
@@ -92,6 +79,7 @@ const AddForm = ({ actionType }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, date: e.target.value })
                 }
+                value={item.date}
                 type="date"
                 required={true}
                 className=" form-control"
@@ -103,6 +91,7 @@ const AddForm = ({ actionType }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, category: e.target.value })
                 }
+                value={item.category}
                 type="text"
                 required={true}
                 className=" form-control  "
@@ -114,6 +103,7 @@ const AddForm = ({ actionType }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, description: e.target.value })
                 }
+                value={item.description}
                 type="text"
                 required={true}
                 className=" form-control  "
@@ -131,4 +121,4 @@ const AddForm = ({ actionType }) => {
   );
 };
 
-export default AddForm;
+export default EditForm;

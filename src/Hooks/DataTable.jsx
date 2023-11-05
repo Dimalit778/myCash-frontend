@@ -1,8 +1,10 @@
 import React from 'react';
-import { Delete, Edit, Today } from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 import './dataTable.css';
 import { useDeleteExpenseMutation } from '../slices/expenseApiSlice';
 import { useDeleteIncomeMutation } from '../slices/incomeApiSlice';
+import EditForm from './EditForm';
+
 //  List - list of Expenses or Incomes
 //  Date - date of Today
 //  actionType - the List type ( 'Income' of 'Expense')
@@ -34,7 +36,7 @@ function DataTable({ list, date, actionType }) {
 
   // ----> Update Item Function <----
   const handleUpdate = async (id) => {
-    // deleteIncome(id);
+    console.log(id);
   };
   return (
     <>
@@ -61,7 +63,7 @@ function DataTable({ list, date, actionType }) {
                   className="btn_Updade"
                   onClick={() => handleUpdate(item._id)}
                 >
-                  <Edit />
+                  <EditForm item={item} />
                 </button>
               </td>
               <td>

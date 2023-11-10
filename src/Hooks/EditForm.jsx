@@ -14,29 +14,34 @@ const EditForm = ({ item }) => {
     setShow(false);
   };
   const handleShow = () => {
-    // setNewAction({ ...newAction, userId: userInfo._id });
+    setNewAction({ ...newAction, userId: userInfo._id });
     setShow(true);
   };
 
   const [newAction, setNewAction] = useState({
     userId: userInfo._id,
-    title: '',
-    amount: '',
+    title: item.title,
+    amount: item.amount,
     category: '',
     description: '',
     date: '',
   });
+  // console.log(newAction);
   const { title, amount, date, category, description } = item;
 
-  const addNewAction = async (e) => {
+  const update = async (e) => {
     e.preventDefault();
   };
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <button
+        style={{ backgroundColor: 'green' }}
+        className="btn_Upd_dlt"
+        onClick={handleShow}
+      >
         <Edit />
-      </Button>
+      </button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -48,14 +53,15 @@ const EditForm = ({ item }) => {
           <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="addForm" onSubmit={addNewAction}>
+          <form className="addForm" onSubmit={update}>
             <div className="form-group ">
               <label className="label ms-1">Title</label>
               <input
+                value={item.title}
                 onChange={(e) =>
                   setNewAction({ ...newAction, title: e.target.value })
                 }
-                value={item.title}
+                input
                 type="text"
                 required={true}
                 className="form-control  "
@@ -111,7 +117,7 @@ const EditForm = ({ item }) => {
             </div>
             <div className="btnSumbit d-flex justify-content-end mt-5 ">
               <Button type="submit" variant="primary">
-                Add new
+                Save
               </Button>
             </div>
           </form>

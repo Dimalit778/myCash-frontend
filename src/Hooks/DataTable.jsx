@@ -42,33 +42,31 @@ function DataTable({ list, date, actionType }) {
     <>
       <table className="data-table">
         <thead>
-          <tr>
+          <tr className="header-table">
             <th>Title</th>
             <th>Amount</th>
             <th>Description</th>
             <th>Date</th>
-            <th>Update</th>
+            <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody className="tableBody">
           {filter?.map((item) => (
-            <tr className=" bg-body-secondary " key={item._id}>
+            <tr className=" " key={item._id}>
               <td className="td ">{item.title}</td>
               <td>{item.amount}</td>
               <td>{item.description}</td>
               <td>{item.date}</td>
               <td>
-                <button
-                  className="btn_Updade"
-                  onClick={() => handleUpdate(item._id)}
-                >
+                <div>
                   <EditForm item={item} />
-                </button>
+                </div>
               </td>
               <td>
                 <button
-                  className="btn_Delete  "
+                  style={{ backgroundColor: 'red' }}
+                  className="btn_Upd_dlt"
                   onClick={() => handleDelete(item._id)}
                 >
                   <Delete />

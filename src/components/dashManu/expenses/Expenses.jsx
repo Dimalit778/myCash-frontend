@@ -11,20 +11,23 @@ const Expenses = () => {
   };
 
   return (
-    <div className="">
-      <div className="headExp ">
-        <h2>My Expenses</h2>
-      </div>
-      <CalendarYearMonth onChange={onChange} date={date} />
-      <div className=" text-center mt-5 m-5 ">
-        <div className="cakeChart d-flex justify-content-center mt-5 ">
-          <ExpenseTable date={date} />
+    <>
+      <div className="row d-flex  ">
+        <div className="col col-md-6 ">
+          <h1>Charts</h1>
         </div>
-        <div className="pieChart">
-          {/* <PieActiveArc chartData={expenses} /> */}
+
+        <div className="col col-md-6  text-center  ">
+          <CalendarYearMonth onChange={onChange} date={date} />
+          <div className="cakeChart d-flex justify-content-center mt-5 ">
+            <ExpenseTable date={date} />
+          </div>
+          <div className="pieChart">
+            {/* <PieActiveArc chartData={expenses} /> */}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

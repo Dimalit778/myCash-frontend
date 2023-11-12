@@ -1,34 +1,42 @@
 import { apiSlice } from './apiSlice';
 
-const URL = '/transactions';
+const URL = '/api/transactions';
 
 export const expenseApiSlice = apiSlice.injectEndpoints({
   tagTypes: ['Expense'],
   endpoints: (builder) => ({
-    getExpenses: builder.query({
-      query: (userId) => `${URL}/get-expenses/${userId}`,
+    // -- GET Expense
+    getExpense: builder.query({
+      query: (userId) => `${URL}/getExpense/${userId}`,
       providesTags: ['Expense'],
     }),
-
-    addExpense: builder.mutation({
-      query: (expense) => ({
-        url: `${URL}/add-expense`,
-        method: 'POST',
-        body: expense,
-      }),
-      invalidatesTags: ['Expense'],
+    // -- GET ALL EXPENSES
+    getAllExpenses: builder.query({
+      query: (userId) => `${URL}/getAllExpenses/${userId}`,
+      providesTags: ['Expense'],
     }),
-    updateExpense: builder.mutation({
-      query: ({ id, ...rest }) => ({
-        url: `${URL}/add-expense`,
-        method: 'put',
+    // -- ADD  EXPENSE
+    addExpense: builder.mutation({
+      query: ({ userId, ...rest }) => ({
+        url: `${URL}/addExpense/${userId}`,
+        method: 'POST',
         body: rest,
       }),
       invalidatesTags: ['Expense'],
     }),
+    // -- UPDATE EXPENSE
+    updateExpense: builder.mutation({
+      query: ({ id, ...rest }) => ({
+        url: `${URL}/updateExpense`,
+        method: 'PATCH',
+        body: rest,
+      }),
+      invalidatesTags: ['Expense'],
+    }),
+    // -- DELETE EXPENSE
     deleteExpense: builder.mutation({
       query: (expenseId) => ({
-        url: `${URL}/delete-expense/${expenseId}`,
+        url: `${URL}/deleteExpense/${expenseId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Expense'],
@@ -36,7 +44,7 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
   }),
 });
 export const {
-  useGetExpensesQuery,
+  useGetAllExpensesQuery,
   useAddExpenseMutation,
   useDeleteExpenseMutation,
   useUpdateExpenseMutation,

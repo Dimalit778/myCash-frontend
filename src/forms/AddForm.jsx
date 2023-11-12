@@ -22,7 +22,6 @@ const AddForm = ({ actionType }) => {
   };
 
   const [newAction, setNewAction] = useState({
-    userId: userInfo._id,
     title: '',
     amount: '',
     category: '',
@@ -34,6 +33,7 @@ const AddForm = ({ actionType }) => {
     e.preventDefault();
     switch (actionType) {
       case 'income':
+        console.log(newAction);
         await addIncome(newAction);
         handleClose();
         return toast.success('Successfully added Income');

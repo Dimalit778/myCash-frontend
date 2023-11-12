@@ -12,6 +12,7 @@ function DataTable({ list, date, actionType }) {
   //! ------{ use RTK Query to Delete Item from the list }
   const [deleteExpense] = useDeleteExpenseMutation();
   const [deleteIncome] = useDeleteIncomeMutation();
+
   //! ------{  Filter the list by Month and Year }
   const filter = list.filter((item) => {
     let d = new Date(item.date);

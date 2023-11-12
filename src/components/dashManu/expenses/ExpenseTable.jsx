@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetExpensesQuery } from '../../../slices/expenseApiSlice';
+import { useGetAllExpensesQuery } from '../../../slices/expenseApiSlice';
 import DataTable from '../../../Hooks/DataTable';
 import AddForm from '../../../forms/AddForm';
 
@@ -11,7 +11,7 @@ const ExpenseList = ({ date }) => {
     data: allExpenses,
     error,
     isLoading,
-  } = useGetExpensesQuery(userInfo._id);
+  } = useGetAllExpensesQuery(userInfo._id);
 
   if (error) return <div>error..!!</div>;
 

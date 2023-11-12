@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 const EditForm = ({ item }) => {
   const { userInfo } = useSelector((state) => state.auth);
-  console.log(item);
+  // console.log(item);
 
   const [show, setShow] = useState(false);
   const handleClose = () => {

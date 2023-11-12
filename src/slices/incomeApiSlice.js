@@ -1,33 +1,42 @@
 import { apiSlice } from './apiSlice';
 
-const URL = '/transactions';
+const URL = '/api/transactions';
 
 export const incomeApiSlice = apiSlice.injectEndpoints({
   tagTypes: ['Income'],
   endpoints: (builder) => ({
-    getIncomes: builder.query({
-      query: (userId) => `${URL}/get-incomes/${userId}`,
+    // -- GET INCOME
+    getIncome: builder.query({
+      query: (userId) => `${URL}/getIncome/${userId}`,
       providesTags: ['Income'],
     }),
-    addIncome: builder.mutation({
-      query: (income) => ({
-        url: `${URL}/add-income`,
-        method: 'POST',
-        body: income,
-      }),
-      invalidatesTags: ['Income'],
+    // -- GET ALL INCOMES
+    getAllIncomes: builder.query({
+      query: (userId) => `${URL}/getAllIncomes/${userId}`,
+      providesTags: ['Income'],
     }),
-    updateIncome: builder.mutation({
-      query: ({ id, ...rest }) => ({
-        url: `${URL}/add-income`,
-        method: 'put',
+    // -- ADD INCOME
+    addIncome: builder.mutation({
+      query: ({ userId, ...rest }) => ({
+        url: `${URL}/addIncome/${userId}`,
+        method: 'POST',
         body: rest,
       }),
       invalidatesTags: ['Income'],
     }),
+    // -- UPDATE INCOME
+    updateIncome: builder.mutation({
+      query: ({ incomeId, ...rest }) => ({
+        url: `${URL}/updateIncome/${incomeId}`,
+        method: 'PATCH',
+        body: rest,
+      }),
+      invalidatesTags: ['Income'],
+    }),
+    // -- DELETE INCOME
     deleteIncome: builder.mutation({
       query: (incomeId) => ({
-        url: `${URL}/delete-income/${incomeId}`,
+        url: `${URL}/deleteDelete/${incomeId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Income'],
@@ -35,7 +44,7 @@ export const incomeApiSlice = apiSlice.injectEndpoints({
   }),
 });
 export const {
-  useGetIncomesQuery,
+  useGetAllIncomesQuery,
   useAddIncomeMutation,
   useDeleteIncomeMutation,
   useUpdateIncomeMutation,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetIncomesQuery } from '../../../slices/incomeApiSlice';
+import { useGetAllIncomesQuery } from '../../../slices/incomeApiSlice';
 
 import DataTable from '../../../Hooks/DataTable';
 import AddForm from '../../../forms/AddForm';
@@ -12,7 +12,7 @@ const IncomesTable = ({ date }) => {
     data: allIncomes,
     error,
     isLoading,
-  } = useGetIncomesQuery(userInfo._id);
+  } = useGetAllIncomesQuery(userInfo._id);
 
   if (error) return <div>error..!!</div>;
 

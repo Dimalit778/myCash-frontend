@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux';
 import { useGetAllExpensesQuery } from '../../../slices/expenseApiSlice';
 import DataTable from '../../../Hooks/DataTable';
 import AddForm from '../../../forms/AddForm';
+import { filterByMonthAndYear } from '../../../utilits/filterByMonthYear';
+import { calculateTotal } from '../../../utilits/calculteTotal';
+import Loader from '../../../utilits/Loader';
 
 const ExpenseList = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -14,19 +17,22 @@ const ExpenseList = ({ date }) => {
   } = useGetAllExpensesQuery(userInfo._id);
 
   if (error) return <div>error..!!</div>;
+  if (isLoading) return <Loader />;
+
+  // //! ------{  Filter the list by Month and Year }
+  const filteredList = filterByMonthAndYear(allExpenses, date);
+  //-----------> {  Calculate Total Amount of filtered Month }
+  const total = calculateTotal(filteredList);
 
   return (
     <div className="container">
       <div className="data-box">
         <div className="total d-flex justify-content-between  ">
-          {/* <h2> Total Expenses : ${totalExpensesMonth}</h2> */}
+          <h3> Total Expenses : {total} </h3>
           <AddForm actionType={actionType} />
         </div>
-        {isLoading ? (
-          <>Loading..</>
-        ) : (
-          <DataTable list={allExpenses} date={date} actionType={actionType} />
-        )}
+
+        <DataTable list={filteredList} actionType={actionType} />
       </div>
     </div>
   );

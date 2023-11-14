@@ -7,7 +7,7 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // -- GET Expense
     getExpense: builder.query({
-      query: (userId) => `${URL}/getExpense/${userId}`,
+      query: (expenseId) => `${URL}/getExpense/${expenseId}`,
       providesTags: ['Expense'],
     }),
     // -- GET ALL EXPENSES
@@ -26,8 +26,8 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
     }),
     // -- UPDATE EXPENSE
     updateExpense: builder.mutation({
-      query: ({ id, ...rest }) => ({
-        url: `${URL}/updateExpense`,
+      query: ({ _id, ...rest }) => ({
+        url: `${URL}/updateExpense/${_id}`,
         method: 'PATCH',
         body: rest,
       }),

@@ -3,23 +3,17 @@ import { Delete } from '@mui/icons-material';
 import './dataTable.css';
 import { useDeleteExpenseMutation } from '../slices/expenseApiSlice';
 import { useDeleteIncomeMutation } from '../slices/incomeApiSlice';
-import EditForm from './EditForm';
+import EditForm from '../forms/EditForm';
+import { calculateTotal } from '../utilits/calculteTotal';
+import { filterByMonthAndYear } from '../utilits/filterByMonthYear';
 
 //  List - list of Expenses or Incomes
 //  Date - date of Today
 //  actionType - the List type ( 'Income' of 'Expense')
-function DataTable({ list, date, actionType }) {
+function DataTable({ list, actionType }) {
   //! ------{ use RTK Query to Delete Item from the list }
   const [deleteExpense] = useDeleteExpenseMutation();
   const [deleteIncome] = useDeleteIncomeMutation();
-
-  //! ------{  Filter the list by Month and Year }
-  const filter = list.filter((item) => {
-    let d = new Date(item.date);
-    return (
-      d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear()
-    );
-  });
 
   // ----> Delete Item Function <----
   const handleDelete = async (id) => {
@@ -35,10 +29,6 @@ function DataTable({ list, date, actionType }) {
     }
   };
 
-  // ----> Update Item Function <----
-  const handleUpdate = async (id) => {
-    console.log(id);
-  };
   return (
     <>
       <table className="data-table">
@@ -46,6 +36,7 @@ function DataTable({ list, date, actionType }) {
           <tr className="header-table">
             <th>Title</th>
             <th>Amount</th>
+            <th>Category</th>
             <th>Description</th>
             <th>Date</th>
             <th>Edit</th>
@@ -53,15 +44,16 @@ function DataTable({ list, date, actionType }) {
           </tr>
         </thead>
         <tbody className="tableBody">
-          {filter?.map((item) => (
+          {list?.map((item) => (
             <tr className=" " key={item._id}>
               <td className="td ">{item.title}</td>
               <td>{item.amount}</td>
+              <td>{item.category}</td>
               <td>{item.description}</td>
               <td>{item.date}</td>
               <td>
                 <div>
-                  <EditForm item={item} />
+                  <EditForm item={item} actionType={actionType} />
                 </div>
               </td>
               <td>

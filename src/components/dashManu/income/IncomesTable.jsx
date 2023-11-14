@@ -4,6 +4,8 @@ import { useGetAllIncomesQuery } from '../../../slices/incomeApiSlice';
 
 import DataTable from '../../../Hooks/DataTable';
 import AddForm from '../../../forms/AddForm';
+import { filterByMonthAndYear } from '../../../utilits/filterByMonthYear';
+import { calculateTotal } from '../../../utilits/calculteTotal';
 
 const IncomesTable = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -15,20 +17,21 @@ const IncomesTable = ({ date }) => {
   } = useGetAllIncomesQuery(userInfo._id);
 
   if (error) return <div>error..!!</div>;
+  if (isLoading) return <div>Loading..!!</div>;
+
+  // //! ------{  Filter the list by Month and Year }
+  const filteredList = filterByMonthAndYear(allIncomes, date);
+  //-----------> {  Calculate Total Amount of filtered Month }
+  const total = calculateTotal(filteredList);
 
   return (
     <div className="container">
       <div className="data-box">
         <div className="total d-flex justify-content-between  ">
-          {/* <h2> Total incomes : ${totalIncomesMonth}</h2> */}
-
+          <h2> Total incomes : {total}</h2>
           <AddForm actionType={actionType} />
         </div>
-        {isLoading ? (
-          <>Loading..</>
-        ) : (
-          <DataTable list={allIncomes} date={date} actionType={actionType} />
-        )}
+        <DataTable list={filteredList} actionType={actionType} />
       </div>
     </div>
   );

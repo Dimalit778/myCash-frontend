@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { useAddIncomeMutation } from '../slices/incomeApiSlice';
 import { useSelector } from 'react-redux';
 import { useAddExpenseMutation } from '../slices/expenseApiSlice';
+import { categories } from '../utilits/categoryList';
 
 const AddForm = ({ actionType }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -64,7 +65,8 @@ const AddForm = ({ actionType }) => {
         </Modal.Header>
         <Modal.Body>
           <form className="addForm" onSubmit={addNewAction}>
-            <div className="form-group ">
+            {/* ---->TITLE  <---- */}
+            <div className="form-group pb-2 ">
               <label className="label ms-1">Title</label>
               <input
                 onChange={(e) =>
@@ -75,7 +77,8 @@ const AddForm = ({ actionType }) => {
                 className="form-control  "
               />
             </div>
-            <div className="form-group ">
+            {/* ----> AMOUNT  <---- */}
+            <div className="form-group pb-2 ">
               <label className="label ms-1">Amount</label>
               <input
                 onChange={(e) =>
@@ -86,7 +89,8 @@ const AddForm = ({ actionType }) => {
                 className=" form-control"
               />
             </div>
-            <div className="form-group ">
+            {/* ---->  DATE  <---- */}
+            <div className="form-group pb-2">
               <label className="label ms-1">Date</label>
               <input
                 onChange={(e) =>
@@ -97,18 +101,32 @@ const AddForm = ({ actionType }) => {
                 className=" form-control"
               />
             </div>
-            <div className="form-group ">
+            {/* ----> CATEGORY  <---- */}
+            <div className="form-group pb-2">
               <label className="label ms-1">Category</label>
-              <input
+              <select
+                style={{
+                  paddingTop: '0.375rem',
+                  paddingBottom: '0.375rem',
+                  border: '1px solid #dee2e6',
+                  borderRadius: '5px',
+                  width: '100%',
+                }}
                 onChange={(e) =>
                   setNewAction({ ...newAction, category: e.target.value })
                 }
-                type="text"
-                required={true}
-                className=" form-control  "
-              />
+              >
+                {categories.map((category) => {
+                  return (
+                    <option key={category.value} value={category.value}>
+                      {category.label}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
-            <div className="form-group ">
+            {/* ---->  DESCRIPTION <---- */}
+            <div className="form-group pb-2">
               <label className="label ms-1">Description</label>
               <input
                 onChange={(e) =>

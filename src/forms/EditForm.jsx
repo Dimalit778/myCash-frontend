@@ -2,35 +2,57 @@ import { Edit } from '@mui/icons-material';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { toast } from 'react-hot-toast';
 
-import { useSelector } from 'react-redux';
+import { useUpdateIncomeMutation } from '../slices/incomeApiSlice';
+import { useUpdateExpenseMutation } from '../slices/expenseApiSlice';
+import { categories } from '../utilits/categoryList';
 
-const EditForm = ({ item }) => {
-  const { userInfo } = useSelector((state) => state.auth);
-  // console.log(item);
+const EditForm = ({ item, actionType }) => {
+  const [updateIncome] = useUpdateIncomeMutation();
+  const [updateExpense] = useUpdateExpenseMutation();
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => {
-    setNewAction({ ...newAction, userId: userInfo._id });
+    setNewAction({
+      _id: item._id,
+      title: item.title,
+      amount: item.amount,
+      category: item.category,
+      description: item.description,
+      date: item.date,
+    });
     setShow(true);
   };
 
   const [newAction, setNewAction] = useState({
-    userId: userInfo._id,
-    title: item.title,
-    amount: item.amount,
+    _id: '',
+    title: '',
+    amount: '',
     category: '',
     description: '',
     date: '',
   });
-  // console.log(newAction);
-  const { title, amount, date, category, description } = item;
 
   const update = async (e) => {
     e.preventDefault();
+
+    switch (actionType) {
+      case 'income':
+        await updateIncome(newAction);
+        handleClose();
+        return toast.success('Successfully added Income');
+
+      case 'expense':
+        await updateExpense(newAction);
+        handleClose();
+        return toast.success('Successfully added Expense');
+      default:
+        return null;
+    }
   };
 
   return (
@@ -57,7 +79,7 @@ const EditForm = ({ item }) => {
             <div className="form-group ">
               <label className="label ms-1">Title</label>
               <input
-                value={item.title}
+                value={newAction.title}
                 onChange={(e) =>
                   setNewAction({ ...newAction, title: e.target.value })
                 }
@@ -73,7 +95,7 @@ const EditForm = ({ item }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, amount: e.target.value })
                 }
-                value={item.amount}
+                value={newAction.amount}
                 type="text"
                 required={true}
                 className=" form-control"
@@ -85,7 +107,7 @@ const EditForm = ({ item }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, date: e.target.value })
                 }
-                value={item.date}
+                value={newAction.date}
                 type="date"
                 required={true}
                 className=" form-control"
@@ -93,15 +115,27 @@ const EditForm = ({ item }) => {
             </div>
             <div className="form-group ">
               <label className="label ms-1">Category</label>
-              <input
+              <select
+                value={newAction.category}
+                style={{
+                  paddingTop: '0.375rem',
+                  paddingBottom: '0.375rem',
+                  border: '1px solid #dee2e6',
+                  borderRadius: '5px',
+                  width: '100%',
+                }}
                 onChange={(e) =>
                   setNewAction({ ...newAction, category: e.target.value })
                 }
-                value={item.category}
-                type="text"
-                required={true}
-                className=" form-control  "
-              />
+              >
+                {categories.map((category) => {
+                  return (
+                    <option key={category.value} value={category.value}>
+                      {category.label}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
             <div className="form-group ">
               <label className="label ms-1">Description</label>
@@ -109,7 +143,7 @@ const EditForm = ({ item }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, description: e.target.value })
                 }
-                value={item.description}
+                value={newAction.description}
                 type="text"
                 required={true}
                 className=" form-control  "

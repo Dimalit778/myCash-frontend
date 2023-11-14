@@ -1,7 +1,6 @@
 import { Spinner } from 'react-bootstrap';
 
-import React from 'react';
-
+// */ ---> Loader Spinner Animation
 const Loader = () => {
   return (
     <Spinner

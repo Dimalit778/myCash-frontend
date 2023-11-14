@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
-import { useAddIncomeMutation } from '../slices/incomeApiSlice';
+import { useAddIncomeMutation } from '../Api/SlicesApi/incomeApiSlice';
 import { useSelector } from 'react-redux';
-import { useAddExpenseMutation } from '../slices/expenseApiSlice';
-import { categories } from '../utilits/categoryList';
+import { useAddExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
+import { categories } from '../Hooks/categoryList';
 
 const AddForm = ({ actionType }) => {
   const { userInfo } = useSelector((state) => state.auth);

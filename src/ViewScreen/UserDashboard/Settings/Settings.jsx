@@ -1,7 +1,7 @@
 import React from 'react';
-import TestChart from '../../Charts/TestChart';
+import TestChart from '../../../components/Charts/TestChart';
 import { Chart } from 'chart.js';
-import LineChart from '../../Charts/LineChart';
+import LineChart from '../../../components/Charts/LineChart';
 import { UpdateUser } from './UpdateUser';
 
 const Settings = () => {

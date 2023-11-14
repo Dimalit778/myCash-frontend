@@ -5,25 +5,24 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Outlet, Route, createRoutesFromElements } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { loader } from './Hooks/Loader.js';
 
-import Register from './Pages/Register/Register';
-import Dashboard from './Pages/Dashborad/Dashborad';
-import SignIn from './Pages/SignIn/SignIn';
-import Home from './Pages/Home/Home';
-import NavbarComp from './components/navbar/NavbarComp';
+import Register from 'ViewScreen/HomePages/Register/Register';
+import Dashboard from 'ViewScreen/HomePages/Dashborad/Dashborad';
+import SignIn from 'ViewScreen/HomePages/SignIn/SignIn';
+import Home from 'ViewScreen/HomePages/Home/Home';
+import NavbarComp from 'components/navbar/NavbarComp';
 
-import Main from './components/dashManu/Main/Main';
-import About from './Pages/About/About';
-import Footer from './components/footer/footer';
-import Expenses from './components/dashManu/expenses/Expenses';
-
-import Incomes from './components/dashManu/income/Incomes';
-import Account from './components/dashManu/account/Account';
-import Settings from './components/dashManu/Settings/Settings';
-import ContactUs from './components/dashManu/contact/ContactUs';
-import NotFound from './Pages/NotFound/NotFound';
-import PrivateRoute from './utilits/PrivateRoute.jsx';
+import Main from 'ViewScreen/UserDashboard/Main/Main';
+import About from 'ViewScreen/HomePages/About/About';
+import Footer from 'components/footer/footer';
+//? UserDashboard
+import Expenses from 'ViewScreen/UserDashboard/Expenses/Expenses';
+import Incomes from 'ViewScreen/UserDashboard/Incomes/Incomes';
+import Account from 'ViewScreen/UserDashboard/Account/Account.jsx';
+import Settings from 'ViewScreen/UserDashboard/Settings/Settings';
+import ContactUs from 'ViewScreen/UserDashboard/Contact/ContactUs';
+import NotFound from 'Hooks/NotFound';
+import PrivateRoute from 'components/PrivateRoute.jsx';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;

@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
 
-import { useUpdateIncomeMutation } from '../slices/incomeApiSlice';
-import { useUpdateExpenseMutation } from '../slices/expenseApiSlice';
-import { categories } from '../utilits/categoryList';
+import { useUpdateIncomeMutation } from '../Api/SlicesApi/incomeApiSlice';
+import { useUpdateExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
+import { categories } from '../Hooks/categoryList';
 
 const EditForm = ({ item, actionType }) => {
   const [updateIncome] = useUpdateIncomeMutation();

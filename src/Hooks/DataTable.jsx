@@ -1,11 +1,11 @@
 import React from 'react';
 import { Delete } from '@mui/icons-material';
 import './dataTable.css';
-import { useDeleteExpenseMutation } from '../slices/expenseApiSlice';
-import { useDeleteIncomeMutation } from '../slices/incomeApiSlice';
+import { useDeleteExpenseMutation } from 'Api/SlicesApi/expenseApiSlice';
+import { useDeleteIncomeMutation } from 'Api/SlicesApi/incomeApiSlice';
 import EditForm from '../forms/EditForm';
-import { calculateTotal } from '../utilits/calculteTotal';
-import { filterByMonthAndYear } from '../utilits/filterByMonthYear';
+
+import { numberFormat } from 'Hooks/numberFormat';
 
 //  List - list of Expenses or Incomes
 //  Date - date of Today
@@ -47,7 +47,7 @@ function DataTable({ list, actionType }) {
           {list?.map((item) => (
             <tr className=" " key={item._id}>
               <td className="td ">{item.title}</td>
-              <td>{item.amount}</td>
+              <td>{numberFormat(item.amount)}</td>
               <td>{item.category}</td>
               <td>{item.description}</td>
               <td>{item.date}</td>

@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMemo, useState } from 'react';
-import NavbarApp from '../../components/navbar/NavbarApp';
+import NavbarApp from '../../../components/navbar/NavbarApp';
 import { Toaster } from 'react-hot-toast';
 
 export default function Dashboard() {

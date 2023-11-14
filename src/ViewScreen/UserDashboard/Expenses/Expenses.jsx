@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import ExpenseTable from './ExpenseTable';
-import CalendarYearMonth from '../../calendar/CalendarYearMonth';
+import CalendarYearMonth from 'components/calendar/CalendarYearMonth';
 
 const Expenses = () => {
   // --------> Calender get Date

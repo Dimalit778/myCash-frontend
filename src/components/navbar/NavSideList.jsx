@@ -28,8 +28,8 @@ import { useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLogoutMutation } from '../../slices/userApiSlice';
-import { logout } from '../../slices/authSlice';
+import { useLogoutMutation } from '../../Api/SlicesApi/userApiSlice';
+import { logout } from '../../Api/SlicesApi/authSlice';
 
 const drawerWidth = 240;
 

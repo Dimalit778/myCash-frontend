@@ -7,7 +7,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 
-import { auth, provider } from '../init_firebase';
+import { auth, provider } from '../../init_firebase';
 
 const UserContext = createContext();
 

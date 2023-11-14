@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
-import { useGlobalContext } from '../../Context/globalContext';
 
 const TestChart = () => {
   const data = [
@@ -8,14 +7,6 @@ const TestChart = () => {
     { name: 'avi', value: 200 },
     { name: 'dani', value: 200 },
   ];
-
-  const { expenses } = useGlobalContext();
-
-  const { user } = useGlobalContext();
-
-  // useEffect(() => {
-  //   // Get user epxenses
-  // }, [user]);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -49,7 +40,7 @@ const TestChart = () => {
     <div className="chart">
       <PieChart width={1000} height={600}>
         <Pie
-          data={expenses}
+          // data={}
           cx="50%"
           cy="50%"
           labelLine={false}
@@ -58,13 +49,13 @@ const TestChart = () => {
           fill="#8884d8"
           dataKey="amount"
         >
-          {expenses.map((exp, index) => (
+          {/* {expenses.map((exp, index) => (
             <Cell
               key={`cell-${index}`}
               fill={COLORS[index % COLORS.length]}
               label={exp.title}
             />
-          ))}
+          ))} */}
         </Pie>
       </PieChart>
     </div>

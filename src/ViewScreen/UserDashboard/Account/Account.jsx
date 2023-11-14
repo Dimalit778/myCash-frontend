@@ -1,8 +1,8 @@
 import React from 'react';
 import './account.css';
 
-import avatarLogo from '../../../assets/avatar.jpg';
-import { useDispatch, useSelector } from 'react-redux';
+import avatarLogo from 'assets/avatar.jpg';
+import { useSelector } from 'react-redux';
 
 const Account = () => {
   const { userInfo } = useSelector((state) => state.auth);

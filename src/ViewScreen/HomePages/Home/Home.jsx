@@ -1,7 +1,7 @@
 import React from 'react';
 import './home.css';
-import groupImg from '../../assets/group.jpg';
-import headerImg from '../../assets/main.jgp.avif';
+import groupImg from 'assets/group.jpg';
+import headerImg from 'assets/main.jgp.avif';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {

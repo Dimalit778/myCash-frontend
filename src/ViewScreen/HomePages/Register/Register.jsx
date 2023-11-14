@@ -3,9 +3,9 @@ import './register.css';
 
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import Loader from '../../utilits/Loader';
-import { useRegisterMutation } from '../../slices/userApiSlice';
-import { setCredentials } from '../../slices/authSlice';
+import Loader from '../../../components/Loader';
+import { useRegisterMutation } from '../../../Api/SlicesApi/userApiSlice';
+import { setCredentials } from '../../../Api/SlicesApi/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
 

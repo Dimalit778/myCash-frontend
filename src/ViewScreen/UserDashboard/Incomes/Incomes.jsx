@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import IncomesTable from './IncomesTable';
-import CalendarYearMonth from '../../../components/calendar/CalendarYearMonth';
+import CalendarYearMonth from '../../../components/Calender/CalendarYearMonth';
 
 const Incomes = () => {
   const [date, setDate] = useState(new Date());

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useGetAllIncomesQuery } from 'Api/SlicesApi/incomeApiSlice';
 
-import DataTable from 'Hooks/DataTable';
+import DataTable from 'forms/DataTable';
 import AddForm from 'forms/AddForm';
 import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
 import { calculateTotal } from 'Hooks/calculteTotal';

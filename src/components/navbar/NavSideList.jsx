@@ -15,21 +15,21 @@ import {
   Typography,
 } from '@mui/material';
 
-import incomeIcon from '../../assets/manuIcons/incomeIcom.png';
-import accountIcon from '../../assets/manuIcons/accountIcon.png';
-import dashIcon2 from '../../assets/manuIcons/dashIcon2.png';
-import expenseIcon from '../../assets/manuIcons/expenseIcon.png';
-import settingIcon from '../../assets/manuIcons/settingIcon.png';
-import contactIcon from '../../assets/manuIcons/contact.png';
-import logoutIcon from '../../assets/manuIcons/logoutIcon.png';
+import incomeIcon from 'assets/manuIcons/incomeIcom.png';
+import accountIcon from 'assets/manuIcons/accountIcon.png';
+import dashIcon2 from 'assets/manuIcons/dashIcon2.png';
+import expenseIcon from 'assets/manuIcons/expenseIcon.png';
+import settingIcon from 'assets/manuIcons/settingIcon.png';
+import contactIcon from 'assets/manuIcons/contact.png';
+import logoutIcon from 'assets/manuIcons/logoutIcon.png';
 
 import MuiDrawer from '@mui/material/Drawer';
 import { useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Footer from '../footer/footer';
+import Footer from '../Footer/footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLogoutMutation } from '../../Api/SlicesApi/userApiSlice';
-import { logout } from '../../Api/SlicesApi/authSlice';
+import { useLogoutMutation } from 'Api/SlicesApi/userApiSlice';
+import { logout } from 'Api/SlicesApi/authSlice';
 
 const drawerWidth = 240;
 

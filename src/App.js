@@ -5,23 +5,25 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Outlet, Route, createRoutesFromElements } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-
+//? ---> Home Pages -->
 import Register from 'ViewScreen/HomePages/Register/Register';
-import Dashboard from 'ViewScreen/HomePages/Dashborad/Dashborad';
 import SignIn from 'ViewScreen/HomePages/SignIn/SignIn';
 import Home from 'ViewScreen/HomePages/Home/Home';
-import NavbarComp from 'components/navbar/NavbarComp';
-
-import Main from 'ViewScreen/UserDashboard/Main/Main';
 import About from 'ViewScreen/HomePages/About/About';
-import Footer from 'components/footer/footer';
-//? UserDashboard
+//? ---> NavBar && Footer -->
+import NavbarComp from 'components/Navbar/NavbarComp';
+import Main from 'ViewScreen/UserDashboard/Main/Main';
+
+import Footer from 'components/Footer/footer';
+//? ---> UserDashboard -->
 import Expenses from 'ViewScreen/UserDashboard/Expenses/Expenses';
+import Dashboard from 'ViewScreen/HomePages/Dashborad/Dashborad';
 import Incomes from 'ViewScreen/UserDashboard/Incomes/Incomes';
 import Account from 'ViewScreen/UserDashboard/Account/Account.jsx';
 import Settings from 'ViewScreen/UserDashboard/Settings/Settings';
 import ContactUs from 'ViewScreen/UserDashboard/Contact/ContactUs';
-import NotFound from 'Hooks/NotFound';
+//? ---> Not Found && Private Route -->
+import NotFound from 'ViewScreen/NotFound';
 import PrivateRoute from 'components/PrivateRoute.jsx';
 
 axios.defaults.baseURL = 'http://localhost:5000';

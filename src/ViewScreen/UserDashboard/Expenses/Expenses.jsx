@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
 import ExpenseTable from './ExpenseTable';
-import CalendarYearMonth from 'components/calendar/CalendarYearMonth';
+import CalendarYearMonth from 'components/Calender/CalendarYearMonth';
+import PieActiveArc from 'components/Charts/PieActiveArc';
+import { useSelector } from 'react-redux';
+import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
 
 const Expenses = () => {
   // --------> Calender get Date
@@ -10,11 +13,25 @@ const Expenses = () => {
     setDate(date);
   };
 
+  const { userInfo } = useSelector((state) => state.auth);
+  const {
+    data: allExpenses,
+    error,
+    isLoading,
+  } = useGetAllExpensesQuery(userInfo._id);
+
+  if (error) return <div>error..!!</div>;
+
   return (
     <>
       <div className="row d-flex  ">
         <div className="col col-md-6 ">
           <h1>Charts</h1>
+          {isLoading ? (
+            'Loading'
+          ) : (
+            <PieActiveArc list={allExpenses} date={date} />
+          )}
         </div>
 
         <div className="col col-md-6  text-center  ">

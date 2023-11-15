@@ -10,7 +10,7 @@ import {
 import MuiAppBar from '@mui/material/AppBar';
 import { Brightness4, Brightness7, Menu } from '@mui/icons-material';
 import { useMemo, useState } from 'react';
-import NavSideList from '../../components/navbar/NavSideList';
+import NavSideList from './NavSideList';
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;

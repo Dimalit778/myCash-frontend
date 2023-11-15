@@ -3,12 +3,11 @@ import { Delete } from '@mui/icons-material';
 import './dataTable.css';
 import { useDeleteExpenseMutation } from 'Api/SlicesApi/expenseApiSlice';
 import { useDeleteIncomeMutation } from 'Api/SlicesApi/incomeApiSlice';
-import EditForm from '../forms/EditForm';
+import EditForm from './EditForm';
 
 import { numberFormat } from 'Hooks/numberFormat';
 
 //  List - list of Expenses or Incomes
-//  Date - date of Today
 //  actionType - the List type ( 'Income' of 'Expense')
 function DataTable({ list, actionType }) {
   //! ------{ use RTK Query to Delete Item from the list }

@@ -25,8 +25,8 @@ const Expenses = () => {
   return (
     <>
       <div className="row d-flex  ">
-        <div className="col col-md-6 ">
-          <h1>Charts</h1>
+        <div className="col col-md-6 text-center ">
+          <h1>Monthly Expenses</h1>
           {isLoading ? (
             'Loading'
           ) : (
@@ -38,9 +38,6 @@ const Expenses = () => {
           <CalendarYearMonth onChange={onChange} date={date} />
           <div className="cakeChart d-flex justify-content-center mt-5 ">
             <ExpenseTable date={date} />
-          </div>
-          <div className="pieChart">
-            {/* <PieActiveArc chartData={expenses} /> */}
           </div>
         </div>
       </div>

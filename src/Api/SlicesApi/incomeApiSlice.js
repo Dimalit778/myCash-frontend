@@ -5,17 +5,17 @@ const URL = '/api/transactions';
 export const incomeApiSlice = apiSlice.injectEndpoints({
   tagTypes: ['Income'],
   endpoints: (builder) => ({
-    // -- GET INCOME
+    //? -- GET INCOME
     getIncome: builder.query({
       query: (incomeId) => `${URL}/getIncome/${incomeId}`,
       providesTags: ['Income'],
     }),
-    // -- GET ALL INCOMES
+    //? -- GET ALL INCOMES
     getAllIncomes: builder.query({
       query: (userId) => `${URL}/getAllIncomes/${userId}`,
       providesTags: ['Income'],
     }),
-    // -- ADD INCOME
+    //? -- ADD INCOME
     addIncome: builder.mutation({
       query: ({ userId, ...rest }) => ({
         url: `${URL}/addIncome/${userId}`,
@@ -24,7 +24,7 @@ export const incomeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Income'],
     }),
-    // -- UPDATE INCOME
+    //? -- UPDATE INCOME
     updateIncome: builder.mutation({
       query: ({ _id, ...rest }) => ({
         url: `${URL}/updateIncome/${_id}`,
@@ -33,7 +33,7 @@ export const incomeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Income'],
     }),
-    // -- DELETE INCOME
+    //? -- DELETE INCOME
     deleteIncome: builder.mutation({
       query: (incomeId) => ({
         url: `${URL}/deleteIncome/${incomeId}`,

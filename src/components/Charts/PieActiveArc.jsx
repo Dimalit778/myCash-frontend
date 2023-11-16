@@ -1,30 +1,53 @@
 import * as React from 'react';
 import { Chart as ChartJS } from 'chart.js/auto';
-import { Pie, PolarArea } from 'react-chartjs-2';
+import { PolarArea } from 'react-chartjs-2';
 import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
-import { FilterList } from '@mui/icons-material';
-import { categories } from 'Hooks/categoryList';
 
 export default function PieActiveArc({ list, date }) {
-  console.log(list);
-
   //?------{  Filter the list by Month and Year }
   const filteredList = filterByMonthAndYear(list, date);
-  // 'rgb(75, 192, 192)',
-  // 'rgb(255, 205, 86)',
-  // 'rgb(201, 203, 207)',
-  // 'rgb(54, 162, 235)',
+
+  const categoryTotals = filteredList.reduce((acc, transaction) => {
+    const { category, amount } = transaction;
+
+    // If the category is not in the accumulator, add it; otherwise, update the total amount
+    if (!acc[category]) {
+      acc[category] = amount;
+    } else {
+      acc[category] += amount;
+    }
+
+    return acc;
+  }, {});
+  // Convert the object into an array of objects with category and total amount
+  const uniqueCategories = Object.keys(categoryTotals).map((category) => ({
+    category,
+    totalAmount: categoryTotals[category],
+  }));
+
   return (
     <>
       <PolarArea
         data={{
-          labels: categories.map((item) => item.label),
+          labels: uniqueCategories.map((item) => item.category),
           datasets: [
             {
-              label: filteredList.map((filter) => filter.category),
-              data: filteredList.map((filter) => filter.amount),
+              data: uniqueCategories.map((category) => category.totalAmount),
+              backgroundColor: [
+                '#0000FF',
+                '#7FFF00',
+                '#A52A2A',
+                '#6495ED',
+                '#FF8C00',
+                '#2F4F4F',
+                '#00BFFF',
+                '#FFD700',
+              ],
             },
           ],
+        }}
+        options={{
+          title: 'Total Amount',
         }}
       />
       ;

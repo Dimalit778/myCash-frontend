@@ -5,17 +5,17 @@ const URL = '/api/transactions';
 export const expenseApiSlice = apiSlice.injectEndpoints({
   tagTypes: ['Expense'],
   endpoints: (builder) => ({
-    // -- GET Expense
+    //? -- GET Expense
     getExpense: builder.query({
       query: (expenseId) => `${URL}/getExpense/${expenseId}`,
       providesTags: ['Expense'],
     }),
-    // -- GET ALL EXPENSES
+    //? -- GET ALL EXPENSES
     getAllExpenses: builder.query({
       query: (userId) => `${URL}/getAllExpenses/${userId}`,
       providesTags: ['Expense'],
     }),
-    // -- ADD  EXPENSE
+    //? -- ADD  EXPENSE
     addExpense: builder.mutation({
       query: ({ userId, ...rest }) => ({
         url: `${URL}/addExpense/${userId}`,
@@ -24,7 +24,7 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Expense'],
     }),
-    // -- UPDATE EXPENSE
+    //? -- UPDATE EXPENSE
     updateExpense: builder.mutation({
       query: ({ _id, ...rest }) => ({
         url: `${URL}/updateExpense/${_id}`,
@@ -33,7 +33,7 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Expense'],
     }),
-    // -- DELETE EXPENSE
+    //? -- DELETE EXPENSE
     deleteExpense: builder.mutation({
       query: (expenseId) => ({
         url: `${URL}/deleteExpense/${expenseId}`,

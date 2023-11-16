@@ -14,35 +14,38 @@ const AddForm = ({ actionType }) => {
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
-    setNewAction({});
+    setNewAction(initialAction);
     setShow(false);
   };
   const handleShow = () => {
-    setNewAction({ ...newAction, userId: userInfo._id });
+    setNewAction(initialAction);
     setShow(true);
   };
-
-  const [newAction, setNewAction] = useState({
+  const initialAction = {
+    userId: userInfo._id,
     title: '',
     amount: '',
     category: '',
     description: '',
     date: '',
-  });
+  };
 
+  const [newAction, setNewAction] = useState(initialAction);
+  //! --> NEED TO CHECK WHAT HAPPEN IF SERVER ERROR IN THE {ADD} FUNCTION
   const addNewAction = async (e) => {
     e.preventDefault();
     switch (actionType) {
       case 'income':
-        console.log(newAction);
         await addIncome(newAction);
         handleClose();
-        return toast.success('Successfully added Income');
+        return toast.success('Successfully added Expense');
 
       case 'expense':
         await addExpense(newAction);
         handleClose();
+
         return toast.success('Successfully added Expense');
+
       default:
         return null;
     }

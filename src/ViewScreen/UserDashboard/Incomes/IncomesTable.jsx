@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useGetAllIncomesQuery } from 'Api/SlicesApi/incomeApiSlice';
-
-import DataTable from 'forms/DataTable';
 import AddForm from 'forms/AddForm';
 import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
 import { calculateTotal } from 'Hooks/calculteTotal';
+import TableView from 'forms/TableView';
 
 const IncomesTable = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -31,7 +30,7 @@ const IncomesTable = ({ date }) => {
           <h2> Total incomes : {total}</h2>
           <AddForm actionType={actionType} />
         </div>
-        <DataTable list={filteredList} actionType={actionType} />
+        <TableView list={filteredList} actionType={actionType} />
       </div>
     </div>
   );

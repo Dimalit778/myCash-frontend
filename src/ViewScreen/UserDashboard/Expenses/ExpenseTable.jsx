@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetAllExpensesQuery } from '../../../Api/SlicesApi/expenseApiSlice';
-import DataTable from '../../../forms/DataTable';
+import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
+
 import AddForm from '../../../forms/AddForm';
-import { filterByMonthAndYear } from '../../../Hooks/filterByMonthYear';
-import { calculateTotal } from '../../../Hooks/calculteTotal';
-import Loader from '../../../components/Loader';
+import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
+import { calculateTotal } from 'Hooks/calculteTotal';
+import Loader from 'components/Loader';
+import TableView from 'forms/TableView';
 
 const ExpenseList = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -32,7 +33,8 @@ const ExpenseList = ({ date }) => {
           <AddForm actionType={actionType} />
         </div>
 
-        <DataTable list={filteredList} actionType={actionType} />
+        {/* <DataTable list={filteredList} actionType={actionType} /> */}
+        <TableView list={filteredList} actionType={actionType} />
       </div>
     </div>
   );

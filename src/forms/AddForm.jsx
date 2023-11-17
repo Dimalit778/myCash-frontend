@@ -25,7 +25,7 @@ const AddForm = ({ actionType }) => {
     userId: userInfo._id,
     title: '',
     amount: '',
-    category: '',
+    category: 'Food',
     description: '',
     date: '',
   };
@@ -68,7 +68,7 @@ const AddForm = ({ actionType }) => {
         </Modal.Header>
         <Modal.Body>
           <form className="addForm" onSubmit={addNewAction}>
-            {/* ---->TITLE  <---- */}
+            {/*//@ ---->TITLE  <---- */}
             <div className="form-group pb-2 ">
               <label className="label ms-1">Title</label>
               <input
@@ -80,7 +80,7 @@ const AddForm = ({ actionType }) => {
                 className="form-control  "
               />
             </div>
-            {/* ----> AMOUNT  <---- */}
+            {/*//@ ----> AMOUNT  <---- */}
             <div className="form-group pb-2 ">
               <label className="label ms-1">Amount</label>
               <input
@@ -92,7 +92,7 @@ const AddForm = ({ actionType }) => {
                 className=" form-control"
               />
             </div>
-            {/* ---->  DATE  <---- */}
+            {/*//@ ---->  DATE  <---- */}
             <div className="form-group pb-2">
               <label className="label ms-1">Date</label>
               <input
@@ -104,7 +104,7 @@ const AddForm = ({ actionType }) => {
                 className=" form-control"
               />
             </div>
-            {/* ----> CATEGORY  <---- */}
+            {/*//@ ----> CATEGORY  <---- */}
             <div className="form-group pb-2">
               <label className="label ms-1">Category</label>
               <select
@@ -128,7 +128,7 @@ const AddForm = ({ actionType }) => {
                 })}
               </select>
             </div>
-            {/* ---->  DESCRIPTION <---- */}
+            {/*//@ ---->  DESCRIPTION <---- */}
             <div className="form-group pb-2">
               <label className="label ms-1">Description</label>
               <input

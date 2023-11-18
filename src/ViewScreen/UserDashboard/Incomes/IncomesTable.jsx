@@ -26,7 +26,7 @@ const IncomesTable = ({ date }) => {
   return (
     <div className="container">
       <div className="data-box">
-        <div className="total d-flex justify-content-between  ">
+        <div className="total d-flex justify-content-around mb-1   ">
           <h2> Total incomes : {total}</h2>
           <AddForm actionType={actionType} />
         </div>

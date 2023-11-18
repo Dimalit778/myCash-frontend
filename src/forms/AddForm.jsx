@@ -53,8 +53,14 @@ const AddForm = ({ actionType }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add
+      <Button
+        style={{
+          backgroundColor: 'MediumAquaMarine',
+          color: 'black',
+        }}
+        onClick={handleShow}
+      >
+        Add New
       </Button>
       <Modal
         show={show}

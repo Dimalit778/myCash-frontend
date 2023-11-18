@@ -40,9 +40,7 @@ export const UpdateUser = () => {
   };
 
   return (
-    <div>
-      <h1>Update Profile</h1>
-
+    <div className=" d-flex justify-content-center  ">
       <Form onSubmit={submitHandler}>
         <Form.Group className="my-2" controlId="name">
           <Form.Label>Name</Form.Label>

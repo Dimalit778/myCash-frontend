@@ -46,9 +46,6 @@ export default function PieActiveArc({ list, date }) {
             },
           ],
         }}
-        options={{
-          title: 'Total Amount',
-        }}
       />
       ;
     </>

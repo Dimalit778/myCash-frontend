@@ -28,12 +28,10 @@ const ExpenseList = ({ date }) => {
   return (
     <div className="container">
       <div className="data-box">
-        <div className="total d-flex justify-content-between  ">
+        <div className="total d-flex justify-content-around mb-1  ">
           <h3> Total Expenses : {total} </h3>
           <AddForm actionType={actionType} />
         </div>
-
-        {/* <DataTable list={filteredList} actionType={actionType} /> */}
         <TableView list={filteredList} actionType={actionType} />
       </div>
     </div>

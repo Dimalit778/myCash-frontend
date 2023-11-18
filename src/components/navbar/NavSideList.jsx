@@ -89,7 +89,7 @@ const NavSideList = ({ open, setOpen }) => {
 
   const [selectedLink, setSelectedLink] = useState('');
 
-  // List of nav side components
+  // ----->  List of nav side components
   const list = useMemo(
     () => [
       {
@@ -126,7 +126,7 @@ const NavSideList = ({ open, setOpen }) => {
     ],
     []
   );
-
+  // ? Logout user
   const logoutHandler = async () => {
     try {
       await logoutApiCall().unwrap();
@@ -144,6 +144,7 @@ const NavSideList = ({ open, setOpen }) => {
             <ChevronLeft />
           </IconButton>
         </DrawerHeader>
+        {/* [ Divider ] -- { Nav side => component List } -- */}
         <Divider />
         <List>
           {list.map((item) => (
@@ -182,8 +183,8 @@ const NavSideList = ({ open, setOpen }) => {
             <Avatar {...(open && { sx: { width: 100, height: 100 } })} />
           </Tooltip>
         </Box>
+        {/* [ BOX ] -- { Nav side => bottom user info } -- */}
         <Box sx={{ textAlign: 'center' }}>
-          {/* {open && <Typography>{user.firstName}</Typography>} */}
           <Typography variant="body2"> {userInfo.name}</Typography>
           {open && <Typography variant="body2">{userInfo.email}</Typography>}
           <Tooltip title="Logout" sx={{ mt: 1 }}>
@@ -193,7 +194,7 @@ const NavSideList = ({ open, setOpen }) => {
           </Tooltip>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <DrawerHeader />
         {/* Outlet - Display all components */}
         <Outlet />

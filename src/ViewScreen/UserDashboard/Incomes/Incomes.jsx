@@ -24,9 +24,8 @@ const Incomes = () => {
   return (
     <>
       <div className="row d-flex text-center   ">
-        <h1>INCOMES</h1>
-        <div style={{ border: '2px solid black' }} className="col col-md-6  ">
-          <h2>Monthly View</h2>
+        <div className="col col-md-6 p-5   ">
+          <h2>Monthly Incomes </h2>
           {isLoading ? (
             'Loading'
           ) : (

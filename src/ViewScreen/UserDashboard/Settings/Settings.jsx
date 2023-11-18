@@ -6,8 +6,8 @@ import { UpdateUser } from './UpdateUser';
 
 const Settings = () => {
   return (
-    <div>
-      <h1>Settings</h1>
+    <div className=" ">
+      <h1>Update Profile</h1>
       <UpdateUser />
     </div>
   );

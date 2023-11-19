@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useUpdateUserMutation } from '../../../Api/SlicesApi/userApiSlice';
-import { setCredentials } from '../../../Api/SlicesApi/authSlice';
+import { useUpdateUserMutation } from '../Api/SlicesApi/userApiSlice';
+import { setCredentials } from '../Api/SlicesApi/authSlice';
 import { toast } from 'react-hot-toast';
-import Loader from '../../../components/Loader';
+import Loader from '../components/Loader';
 import { Button, Form } from 'react-bootstrap';
 
 export const UpdateUser = () => {
@@ -11,7 +11,7 @@ export const UpdateUser = () => {
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  // const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const [updateProfile, { isLoading }] = useUpdateUserMutation();
@@ -20,19 +20,16 @@ export const UpdateUser = () => {
     setName(userInfo.name);
     setEmail(userInfo.email);
   }, [userInfo.email, userInfo.name]);
-
   const submitHandler = async (e) => {
     e.preventDefault();
-
     try {
       const res = await updateProfile({
         _id: userInfo._id,
         name,
         email,
-        password,
       }).unwrap();
-      console.log(res);
-      dispatch(setCredentials(res));
+
+      dispatch(setCredentials({ ...res }));
       toast.success('Profile updated successfully');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
@@ -60,7 +57,7 @@ export const UpdateUser = () => {
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group className="my-2" controlId="password">
+        {/* <Form.Group className="my-2" controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -68,7 +65,7 @@ export const UpdateUser = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
-        </Form.Group>
+        </Form.Group> */}
 
         <Button type="submit" variant="primary" className="mt-3">
           Update

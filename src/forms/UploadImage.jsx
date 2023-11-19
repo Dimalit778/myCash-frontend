@@ -1,12 +1,20 @@
-import { useUploadImageMutation } from 'Api/SlicesApi/userApiSlice';
+import { setCredentials } from 'Api/SlicesApi/authSlice';
+import { useUpdateExpenseMutation } from 'Api/SlicesApi/expenseApiSlice';
+import {
+  useUpdateUserMutation,
+  useUploadImageMutation,
+} from 'Api/SlicesApi/userApiSlice';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UploadImage = () => {
   const [userImage, setUserImage] = useState('');
   const { userInfo } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const [uploadImage] = useUploadImageMutation();
+  const [updateUser] = useUpdateUserMutation();
 
   const handleChange = (e) => {
     const file = e.target.files[0];
@@ -24,13 +32,21 @@ const UploadImage = () => {
       setUserImage('');
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const id = userInfo._id;
-
     try {
-      const res = await uploadImage({ id, ...userImage });
-      if (res) return 'success';
+      const res = await uploadImage({ userImage });
+      //?  Update image to User Schema
+      if (res) {
+        const result = await updateUser({
+          _id: userInfo._id,
+          imageUrl: res.data.public_id,
+        });
+        //! fix -> update the userinfo with the image url
+        // dispatch(setCredentials(...result, imageUrl:res.data.public_id));
+        toast.success('Profile updated successfully');
+      }
     } catch (err) {
       console.log(err);
     }
@@ -42,15 +58,6 @@ const UploadImage = () => {
         <input type="file" accept="image/" onChange={handleChange} />
       </div>
       <button type="submit">Upload</button>
-      <div>
-        {userImage ? (
-          <>
-            <img src={userImage} alt="userImage" />
-          </>
-        ) : (
-          <p>imgggg</p>
-        )}
-      </div>
     </form>
   );
 };

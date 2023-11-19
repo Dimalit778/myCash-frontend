@@ -1,9 +1,11 @@
 import { apiSlice } from './apiSlice';
 
 const USER_URL = '/api/users';
+const IMAGE_URL = 'http://localhost:5000/api/users/uploadImage';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    //? ---> Login User
     login: builder.mutation({
       query: (data) => ({
         url: `${USER_URL}/login`,
@@ -11,12 +13,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    //? ---> Logout User
     logout: builder.mutation({
       query: () => ({
         url: `${USER_URL}/logout`,
         method: 'POST',
       }),
     }),
+    //? ---> Register User
     register: builder.mutation({
       query: (data) => ({
         url: `${USER_URL}/register`,
@@ -24,19 +28,20 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    //? ---> Update User
     updateUser: builder.mutation({
-      query: (data) => ({
-        url: `${USER_URL}/updateUser`,
+      query: ({ _id, ...rest }) => ({
+        url: `${USER_URL}/updateUser/${_id}`,
         method: 'PATCH',
-        body: data,
+        body: rest,
       }),
     }),
+    //? ---> Upload Image
     uploadImage: builder.mutation({
-      query: ({ id, ...rest }) => ({
-        url: `${USER_URL}/uploadImage/${id}`
-       
+      query: (data) => ({
+        url: `${USER_URL}/uploadImage`,
         method: 'POST',
-        body: rest,
+        body: data,
       }),
     }),
   }),

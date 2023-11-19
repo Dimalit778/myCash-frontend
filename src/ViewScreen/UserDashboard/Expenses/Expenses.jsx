@@ -14,6 +14,7 @@ const Expenses = () => {
   };
 
   const { userInfo } = useSelector((state) => state.auth);
+
   const {
     data: allExpenses,
     error,

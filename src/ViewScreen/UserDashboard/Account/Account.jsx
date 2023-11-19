@@ -11,8 +11,16 @@ const Account = () => {
   return (
     <div className="container ">
       <div className="row ">
-        <div className="img  border border-2 border-black  d-flex  justify-content-center  align-items-center   col-sm-6  ">
-          <img src={avatarLogo} alt="" className="avatarLogo" />
+        <div className="img text-center col-sm-6  ">
+          {userInfo.imageUrl ? (
+            <div>yes</div>
+          ) : (
+            <>
+              <img src={avatarLogo} alt="" className="avatarLogo" />
+              <UploadImage />
+            </>
+          )}
+          ;
         </div>
         <div className="userInfo d-flex flex-column justify-content-around    col-sm-6 ">
           <div className="d-flex">
@@ -24,9 +32,6 @@ const Account = () => {
               <h3 className="h3Info">{userInfo.name} </h3>
               <h3 className="h3Info">{userInfo.email} </h3>
             </div>
-          </div>
-          <div className="uploadImage d-flex justify-content-center ">
-            <UploadImage />
           </div>
         </div>
       </div>

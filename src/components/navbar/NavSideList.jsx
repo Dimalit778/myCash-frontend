@@ -30,6 +30,7 @@ import Footer from '../Footer/footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLogoutMutation } from 'Api/SlicesApi/userApiSlice';
 import { logout } from 'Api/SlicesApi/authSlice';
+import { Image, Transformation } from 'cloudinary-react';
 
 const drawerWidth = 240;
 
@@ -155,9 +156,7 @@ const NavSideList = ({ open, setOpen }) => {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                onClick={() => (
-                  navigate(item.link), setSelectedLink(item.link)
-                )}
+                onClick={() => navigate(item.link, setSelectedLink(item.link))}
                 selected={selectedLink === item.link}
               >
                 <ListItemIcon
@@ -178,10 +177,33 @@ const NavSideList = ({ open, setOpen }) => {
           ))}
         </List>
         <Divider />
+        {/*//? BOX => User image || Avatar icon */}
         <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
-          <Tooltip title="test">
+          {userInfo.imageUrl && !open && (
+            <Image cloudName="dx6oxmki4" publicId={userInfo.imageUrl}>
+              <Transformation
+                width="50"
+                height="50"
+                gravity="auto"
+                crop="fill"
+                radius="max"
+              />
+            </Image>
+          )}
+          {userInfo.imageUrl && open && (
+            <Image cloudName="dx6oxmki4" publicId={userInfo.imageUrl}>
+              <Transformation
+                width="150"
+                height="150"
+                gravity="auto"
+                crop="fill"
+                radius="max"
+              />
+            </Image>
+          )}
+          {!userInfo.imageUrl && (
             <Avatar {...(open && { sx: { width: 100, height: 100 } })} />
-          </Tooltip>
+          )}
         </Box>
         {/* [ BOX ] -- { Nav side => bottom user info } -- */}
         <Box sx={{ textAlign: 'center' }}>
@@ -189,7 +211,7 @@ const NavSideList = ({ open, setOpen }) => {
           {open && <Typography variant="body2">{userInfo.email}</Typography>}
           <Tooltip title="Logout" sx={{ mt: 1 }}>
             <IconButton onClick={logoutHandler}>
-              <img src={logoutIcon} alt="" />
+              <img src={logoutIcon} alt="logout" />
             </IconButton>
           </Tooltip>
         </Box>
@@ -205,3 +227,18 @@ const NavSideList = ({ open, setOpen }) => {
 };
 
 export default NavSideList;
+
+//     <Image cloudName="dx6oxmki4" publicId={userInfo.imageUrl}>
+//       <Transformation
+//         width="150"
+//         height="150"
+//         gravity="auto"
+//         crop="fill"
+//         radius="max"
+//       />
+//     </Image>
+//   </div>
+// ) : (
+//   <>
+//     <Avatar {...(open && { sx: { width: 100, height: 100 } })} />
+//   </>

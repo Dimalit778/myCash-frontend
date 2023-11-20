@@ -36,15 +36,24 @@ const UploadImage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Upload the image file to CloudDinary database
       const res = await uploadImage({ userImage });
       //?  Update image to User Schema
       if (res) {
+        // if upload successed -> update the user with imageUrl
         const result = await updateUser({
           _id: userInfo._id,
           imageUrl: res.data.public_id,
-        });
-        //! fix -> update the userinfo with the image url
-        // dispatch(setCredentials(...result, imageUrl:res.data.public_id));
+        }).unwrap();
+        // add to userInfo in the local storage  the imageUrl
+        dispatch(
+          setCredentials({
+            _id: result._id,
+            name: result.name,
+            email: result.email,
+            imageUrl: result.imageUrl,
+          })
+        );
         toast.success('Profile updated successfully');
       }
     } catch (err) {

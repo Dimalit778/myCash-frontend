@@ -4,6 +4,7 @@ import './account.css';
 import avatarLogo from 'assets/avatar.jpg';
 import { useSelector } from 'react-redux';
 import UploadImage from 'forms/UploadImage';
+import { Image } from 'cloudinary-react';
 
 const Account = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -13,14 +14,15 @@ const Account = () => {
       <div className="row ">
         <div className="img text-center col-sm-6  ">
           {userInfo.imageUrl ? (
-            <div>yes</div>
+            <div>
+              <Image cloudName="dx6oxmki4" publicId={userInfo.imageUrl} />
+            </div>
           ) : (
             <>
               <img src={avatarLogo} alt="" className="avatarLogo" />
               <UploadImage />
             </>
           )}
-          ;
         </div>
         <div className="userInfo d-flex flex-column justify-content-around    col-sm-6 ">
           <div className="d-flex">

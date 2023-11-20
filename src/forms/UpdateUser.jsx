@@ -29,7 +29,9 @@ export const UpdateUser = () => {
         email,
       }).unwrap();
 
-      dispatch(setCredentials({ ...res }));
+      dispatch(
+        setCredentials({ _id: res._id, name: res.name, email: res.email })
+      );
       toast.success('Profile updated successfully');
     } catch (err) {
       toast.error(err?.data?.message || err.error);

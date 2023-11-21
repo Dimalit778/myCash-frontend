@@ -61,12 +61,26 @@ const UploadImage = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="text-center" onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="images">Image</label>
-        <input type="file" accept="image/" onChange={handleChange} />
+        <input
+          className=" w-50 "
+          type="file"
+          placeholder=""
+          accept="image/"
+          onChange={handleChange}
+        />
+        <button
+          style={{
+            backgroundColor: 'grey',
+            border: '2px solid black',
+            padding: '5px',
+          }}
+          type="submit"
+        >
+          Upload
+        </button>
       </div>
-      <button type="submit">Upload</button>
     </form>
   );
 };

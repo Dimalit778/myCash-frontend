@@ -6,7 +6,7 @@ import './footer.css';
 
 const Footer = () => {
   return (
-    <div className="footer-container mt-5 ">
+    <div className="footer-container ">
       <div className=" d-lg-flex  flex-row justify-content-evenly ">
         {/* //{ ------- CONTACT FOOTER -------} */}
         <div className="ft1 mx-auto    ">

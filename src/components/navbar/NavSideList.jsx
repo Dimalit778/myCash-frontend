@@ -216,7 +216,7 @@ const NavSideList = ({ open, setOpen }) => {
           </Tooltip>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <DrawerHeader />
         {/* Outlet - Display all components */}
         <Outlet />
@@ -227,18 +227,3 @@ const NavSideList = ({ open, setOpen }) => {
 };
 
 export default NavSideList;
-
-//     <Image cloudName="dx6oxmki4" publicId={userInfo.imageUrl}>
-//       <Transformation
-//         width="150"
-//         height="150"
-//         gravity="auto"
-//         crop="fill"
-//         radius="max"
-//       />
-//     </Image>
-//   </div>
-// ) : (
-//   <>
-//     <Avatar {...(open && { sx: { width: 100, height: 100 } })} />
-//   </>

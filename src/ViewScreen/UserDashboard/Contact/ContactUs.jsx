@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 // Email Form from emailjs api
 // User Send email to my Email Address
@@ -27,39 +28,73 @@ const ContactUs = () => {
         setName('');
         setEmail('');
         setMessage('');
+        toast.success('Email Sent successfully');
       },
       (error) => {
+        toast.error('Email wan not sent ');
         console.log(error.text);
       }
     );
   };
   return (
-    <>
-      <div>ContactUs</div>
-      <form onSubmit={sendEmail} className="emailForm">
-        <input
-          type="text"
-          placeholder="Your Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <input
-          type="email"
-          placeholder="Your Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <textarea
-          cols="30"
-          rows="30"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button type="submit">Send Email</button>
-      </form>
-    </>
+    <div className="container">
+      <h1 className=" text-center mb-5  ">contact us</h1>
+      <div className="col-6 col-sm-12 ">
+        <div
+          className="form col-12 "
+          style={{
+            backgroundColor: 'blueviolet',
+            padding: 20,
+            border: '3px solid black',
+          }}
+        >
+          <form onSubmit={sendEmail}>
+            <div>
+              <input
+                style={{
+                  border: '2px solid black',
+                  borderRadius: 5,
+                }}
+                type="text"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="mt-2">
+              <input
+                style={{ border: '2px solid black', borderRadius: 5 }}
+                type="email"
+                placeholder="Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <textarea
+                style={{
+                  width: 300,
+                  height: 150,
+                  marginTop: 30,
+                  border: '2px solid black',
+                  borderRadius: 5,
+                }}
+                cols="20"
+                rows="10"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </div>
+            <button
+              style={{ border: '2px solid black', borderRadius: 5, width: 100 }}
+              type="submit"
+            >
+              Send Email
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

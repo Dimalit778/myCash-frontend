@@ -4,7 +4,7 @@ import NavbarApp from '../../../components/Navbar/NavbarApp';
 import { Toaster } from 'react-hot-toast';
 
 export default function Dashboard() {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
 
   const darkTheme = useMemo(

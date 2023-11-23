@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './navbar.css';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 // import { Helmet } from 'react-helmet-async';

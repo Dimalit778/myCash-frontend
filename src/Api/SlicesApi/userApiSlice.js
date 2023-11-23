@@ -1,7 +1,6 @@
 import { apiSlice } from './apiSlice';
 
 const USER_URL = '/api/users';
-const IMAGE_URL = 'http://localhost:5000/api/users/uploadImage';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

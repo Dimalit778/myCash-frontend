@@ -1,5 +1,5 @@
 import { setCredentials } from 'Api/SlicesApi/authSlice';
-import { useUpdateExpenseMutation } from 'Api/SlicesApi/expenseApiSlice';
+
 import {
   useUpdateUserMutation,
   useUploadImageMutation,

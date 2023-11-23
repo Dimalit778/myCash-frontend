@@ -1,8 +1,8 @@
 import React from 'react';
-import { Stats } from '../../../components/Stats/Stats';
+// import { Stats } from '../../../components/Stats/Stats';
 
-import BalanceStats from '../../../components/Stats/BalanceStats';
-import LineChart from '../../../components/Charts/LineChart';
+// import BalanceStats from '../../../components/Stats/BalanceStats';
+// import LineChart from '../../../components/Charts/LineChart';
 
 const Main = () => {
   return (

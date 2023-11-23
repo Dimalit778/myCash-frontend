@@ -26,7 +26,7 @@ import ContactUs from 'ViewScreen/UserDashboard/Contact/ContactUs';
 import NotFound from 'ViewScreen/NotFound';
 import PrivateRoute from 'components/PrivateRoute.jsx';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com';
 axios.defaults.withCredentials = true;
 
 const HomeRoot = () => {

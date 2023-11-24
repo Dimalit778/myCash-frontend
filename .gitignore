@@ -22,3 +22,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# netlfy
+# [[redirects]]
+# from ="/*"
+# to= "/index.html"
+# status = 200

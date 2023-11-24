@@ -1,7 +1,6 @@
 {
   "name": "front",
   "version": "0.1.0",
-  "proxy": "https://mycash-ra2a.onrender.com",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -74,5 +73,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://mycash-ra2a.onrender.com"
 }

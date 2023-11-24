@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import { Outlet, Route, createRoutesFromElements } from 'react-router-dom';
@@ -26,8 +26,9 @@ import ContactUs from 'ViewScreen/UserDashboard/Contact/ContactUs';
 import NotFound from 'ViewScreen/NotFound';
 import PrivateRoute from 'components/PrivateRoute.jsx';
 
-axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
-axios.defaults.withCredentials = true;
+// axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
+// axios.defaults.baseURL = 'http://localhost:5000';
+// axios.defaults.withCredentials = true;
 
 const HomeRoot = () => {
   return (

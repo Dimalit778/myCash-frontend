@@ -17,7 +17,7 @@ import Main from 'ViewScreen/UserDashboard/Main/Main';
 import Footer from 'components/Footer/footer';
 //? ---> UserDashboard -->
 import Expenses from 'ViewScreen/UserDashboard/Expenses/Expenses';
-import Dashboard from 'ViewScreen/HomePages/Dashborad/Dashborad';
+import Dashboard from 'ViewScreen/HomePages/Dashboard/Dashboard';
 import Incomes from 'ViewScreen/UserDashboard/Incomes/Incomes';
 import Account from 'ViewScreen/UserDashboard/Account/Account.jsx';
 import Settings from 'ViewScreen/UserDashboard/Settings/Settings';
@@ -32,7 +32,7 @@ axios.defaults.withCredentials = true;
 const HomeRoot = () => {
   return (
     <>
-      <Toaster position="botton-right" toastOptions={{ duration: 3000 }} />
+      <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
       {/* <NavbarApp /> */}
       <NavbarComp />
       <Outlet />
@@ -54,7 +54,7 @@ const router = createBrowserRouter(
       </Route>
       {/* -----> Private Route <------ */}
       <Route path="" element={<PrivateRoute />}>
-        {/* Dashborad Routes */}
+        {/* Dashboard Routes */}
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="" element={<Main />} />
           <Route path="settings" element={<Settings />} />

@@ -22,6 +22,7 @@ const Expenses = () => {
   } = useGetAllExpensesQuery(userInfo._id);
 
   if (error) return <div>error..!!</div>;
+  console.log('1 - expenses');
 
   return (
     <>

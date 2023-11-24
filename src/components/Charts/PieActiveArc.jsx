@@ -6,6 +6,7 @@ import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
 export default function PieActiveArc({ list, date }) {
   //?------{  Filter the list by Month and Year }
   const filteredList = filterByMonthAndYear(list, date);
+  console.log('3 - Pie chart');
 
   const categoryTotals = filteredList.reduce((acc, transaction) => {
     const { category, amount } = transaction;

@@ -8,6 +8,7 @@ import { useAddExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
 import { categories } from '../Hooks/categoryList';
 
 const AddForm = ({ actionType }) => {
+  console.log('5 - add form');
   const { userInfo } = useSelector((state) => state.auth);
   const [addIncome] = useAddIncomeMutation();
   const [addExpense] = useAddExpenseMutation();

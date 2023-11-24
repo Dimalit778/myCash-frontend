@@ -4,8 +4,8 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 // import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLogoutMutation } from '../../Api/SlicesApi/userApiSlice';
-import { logout } from '../../Api/SlicesApi/authSlice';
+import { useLogoutMutation } from 'Api/SlicesApi/userApiSlice';
+import { logout } from 'Api/SlicesApi/authSlice';
 
 const NavbarComp = () => {
   const { userInfo } = useSelector((state) => state.auth);

@@ -1,3 +1,7 @@
+<!-- Add to package.json file to connect the render domain -->
+
+// --> "proxy": "https://mycash-ra2a.onrender.com"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

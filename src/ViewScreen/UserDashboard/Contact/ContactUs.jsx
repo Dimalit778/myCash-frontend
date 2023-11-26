@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 // Email Form from emailjs api
 // User Send email to my Email Address
 const ContactUs = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -37,15 +40,37 @@ const ContactUs = () => {
     );
   };
   return (
-    <div className="container">
-      <h1 className=" text-center mb-5  ">contact us</h1>
-      <div className="col-6 col-sm-12 ">
+    <div className="container  d-flex flex-column justify-content-center  ">
+      <h1 className=" text-center m-5  ">CONTACT US</h1>
+      <div className="row justify-content-around       ">
+        {/* Left Div - Text */}
         <div
-          className="form col-12 "
+          className="col-sm-12 col-md-5 d-flex flex-column justify-content-between     "
+          style={{
+            backgroundColor: '#FFF5EE',
+            padding: 20,
+            border: '1px solid black',
+            marginBottom: 20,
+          }}
+        >
+          <h2>Hello, {userInfo.name}</h2>
+          <h5 className=" ">
+            Our support team can help you with every question you have, You can
+            contact us and our team will response you within 24 hours.
+          </h5>
+          <h4 className="  ">
+            Please fill your'e Name , Email and your'e Message.{' '}
+          </h4>
+        </div>
+        {/* Right Div - Content Form */}
+        <div
+          className=" col-sm-12 col-md-5  "
           style={{
             backgroundColor: 'blueviolet',
             padding: 20,
             border: '3px solid black',
+            borderRadius: 10,
+            marginBottom: 20,
           }}
         >
           <form onSubmit={sendEmail}>
@@ -73,7 +98,7 @@ const ContactUs = () => {
             <div>
               <textarea
                 style={{
-                  width: 300,
+                  width: '70%',
                   height: 150,
                   marginTop: 30,
                   border: '2px solid black',

@@ -225,5 +225,5 @@ const NavSideList = ({ open, setOpen }) => {
     </>
   );
 };
-
+// #FFF5EE
 export default NavSideList;

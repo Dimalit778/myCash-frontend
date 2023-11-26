@@ -4,9 +4,10 @@ import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
 
 import AddForm from '../../../forms/AddForm';
 import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
-import { calculateTotal } from 'Hooks/calculteTotal';
+import { calculateTotal } from 'Hooks/calculateTotal';
 import Loader from 'components/Loader';
 import TableView from 'forms/TableView';
+import { numberFormat } from 'Hooks/numberFormat';
 
 const ExpenseList = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -30,7 +31,7 @@ const ExpenseList = ({ date }) => {
     <div className="container">
       <div className="data-box">
         <div className="total d-flex justify-content-around mb-1  ">
-          <h3> Total Expenses : {total} </h3>
+          <h3> Total Expenses : {numberFormat(total)} </h3>
           <AddForm actionType={actionType} />
         </div>
         <TableView list={filteredList} actionType={actionType} />

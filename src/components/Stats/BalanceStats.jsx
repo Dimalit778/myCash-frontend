@@ -4,13 +4,9 @@ import './stats.css';
 import ArrowUpIcon from '../../assets/BalanceIcons/arrowUpIcon.png';
 import ArrowDownIcon from '../../assets/BalanceIcons/arrowDownIcon.png';
 import BalanceIcon from '../../assets/BalanceIcons/balance.png';
+import { numberFormat } from 'Hooks/numberFormat';
 
-const BalanceStats = () => {
-  // const total = totalBalance();
-  //   const isNegative = total < 0;
-  //   const balance = isNegative ? -total : total;
-  const total = 1000;
-
+const BalanceStats = ({ total }) => {
   return (
     <>
       {total > 0 ? (
@@ -18,10 +14,10 @@ const BalanceStats = () => {
           <span className="title_Main">Balance</span>
           <div className="balanceUp d-flex  justify-content-around    ">
             <div className="textIcon d-flex  align-items-center ">
-              {/* <img src={BalanceIcon} alt="BalanceIcon" /> */}
+              <img src={BalanceIcon} alt="BalanceIcon" />
             </div>
             <div className=" d-flex  align-items-center justify-content-between  ">
-              <h4>{total}</h4>
+              <h4>{numberFormat(total)}</h4>
             </div>
             <div className=" d-flex  align-items-center justify-content-between  ">
               <img src={ArrowUpIcon} alt="ArrowUp" height={80} width={80} />
@@ -36,7 +32,7 @@ const BalanceStats = () => {
               <img src={BalanceIcon} alt="BalanceIcon" />
             </div>
             <div className=" d-flex  align-items-center justify-content-between  ">
-              <h4>{total}</h4>
+              <h4>{numberFormat(total)}</h4>
             </div>
             <div className=" d-flex  align-items-center justify-content-between  ">
               <img src={ArrowDownIcon} alt="ArrowDown" height={80} width={80} />

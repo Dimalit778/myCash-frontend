@@ -1,0 +1,17 @@
+/* .contact_header {
+  background: linear-gradient(45deg, #4ebcf3, #b53ae6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+} */
+.header {
+  font-family: cursive;
+  font-size: 50px;
+  text-shadow: 0 0 7px #2f4f4f, 0 0 10px#2F4F4F, 0 0 42px #20b2aa,
+    0 0 100px #20b2aa;
+
+  text-decoration: underline;
+  text-decoration-color: #a09e9e;
+}

@@ -81,7 +81,7 @@ const SignIn = () => {
                 </button>
               </div>
               <button
-                // onClick={signGoogleClick}
+                onClick={signGoogleClick}
                 className="form-control btn btn-outline-dark submit px-3"
               >
                 Sign with google

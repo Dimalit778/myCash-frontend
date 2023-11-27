@@ -1,27 +1,16 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  signInWithPopup,
-} from 'firebase/auth';
+import { signOut, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 
 import { auth, provider } from '../../init_firebase';
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [firebaseUser, setFirebaseUser] = useState({});
+  // const [firebaseUser, setFirebaseUser] = useState({});
   const [userAuth, setUserAuth] = useState(
     false || window.localStorage.getItem('auth') === 'true'
   );
-  const [token, setToken] = useState('');
-
-  // !! ------> CREATE NEW USER <-----}
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
+  // const [token, setToken] = useState('');
 
   // !! ------> LOG OUT <-----}
   const logout = () => {
@@ -29,16 +18,11 @@ export const AuthContextProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // !! ------> CREATE NEW USER <-----}
-  const signIn = (email, password) => {
-    window.localStorage.setItem('auth', 'true');
-    return signInWithEmailAndPassword(auth, email, password);
-  };
-
   const signWithGoogle = () => {
     signInWithPopup(auth, provider).then((data) => {
       if (data) {
         setUserAuth(true);
+        console.log(data);
         window.localStorage.setItem('auth', 'true');
       }
     });
@@ -64,11 +48,9 @@ export const AuthContextProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        createUser,
         firebaseUser,
         userAuth,
         logout,
-        signIn,
         signWithGoogle,
       }}
     >

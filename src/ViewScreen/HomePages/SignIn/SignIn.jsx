@@ -4,11 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoginMutation } from '../../../Api/SlicesApi/userApiSlice';
+import {
+  useFirebaseAuthMutation,
+  useLoginMutation,
+} from '../../../Api/SlicesApi/userApiSlice';
 import { setCredentials } from '../../../Api/SlicesApi/authSlice';
 import Loader from '../../../components/Loader';
 
-import { FacebookAuth, GoogleAuth } from 'Api/FireBase/Firebase';
+import { GoogleAuth } from 'Api/FireBase/Firebase';
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
@@ -20,6 +23,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
 
   const [login, { isLoading }] = useLoginMutation();
+  const [firebaseAuth] = useFirebaseAuthMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -31,14 +35,24 @@ const SignIn = () => {
   //@  Google Auth -->
   const signGoogleClick = async (e) => {
     e.preventDefault();
-    await GoogleAuth();
+    const user = await GoogleAuth();
+    if (user) {
+      try {
+        const res = await firebaseAuth(user).unwrap();
+
+        dispatch(setCredentials({ ...res }));
+        navigate('/dashboard');
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
   };
-  //@  Facebook Auth -->
-  const signFacebookClick = async (e) => {
-    e.preventDefault();
-    const user = await FacebookAuth();
-    console.log(user);
-  };
+  // //@  Facebook Auth -->
+  // const signFacebookClick = async (e) => {
+  //   e.preventDefault();
+  //   const user = await FacebookAuth();
+  //   console.log(user);
+  // };
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -99,12 +113,12 @@ const SignIn = () => {
               >
                 Sign with google
               </button>
-              <button
+              {/* <button
                 onClick={signFacebookClick}
                 className="form-control btn btn-outline-dark submit px-3"
               >
                 Sign with Facebook
-              </button>
+              </button> */}
 
               <Link
                 className="text d-flex justify-content-center text-decoration-none  "

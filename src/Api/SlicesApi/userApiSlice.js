@@ -4,6 +4,15 @@ const USER_URL = '/api/users';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    //@ ---> Firebase Auth User
+    firebaseAuth: builder.mutation({
+      query: (data) => ({
+        url: `${USER_URL}/firebaseAuth`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+
     //? ---> Login User
     login: builder.mutation({
       query: (data) => ({
@@ -47,6 +56,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useFirebaseAuthMutation,
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,

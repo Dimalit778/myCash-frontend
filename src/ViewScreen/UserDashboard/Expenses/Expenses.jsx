@@ -5,6 +5,7 @@ import CalendarYearMonth from 'components/Calender/CalendarYearMonth';
 import PieActiveArc from 'components/Charts/PieActiveArc';
 import { useSelector } from 'react-redux';
 import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 const Expenses = () => {
   // --------> Calender get Date
@@ -22,7 +23,6 @@ const Expenses = () => {
   } = useGetAllExpensesQuery(userInfo._id);
 
   if (error) return <div>error..!!</div>;
-  console.log('1 - expenses');
 
   return (
     <>
@@ -36,6 +36,7 @@ const Expenses = () => {
           ) : (
             <PieActiveArc list={allExpenses} date={date} />
           )}
+          <PayPalButtons />
         </div>
         {/*//@ right div */}
         <div className="col col-md-6  text-center  ">

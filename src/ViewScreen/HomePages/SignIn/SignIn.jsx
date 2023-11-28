@@ -8,6 +8,8 @@ import { useLoginMutation } from '../../../Api/SlicesApi/userApiSlice';
 import { setCredentials } from '../../../Api/SlicesApi/authSlice';
 import Loader from '../../../components/Loader';
 
+import { FacebookAuth, GoogleAuth } from 'Api/FireBase/Firebase';
+
 const SignIn = () => {
   const [userData, setUserData] = useState({
     email: '',
@@ -26,6 +28,17 @@ const SignIn = () => {
       navigate('/dashboard');
     }
   }, [navigate, userInfo]);
+  //@  Google Auth -->
+  const signGoogleClick = async (e) => {
+    e.preventDefault();
+    await GoogleAuth();
+  };
+  //@  Facebook Auth -->
+  const signFacebookClick = async (e) => {
+    e.preventDefault();
+    const user = await FacebookAuth();
+    console.log(user);
+  };
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -85,6 +98,12 @@ const SignIn = () => {
                 className="form-control btn btn-outline-dark submit px-3"
               >
                 Sign with google
+              </button>
+              <button
+                onClick={signFacebookClick}
+                className="form-control btn btn-outline-dark submit px-3"
+              >
+                Sign with Facebook
               </button>
 
               <Link

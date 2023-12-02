@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './signin.css';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   useFirebaseAuthMutation,
   useLoginMutation,
-} from '../../../Api/SlicesApi/userApiSlice';
-import { setCredentials } from '../../../Api/SlicesApi/authSlice';
-import Loader from '../../../components/Loader';
+} from 'Api/SlicesApi/userApiSlice';
+import { setCredentials } from 'Api/SlicesApi/authSlice';
+import Loader from 'components/Loader';
 
 import { GoogleAuth } from 'Api/FireBase/Firebase';
+import GAuth from 'components/GoogleAuth/GAuth';
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
@@ -107,6 +107,7 @@ const SignIn = () => {
                   Log In
                 </button>
               </div>
+              <GAuth />
               <button
                 onClick={signGoogleClick}
                 className="form-control btn btn-outline-dark submit px-3"

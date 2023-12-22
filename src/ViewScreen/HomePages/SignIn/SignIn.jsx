@@ -4,14 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  useFirebaseAuthMutation,
+  useGoogleAuthFBMutation,
   useLoginMutation,
 } from 'Api/SlicesApi/userApiSlice';
 import { setCredentials } from 'Api/SlicesApi/authSlice';
 import Loader from 'components/Loader';
 
 import { GoogleAuth } from 'Api/FireBase/Firebase';
-import GAuth from 'components/GoogleAuth/GAuth';
+// import GAuth from 'components/GoogleAuth/GAuth';
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
@@ -23,7 +23,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
 
   const [login, { isLoading }] = useLoginMutation();
-  const [firebaseAuth] = useFirebaseAuthMutation();
+  const [googleAuthFB] = useGoogleAuthFBMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -38,11 +38,12 @@ const SignIn = () => {
     const user = await GoogleAuth();
     if (user) {
       try {
-        const res = await firebaseAuth(user).unwrap();
+        const res = await googleAuthFB(user).unwrap();
 
         dispatch(setCredentials({ ...res }));
         navigate('/dashboard');
       } catch (err) {
+        console.log(err);
         toast.error(err?.data?.message || err.error);
       }
     }
@@ -107,7 +108,7 @@ const SignIn = () => {
                   Log In
                 </button>
               </div>
-              <GAuth />
+              {/* <GAuth /> */}
               <button
                 onClick={signGoogleClick}
                 className="form-control btn btn-outline-dark submit px-3"

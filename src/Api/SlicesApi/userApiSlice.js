@@ -4,10 +4,10 @@ const USER_URL = '/api/users';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    //@ ---> Firebase Auth User
-    firebaseAuth: builder.mutation({
+    //@ ---> Google Auth User
+    googleAuthFB: builder.mutation({
       query: (data) => ({
-        url: `${USER_URL}/firebaseAuth`,
+        url: `${USER_URL}/googleAuthFB`,
         method: 'POST',
         body: data,
       }),
@@ -56,7 +56,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useFirebaseAuthMutation,
+  useGoogleAuthFBMutation,
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,

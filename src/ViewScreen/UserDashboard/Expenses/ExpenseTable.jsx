@@ -20,7 +20,7 @@ const ExpenseList = ({ date }) => {
 
   if (error) return <div>error..!!</div>;
   if (isLoading) return <Loader />;
-  console.log('4 - Table expenses');
+  console.log(date);
 
   //?------{  Filter the list by Month and Year }
   const filteredList = filterByMonthAndYear(allExpenses, date);
@@ -32,7 +32,7 @@ const ExpenseList = ({ date }) => {
       <div className="data-box">
         <div className="total d-flex justify-content-around mb-1  ">
           <h3> Total Expenses : {numberFormat(total)} </h3>
-          <AddForm actionType={actionType} />
+          <AddForm actionType={actionType} date={date} />
         </div>
         <TableView list={filteredList} actionType={actionType} />
       </div>

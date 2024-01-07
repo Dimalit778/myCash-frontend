@@ -10,6 +10,7 @@ import { PayPalButtons } from '@paypal/react-paypal-js';
 const Expenses = () => {
   // --------> Calender get Date
   const [date, setDate] = useState(new Date());
+  console.log(date);
   const onChange = (date) => {
     setDate(date);
   };

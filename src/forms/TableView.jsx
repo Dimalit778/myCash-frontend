@@ -126,7 +126,6 @@ function Row({ item, actionType }) {
 }
 
 export default function TableView({ list, actionType }) {
-  console.log('6 - View table');
   return (
     <TableContainer component={Paper} style={{ maxHeight: '400px' }}>
       <Table aria-label="collapsible table">

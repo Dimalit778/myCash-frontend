@@ -7,11 +7,11 @@ import { useSelector } from 'react-redux';
 import { useAddExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
 import { categories } from '../Hooks/categoryList';
 
-const AddForm = ({ actionType }) => {
-  console.log('5 - add form');
+const AddForm = ({ actionType, date }) => {
   const { userInfo } = useSelector((state) => state.auth);
   const [addIncome] = useAddIncomeMutation();
   const [addExpense] = useAddExpenseMutation();
+  let S_date = date.toLocaleDateString('en-US');
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -106,6 +106,7 @@ const AddForm = ({ actionType }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, date: e.target.value })
                 }
+                value={S_date}
                 type="date"
                 required={true}
                 className=" form-control"

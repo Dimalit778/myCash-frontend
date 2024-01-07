@@ -29,7 +29,7 @@ const IncomesTable = ({ date }) => {
       <div className="data-box">
         <div className="total d-flex justify-content-around mb-1   ">
           <h2> Total incomes : {numberFormat(total)}</h2>
-          <AddForm actionType={actionType} />
+          <AddForm actionType={actionType} date={date} />
         </div>
         <TableView list={filteredList} actionType={actionType} />
       </div>

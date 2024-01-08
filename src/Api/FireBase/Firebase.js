@@ -9,7 +9,6 @@ export const GoogleAuth = async () => {
   try {
     const data = await signInWithPopup(auth, GoogleProvider);
     const userData = data._tokenResponse;
-    console.log(userData);
     return userData;
   } catch (error) {
     console.log(error);

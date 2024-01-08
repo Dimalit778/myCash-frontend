@@ -37,7 +37,7 @@ const Expenses = () => {
           ) : (
             <PieActiveArc list={allExpenses} date={date} />
           )}
-          <PayPalButtons />
+          {/* <PayPalButtons /> */}
         </div>
         {/*//@ right div */}
         <div className="col col-md-6  text-center  ">

@@ -20,7 +20,6 @@ const ExpenseList = ({ date }) => {
 
   if (error) return <div>error..!!</div>;
   if (isLoading) return <Loader />;
-  console.log(date);
 
   //?------{  Filter the list by Month and Year }
   const filteredList = filterByMonthAndYear(allExpenses, date);

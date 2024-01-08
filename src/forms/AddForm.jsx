@@ -106,7 +106,6 @@ const AddForm = ({ actionType, date }) => {
                 onChange={(e) =>
                   setNewAction({ ...newAction, date: e.target.value })
                 }
-                value={S_date}
                 type="date"
                 required={true}
                 className=" form-control"

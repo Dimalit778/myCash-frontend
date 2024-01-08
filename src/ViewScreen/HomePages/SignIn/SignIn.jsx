@@ -36,6 +36,7 @@ const SignIn = () => {
   const signGoogleClick = async (e) => {
     e.preventDefault();
     const user = await GoogleAuth();
+
     if (user) {
       try {
         const res = await googleAuthFB(user).unwrap();
@@ -48,13 +49,7 @@ const SignIn = () => {
       }
     }
   };
-  // //@  Facebook Auth -->
-  // const signFacebookClick = async (e) => {
-  //   e.preventDefault();
-  //   const user = await FacebookAuth();
-  //   console.log(user);
-  // };
-
+  //@ Login with Email and Password
   const loginUser = async (e) => {
     e.preventDefault();
     const { email, password } = userData;
@@ -115,12 +110,6 @@ const SignIn = () => {
               >
                 Sign with google
               </button>
-              {/* <button
-                onClick={signFacebookClick}
-                className="form-control btn btn-outline-dark submit px-3"
-              >
-                Sign with Facebook
-              </button> */}
 
               <Link
                 className="text d-flex justify-content-center text-decoration-none  "

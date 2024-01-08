@@ -76,6 +76,7 @@ const EditForm = ({ item, actionType }) => {
         </Modal.Header>
         <Modal.Body>
           <form className="addForm" onSubmit={update}>
+            {/*//@ ---->TITLE  <---- */}
             <div className="form-group ">
               <label className="label ms-1">Title</label>
               <input
@@ -89,6 +90,7 @@ const EditForm = ({ item, actionType }) => {
                 className="form-control  "
               />
             </div>
+            {/*//@ ----> AMOUNT  <---- */}
             <div className="form-group ">
               <label className="label ms-1">Amount</label>
               <input
@@ -101,6 +103,7 @@ const EditForm = ({ item, actionType }) => {
                 className=" form-control"
               />
             </div>
+            {/*//@ ---->  DATE  <---- */}
             <div className="form-group ">
               <label className="label ms-1">Date</label>
               <input
@@ -113,6 +116,7 @@ const EditForm = ({ item, actionType }) => {
                 className=" form-control"
               />
             </div>
+            {/*//@ ----> CATEGORY  <---- */}
             <div className="form-group ">
               <label className="label ms-1">Category</label>
               <select
@@ -137,6 +141,7 @@ const EditForm = ({ item, actionType }) => {
                 })}
               </select>
             </div>
+            {/*//@ ---->  DESCRIPTION <---- */}
             <div className="form-group ">
               <label className="label ms-1">Description</label>
               <input
@@ -162,3 +167,4 @@ const EditForm = ({ item, actionType }) => {
 };
 
 export default EditForm;
+// 659c235c5079d06ab97aa01e

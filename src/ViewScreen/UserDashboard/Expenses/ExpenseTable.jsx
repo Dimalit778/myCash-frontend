@@ -8,6 +8,7 @@ import { calculateTotal } from 'Hooks/calculateTotal';
 import Loader from 'components/Loader';
 import TableView from 'forms/TableView';
 import { numberFormat } from 'Hooks/numberFormat';
+import ProgressBars from 'components/ProgressBars/ProgressBars';
 
 const ExpenseList = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -24,6 +25,7 @@ const ExpenseList = ({ date }) => {
   //?------{  Filter the list by Month and Year }
   const filteredList = filterByMonthAndYear(allExpenses, date);
   //?-----------> {  Calculate Total Amount of filtered Month }
+  console.log(filteredList);
   const total = calculateTotal(filteredList);
 
   return (
@@ -35,6 +37,7 @@ const ExpenseList = ({ date }) => {
         </div>
         <TableView list={filteredList} actionType={actionType} />
       </div>
+      <ProgressBars list={filteredList} />
     </div>
   );
 };

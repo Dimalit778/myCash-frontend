@@ -6,11 +6,13 @@ import PieActiveArc from 'components/Charts/PieActiveArc';
 import { useSelector } from 'react-redux';
 import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
 import { PayPalButtons } from '@paypal/react-paypal-js';
+import { ProgressBar } from 'react-bootstrap';
+import ProgressBars from 'components/ProgressBars/ProgressBars';
 
 const Expenses = () => {
   // --------> Calender get Date
   const [date, setDate] = useState(new Date());
-  console.log(date);
+
   const onChange = (date) => {
     setDate(date);
   };
@@ -47,6 +49,7 @@ const Expenses = () => {
           </div>
         </div>
       </div>
+      {/* <ProgressBars props={{ bgcolor: 'red', completed: 60 }} /> */}
     </>
   );
 };

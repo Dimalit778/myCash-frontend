@@ -8,8 +8,8 @@ export const categories = [
     label: 'Shopping',
   },
   {
-    value: 'Online Purchase',
-    label: 'Online Purchase',
+    value: 'Online Purchases',
+    label: 'Online Purchases',
   },
   {
     value: 'Events',

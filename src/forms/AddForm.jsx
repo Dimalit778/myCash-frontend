@@ -6,12 +6,13 @@ import { useAddIncomeMutation } from '../Api/SlicesApi/incomeApiSlice';
 import { useSelector } from 'react-redux';
 import { useAddExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
 import { categories } from '../Hooks/categoryList';
+import { incomeCateList } from 'Hooks/incomeCateList';
 
 const AddForm = ({ actionType, date }) => {
   const { userInfo } = useSelector((state) => state.auth);
   const [addIncome] = useAddIncomeMutation();
   const [addExpense] = useAddExpenseMutation();
-  let S_date = date.toLocaleDateString('en-US');
+  // let S_date = date.toLocaleDateString('en-US');
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -26,7 +27,7 @@ const AddForm = ({ actionType, date }) => {
     userId: userInfo._id,
     title: '',
     amount: '',
-    category: 'Food',
+    category: 'Choose Category',
     description: '',
     date: '',
   };
@@ -34,18 +35,25 @@ const AddForm = ({ actionType, date }) => {
   const [newAction, setNewAction] = useState(initialAction);
   //! --> NEED TO CHECK WHAT HAPPEN IF SERVER ERROR IN THE {ADD} FUNCTION
   const addNewAction = async (e) => {
+    let added = '';
     e.preventDefault();
     switch (actionType) {
+      // Case Income
       case 'income':
-        await addIncome(newAction);
-        handleClose();
-        return toast.success('Successfully added Expense');
-
+        added = await addIncome(newAction);
+        if (!added.error) {
+          handleClose();
+          return toast.success('Successfully added');
+        }
+        return toast.error('Missing Data - Try again');
+      // Case Expense
       case 'expense':
-        await addExpense(newAction);
-        handleClose();
-
-        return toast.success('Successfully added Expense');
+        added = await addExpense(newAction);
+        if (!added.error) {
+          handleClose();
+          return toast.success('Successfully added');
+        }
+        return toast.error('Missing Data - Try again');
 
       default:
         return null;
@@ -126,13 +134,21 @@ const AddForm = ({ actionType, date }) => {
                   setNewAction({ ...newAction, category: e.target.value })
                 }
               >
-                {categories.map((category) => {
-                  return (
-                    <option key={category.value} value={category.value}>
-                      {category.label}
-                    </option>
-                  );
-                })}
+                {actionType === 'expense'
+                  ? categories.map((category) => {
+                      return (
+                        <option key={category.value} value={category.value}>
+                          {category.label}
+                        </option>
+                      );
+                    })
+                  : incomeCateList.map((category) => {
+                      return (
+                        <option key={category.value} value={category.value}>
+                          {category.label}
+                        </option>
+                      );
+                    })}
               </select>
             </div>
             {/*//@ ---->  DESCRIPTION <---- */}

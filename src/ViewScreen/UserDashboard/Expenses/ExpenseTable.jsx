@@ -25,7 +25,7 @@ const ExpenseList = ({ date }) => {
   //?------{  Filter the list by Month and Year }
   const filteredList = filterByMonthAndYear(allExpenses, date);
   //?-----------> {  Calculate Total Amount of filtered Month }
-  console.log(filteredList);
+
   const total = calculateTotal(filteredList);
 
   return (

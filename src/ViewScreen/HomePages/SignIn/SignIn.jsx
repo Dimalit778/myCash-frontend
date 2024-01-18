@@ -58,7 +58,7 @@ const SignIn = () => {
       dispatch(setCredentials({ ...res }));
       navigate('/dashboard');
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+      toast('Invalid email or password');
     }
   };
   return (

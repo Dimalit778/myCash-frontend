@@ -2,6 +2,8 @@ import React from 'react';
 import './home.css';
 import groupImg from 'assets/group.jpg';
 import headerImg from 'assets/main.jgp.avif';
+import yearView from 'assets/pagesPhoto/yearView.png';
+import color3 from 'assets/color3.jpg';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -12,12 +14,25 @@ const Home = () => {
       <div className="container-fluid">
         <div className="section_1">
           <div className="Home_box d-flex flex-column justify-content-center align-items-center gap-4    ">
-            <span className="Home_header  ">Manage Your Money</span>
-            <button onClick={() => navigate('/register')} className="btnStart">
-              Start Here
+            <div className="mainHeader  ">
+              <span className="">Manage Your </span>
+              <span className="stroke-text">Money</span>
+            </div>
+            <button className="start_btn" onClick={() => navigate('/register')}>
+              <div></div>
+              <span>Start Your Financial Journey</span>
             </button>
           </div>
-          <img src={headerImg} className="img-fluid " alt="" />
+          <img src={headerImg} className="img-fluid " alt="headerImg" />
+        </div>
+        <div className="middle">
+          <div className=" h-75  w-75  mx-auto pt-5  ">
+            <img
+              src={yearView}
+              className="img-fluid border border-black  "
+              alt="yearView"
+            />
+          </div>
         </div>
         <div className="section_2 ">
           <div className="row d-flex ">

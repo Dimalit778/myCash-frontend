@@ -1,12 +1,13 @@
 import React from 'react';
 import monthView from 'assets/pagesPhoto/monthView.png';
-import yearView from 'assets/pagesPhoto/yearView.png';
+
 import editView from 'assets/pagesPhoto/editView.png';
 import groupImg from 'assets/group.jpg';
+import './about.css';
 const About = () => {
   return (
     <>
-      <div className=" ">
+      <div className=" p-3 ">
         <div className=" section_2 row d-flex ">
           <div className="col-12 col-lg-6  ">
             <img src={groupImg} className="img-fluid " alt="" />
@@ -33,26 +34,19 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        <div className="row middle_section d-flex ">
-          <div className="monthView col-md-6  ">
-            <h1>View You're monthly transactions</h1>
-            <img
-              src={monthView}
-              style={{ height: '50%', width: '50%' }}
-              className=""
-              alt=""
-            />
+        {/* ---- Middle Section ---- */}
+        <div className="row middle_section d-flex p-3   ">
+          <div
+            style={{ backgroundColor: 'powderblue' }}
+            className="monthView col-md-6 text-center   "
+          >
+            <h3>View You're monthly transactions</h3>
+            <img src={monthView} alt="monthView" className="aboutImages" />
           </div>
 
-          <div className="editView col-md-6">
-            <h1>You can Add , Edit and Delete transaction</h1>
-            <img
-              src={editView}
-              style={{ height: '50%', width: '50%' }}
-              className="img-fluid"
-              alt=""
-            />
+          <div className="editView col-md-6  text-center ">
+            <h3>You can Add , Edit and Delete transaction</h3>
+            <img src={editView} alt="editView" className="aboutImages" />
           </div>
         </div>
       </div>

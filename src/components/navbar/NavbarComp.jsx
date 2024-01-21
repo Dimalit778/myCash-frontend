@@ -59,12 +59,16 @@ const NavbarComp = () => {
           <Nav className="">
             {!userInfo ? (
               <>
-                <Nav.Link as={Link} to="/register" className="links me-2">
-                  SignUp
-                </Nav.Link>
-                <Nav.Link as={Link} to="/login" className="links me-2">
-                  Login
-                </Nav.Link>
+                <button className="logRegBtn">
+                  <Nav.Link as={Link} to="/register" className=" me-2">
+                    Register
+                  </Nav.Link>
+                </button>
+                <button className="logRegBtn">
+                  <Nav.Link as={Link} to="/login" className=" me-2">
+                    Login
+                  </Nav.Link>
+                </button>
               </>
             ) : (
               <NavDropdown title={userInfo.name} id="username" className="me-5">

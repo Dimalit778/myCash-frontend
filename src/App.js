@@ -1,4 +1,5 @@
 import React from 'react';
+import 'app.css';
 // import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.css';

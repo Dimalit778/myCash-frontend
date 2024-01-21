@@ -1,3 +1,8 @@
 .nav {
   background-color: rgb(101, 101, 241);
 }
+.logRegBtn {
+  background-color: white;
+  font-weight: bold;
+  transition: 300m all;
+}

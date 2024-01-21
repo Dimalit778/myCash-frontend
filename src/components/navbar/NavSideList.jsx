@@ -216,7 +216,7 @@ const NavSideList = ({ open, setOpen }) => {
           </Tooltip>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box component="main" sx={{ flexGrow: 1 }} width={'80%'}>
         <DrawerHeader />
         {/* Outlet - Display all components */}
         <Outlet />
@@ -225,5 +225,5 @@ const NavSideList = ({ open, setOpen }) => {
     </>
   );
 };
-// #FFF5EE
+
 export default NavSideList;

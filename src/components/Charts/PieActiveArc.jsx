@@ -26,7 +26,7 @@ export default function PieActiveArc({ list, date }) {
   }));
 
   return (
-    <>
+    <div style={{ height: '90%' }} className="d-flex justify-content-center ">
       <PolarArea
         data={{
           labels: uniqueCategories.map((item) => item.category),
@@ -47,7 +47,6 @@ export default function PieActiveArc({ list, date }) {
           ],
         }}
       />
-      ;
-    </>
+    </div>
   );
 }

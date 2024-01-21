@@ -46,16 +46,17 @@ const NavbarComp = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          {/* Links ---> Home , About us */}
           <Nav className="mx-auto  ">
             <Nav.Link as={Link} to="/" className="links me-5">
-              Home
+              <h5>Home</h5>
             </Nav.Link>
-
             <Nav.Link as={Link} to="/about" className="links me-5">
-              about
+              <h5>About Us</h5>
             </Nav.Link>
           </Nav>
-          <Nav className="ms-auto">
+          {/* Link ---> User Profile */}
+          <Nav className="">
             {!userInfo ? (
               <>
                 <Nav.Link as={Link} to="/register" className="links me-2">

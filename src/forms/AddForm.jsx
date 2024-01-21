@@ -27,12 +27,13 @@ const AddForm = ({ actionType, date }) => {
     userId: userInfo._id,
     title: '',
     amount: '',
-    category: 'Choose Category',
+    category: '',
     description: '',
     date: '',
   };
 
   const [newAction, setNewAction] = useState(initialAction);
+
   //! --> NEED TO CHECK WHAT HAPPEN IF SERVER ERROR IN THE {ADD} FUNCTION
   const addNewAction = async (e) => {
     let added = '';
@@ -159,7 +160,6 @@ const AddForm = ({ actionType, date }) => {
                   setNewAction({ ...newAction, description: e.target.value })
                 }
                 type="text"
-                required={true}
                 className=" form-control  "
               />
             </div>

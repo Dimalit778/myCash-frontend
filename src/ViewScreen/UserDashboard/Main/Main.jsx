@@ -49,14 +49,14 @@ const Main = () => {
   return (
     <div className="container min-vh-100 ">
       {/* --> Year Selection <-- */}
-      <div className="d-flex justify-content-center p-2   ">
+      <div className="d-flex justify-content-center pt-1     ">
         <div
           style={{
             backgroundColor: '#FF6F61',
             border: '2px solid #2F4F4F',
             width: '50vw',
           }}
-          className=" d-flex gap-3 p-2 justify-content-around     "
+          className=" d-flex gap-3 p-2 justify-content-around"
         >
           {/* -- PREV BUTTON -- */}
           <div
@@ -106,7 +106,7 @@ const Main = () => {
         style={{
           border: '1px solid black',
         }}
-        className=" d-flex justify-content-center mt-3   "
+        className="mt-3"
       >
         <LineChart allExpenses={expenses_list} allIncomes={incomes_list} />
       </div>

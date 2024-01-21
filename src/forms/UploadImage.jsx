@@ -35,13 +35,14 @@ const UploadImage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!userImage) return toast.error('Please add an image');
     try {
       // Upload the image file to CloudDinary database
       const res = await uploadImage({ userImage });
 
       //?  Update image to User Schema
       if (res) {
-        console.log('true');
         // if upload successed -> update the user with imageUrl
         const result = await updateUser({
           _id: userInfo._id,
@@ -59,7 +60,7 @@ const UploadImage = () => {
         toast.success('Profile updated successfully');
       }
     } catch (err) {
-      toast.success('Error');
+      toast.error('Error');
       console.log('err');
     }
   };

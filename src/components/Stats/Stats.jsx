@@ -12,7 +12,7 @@ export const Stats = ({ type, expenses, incomes }) => {
         title: 'Expenses',
         stats: expenses,
         icon: (
-          <img src={expenseIcon} alt="expenseIcon" width={80} height={80} />
+          <img src={expenseIcon} alt="expenseIcon" width={70} height={70} />
         ),
       };
       break;
@@ -20,7 +20,7 @@ export const Stats = ({ type, expenses, incomes }) => {
       data = {
         title: 'Incomes',
         stats: incomes,
-        icon: <img src={incomeIcon} alt="expenseIcon" />,
+        icon: <img src={incomeIcon} alt="expenseIcon" width={70} height={70} />,
       };
       break;
     default:

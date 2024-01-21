@@ -98,7 +98,6 @@ export default function NavbarApp() {
         {/* --- NavSideList Display Nav side and components ----*/}
         <NavSideList {...{ open, setOpen }} />
       </Box>
-      e
     </ThemeProvider>
   );
 }

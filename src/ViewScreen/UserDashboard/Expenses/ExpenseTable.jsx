@@ -37,7 +37,7 @@ const ExpenseList = ({ date }) => {
         </div>
         <TableView list={filteredList} actionType={actionType} />
       </div>
-      <ProgressBars list={filteredList} />
+      {/* <ProgressBars list={filteredList} /> */}
     </div>
   );
 };

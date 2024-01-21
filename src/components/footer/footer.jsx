@@ -1,12 +1,15 @@
 import React from 'react';
 import './footer.css';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faInstagram } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFacebook,
+  faSquareInstagram,
+  faSquareYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   return (
-    <div className="footer-container ">
+    <div className="footer-container mt-3  ">
       <div className=" d-lg-flex  flex-row justify-content-evenly ">
         {/* //{ ------- CONTACT FOOTER -------} */}
         <div className="ft1 mx-auto    ">
@@ -14,8 +17,8 @@ const Footer = () => {
           <ul className="Footerlist list-unstyled ">
             <li>Israel</li>
             <li>Tel Aviv</li>
-            <li>Travel@gmail.com</li>
-            <li>Phone : +925 525555555</li>
+            <li>Dimalit778@gmail.com</li>
+            <li>Phone : +925 526731280</li>
           </ul>
         </div>
         {/* // { ------- EXPLORE FOOTER -------} */}
@@ -42,11 +45,19 @@ const Footer = () => {
       {/* //  { ------- ICONS -------} */}
       {/*//? NEED TO FIX THE ICONS */}
 
-      <div className="footer-icos d-flex justify-content-center">
-        {/* <FacebookIcon />
-        <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
-        <p>twitter</p>
-        <p>youtube</p>
+      <div className="footer-icos d-flex justify-content-center gap-5 mb-1  ">
+        {/* FaceBook Icon - Link to Facebook account */}
+        <a rel="stylesheet" href="https://www.facebook.com/dima.litvinov1">
+          <FontAwesomeIcon icon={faFacebook} size="2xl" color="black" />
+        </a>
+        {/* Instagram Icon - Link to Instagram account */}
+        <a rel="stylesheet" href="https://www.instagram.com/dima1litvinov/">
+          <FontAwesomeIcon icon={faSquareInstagram} size="2xl" color="black" />
+        </a>
+        {/* YouTube Icon - Link to Youtube account */}
+        <a rel="stylesheet" href="https://www.instagram.com/dima1litvinov/">
+          <FontAwesomeIcon icon={faSquareYoutube} size="2xl" color="black" />
+        </a>
       </div>
       {/* //  { ------- UNDER LINE -------} */}
       <div className="underline mx-auto"></div>

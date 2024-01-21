@@ -32,7 +32,7 @@ const Expenses = () => {
       <div className="row d-flex     ">
         {/* { -- { Pie Chart } -- */}
         {/*//@ left div */}
-        <div className="col col-md-6 text-center p-5  ">
+        <div className="col col-md-6 text-center p-3  ">
           <h2>Monthly Expenses</h2>
           {isLoading ? (
             'Loading'
@@ -44,7 +44,7 @@ const Expenses = () => {
         {/*//@ right div */}
         <div className="col col-md-6  text-center  ">
           <CalendarYearMonth onChange={onChange} date={date} />
-          <div className="d-flex justify-content-center mt-5 ">
+          <div className="d-flex justify-content-center mt-4 ">
             <ExpenseTable date={date} />
           </div>
         </div>

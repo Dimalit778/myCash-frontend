@@ -1,5 +1,9 @@
 export const categories = [
   {
+    value: '',
+    label: 'Choose a category',
+  },
+  {
     value: 'Food',
     label: 'Food',
   },

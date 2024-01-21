@@ -72,12 +72,14 @@ const LineChart = ({ allExpenses, allIncomes }) => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
+
     plugins: {
       legend: {
         position: 'top',
         labels: {
           font: {
-            size: 20,
+            size: 15,
           },
         },
       },
@@ -89,8 +91,8 @@ const LineChart = ({ allExpenses, allIncomes }) => {
       style={{
         position: 'relative',
         margin: 'auto',
-        height: '70vh',
-        width: '70vw',
+        width: '80vw',
+        height: '60vh',
       }}
     >
       <Bar options={options} data={data} />

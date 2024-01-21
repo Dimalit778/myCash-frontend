@@ -127,7 +127,7 @@ function Row({ item, actionType }) {
 
 export default function TableView({ list, actionType }) {
   return (
-    <TableContainer component={Paper} style={{ maxHeight: '400px' }}>
+    <TableContainer component={Paper} style={{ maxHeight: '330px' }}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow style={{ backgroundColor: 'DarkGrey' }}>

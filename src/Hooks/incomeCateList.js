@@ -1,5 +1,9 @@
 export const incomeCateList = [
   {
+    value: '',
+    label: 'Choose a category',
+  },
+  {
     value: 'Work',
     label: 'Work',
   },

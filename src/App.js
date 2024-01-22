@@ -1,6 +1,5 @@
 import React from 'react';
-import 'app.css';
-// import axios from 'axios';
+import './app.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import { Outlet, Route, createRoutesFromElements } from 'react-router-dom';
@@ -34,11 +33,13 @@ import PrivateRoute from 'components/PrivateRoute.jsx';
 const HomeRoot = () => {
   return (
     <>
-      <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
-      {/* <NavbarApp /> */}
-      <NavbarComp />
-      <Outlet />
-      <Footer />
+      <div className="homeRoot">
+        <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
+        {/* <NavbarApp /> */}
+        <NavbarComp />
+        <Outlet />
+        <Footer />
+      </div>
     </>
   );
 };

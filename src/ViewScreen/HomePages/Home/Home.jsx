@@ -1,40 +1,72 @@
 import React from 'react';
 import './home.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import groupImg from 'assets/group.jpg';
 import headerImg from 'assets/main.jgp.avif';
 import yearView from 'assets/pagesPhoto/yearView.png';
 import color3 from 'assets/color3.jpg';
+import iconImage1 from 'assets/iconImage1.png';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const navigate = useNavigate();
+  const transition = { type: 'spring', duration: 3 };
 
   return (
     <>
-      <div className="container-fluid">
-        <div className="section_1">
-          <div className="Home_box d-flex flex-column justify-content-center align-items-center gap-4    ">
-            <div className="mainHeader  ">
-              <span className="">Manage Your </span>
-              <span className="stroke-text">Money</span>
-            </div>
-            <button className="start_btn" onClick={() => navigate('/register')}>
-              <div></div>
-              <span>Start Your Financial Journey</span>
-            </button>
-          </div>
-          <img src={headerImg} className="img-fluid " alt="headerImg" />
-        </div>
-        <div className="middle">
-          <div className=" h-75  w-75  mx-auto pt-5  ">
+      <Container fluid>
+        {/* ----> SECTION 1 <----  */}
+        <Row className="home_section1  ">
+          <Row className="d-flex">
+            {/* ----> Header div <---- */}
+            <Col
+              sm={8}
+              className="d-flex flex-column justify-content-around   text-center"
+            >
+              <span className="section_one_header ">Manage Your </span>
+              <span className="stroke-text ">Money</span>
+              {/* Button */}
+              <span
+                className="start_btn mx-auto    "
+                onClick={() => navigate('/register')}
+              >
+                <motion.div
+                  initial={{ left: '150px' }}
+                  whileInView={{ left: '8px' }}
+                  transition={{ ...transition, type: 'tween' }}
+                ></motion.div>
+                <span>Start Your Financial Journey</span>
+              </span>
+            </Col>
+            {/* ----> Image div <---- */}
+            <Col
+              sm={4}
+              className=" d-flex flex-column justify-content-around  "
+            >
+              <img className=" m-5" src={iconImage1} alt="iconImage1" />
+              <div className="btns d-flex justify-content-center gap-2 ">
+                <button>Join Us</button>
+                <button>Learn More</button>
+              </div>
+            </Col>
+          </Row>
+        </Row>
+        {/* SECTION 2  */}
+        <div className="home_section2">
+          <Row className=" h-75  w-75  mx-auto pt-5  ">
             <img
               src={yearView}
               className="img-fluid border border-black  "
               alt="yearView"
             />
-          </div>
+          </Row>
         </div>
-        <div className="section_2 ">
+        {/* SECTION 3 */}
+        <Row className="home_section3">
           <div className="row d-flex ">
             <div className="col-12 col-lg-6  ">
               <img src={groupImg} className="img-fluid " alt="" />
@@ -61,8 +93,8 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Row>
+      </Container>
     </>
   );
 };

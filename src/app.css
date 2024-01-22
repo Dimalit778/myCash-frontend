@@ -1,3 +1,6 @@
-. ::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
+}
+.homeRoot {
+  background-image: url(./assets/color3.jpg);
 }

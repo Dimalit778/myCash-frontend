@@ -5,9 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import groupImg from 'assets/group.jpg';
-import headerImg from 'assets/main.jgp.avif';
-import yearView from 'assets/pagesPhoto/yearView.png';
-import color3 from 'assets/color3.jpg';
 import iconImage1 from 'assets/iconImage1.png';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -30,10 +27,7 @@ const Home = () => {
               <span className="section_one_header ">Manage Your </span>
               <span className="stroke-text ">Money</span>
               {/* Button */}
-              <span
-                className="start_btn mx-auto    "
-                onClick={() => navigate('/register')}
-              >
+              <span className="start_btn mx-auto    ">
                 <motion.div
                   initial={{ left: '150px' }}
                   whileInView={{ left: '8px' }}
@@ -49,24 +43,15 @@ const Home = () => {
             >
               <img className=" m-5" src={iconImage1} alt="iconImage1" />
               <div className="btns d-flex justify-content-center gap-2 ">
-                <button>Join Us</button>
-                <button>Learn More</button>
+                <button onClick={() => navigate('/register')}>Join Us</button>
+                <button onClick={() => navigate('/about')}>Learn More</button>
               </div>
             </Col>
           </Row>
         </Row>
+
         {/* SECTION 2  */}
-        {/* <div className="home_section2">
-          <Row className=" h-75  w-75  mx-auto pt-5  ">
-            <img
-              src={yearView}
-              className="img-fluid border border-black  "
-              alt="yearView"
-            />
-          </Row>
-        </div> */}
-        {/* SECTION 3 */}
-        <Row className="home_section3">
+        <Row className="home_section2 mt-5">
           <div className="row d-flex ">
             <div className="col-12 col-lg-6  ">
               <img src={groupImg} className="img-fluid " alt="" />

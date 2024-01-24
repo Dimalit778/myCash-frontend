@@ -11,7 +11,6 @@ import { setCredentials } from 'Api/SlicesApi/authSlice';
 import Loader from 'components/Loader';
 
 import { GoogleAuth } from 'Api/FireBase/Firebase';
-// import GAuth from 'components/GoogleAuth/GAuth';
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
@@ -63,11 +62,12 @@ const SignIn = () => {
   };
   return (
     <>
-      <div className="loginForm d-flex align-items-center justify-content-center ">
-        <div className=" d-flex justify-content-center  p-2 mb-2 w-50 h-75">
-          <div className="form col-md-6 col-lg-4 ">
+      <div className="loginForm h-75  d-flex  ">
+        <div className=" mx-auto h-50  ">
+          <div className="form ">
             <h3 className="p my-5  text-center">Log In Here</h3>
-            <form className="signin-form" onSubmit={loginUser}>
+            <form className="signInForm" onSubmit={loginUser}>
+              {/* ---> Email input <--- */}
               <div className="form-group ">
                 <input
                   onChange={(e) =>
@@ -78,6 +78,7 @@ const SignIn = () => {
                   placeholder="Username"
                 />
               </div>
+              {/* ---> Password input <--- */}
               <div className="form-group">
                 <input
                   onChange={(e) =>
@@ -95,6 +96,7 @@ const SignIn = () => {
                 ></span>
               </div>
               {isLoading && <Loader />}
+              {/* ---> Login Submit button <--- */}
               <div className="formSubmit">
                 <button
                   type="submit"
@@ -103,21 +105,21 @@ const SignIn = () => {
                   Log In
                 </button>
               </div>
-              {/* <GAuth /> */}
+              {/* ---> Google Log In <--- */}
               <button
                 onClick={signGoogleClick}
                 className="form-control btn btn-outline-dark submit px-3"
               >
                 Sign with google
               </button>
-
+              {/* ---> Reset Password <--- */}
               <Link
                 className="text d-flex justify-content-center text-decoration-none  "
-                to="/resetpassword"
+                to="/resetPassword"
               >
                 Forgot password?
               </Link>
-
+              {/* ---> Div navigate to Register Page  <--- */}
               <div className="d-flex align-items-center justify-content-center gap-3">
                 <p className=" text-dark mb-0 ">Don't have an account?</p>
                 <button
@@ -137,15 +139,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-// ! ----> sign in with google <---- !
-// const { signWithGoogle } = UserAuth();
-// const signGoogleClick = async (e) => {
-//   e.preventDefault();
-//   try {
-//     await signWithGoogle();
-//     navigate('/dashboard');
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };

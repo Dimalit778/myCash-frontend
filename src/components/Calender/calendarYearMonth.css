@@ -3,27 +3,30 @@
   max-width: 600px;
   margin: auto;
   margin-top: 15px;
-  background-color: #d4f7d4;
+  /* background-color: #d4f7d4; */
   padding: 5px;
   border-radius: 3px;
 }
 .react-calendar__navigation {
   display: flex;
   margin-bottom: 10px;
-  height: 50px;
+  height: 40px;
 }
+/* Year  */
 .react-calendar__navigation__label {
   font-weight: bold;
-  background-color: #25bd25;
+  background-color: #cde2cd;
   border: 2px solid black;
 }
 .react-calendar__navigation__arrow {
   flex-grow: 0.333;
-  background-color: #25bd25;
+  background-color: #cde2cd;
+  font-weight: bold;
+  font-size: large;
   border: 2px solid black;
 }
 /* ~~~ button styles ~~~ */
-.react-calendar > button {
+.react-calendar button {
   margin: 3px;
   background-color: #98b481;
   border: 0;

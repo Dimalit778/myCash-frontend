@@ -23,7 +23,7 @@
   border: 2px solid black;
 }
 /* ~~~ button styles ~~~ */
-button {
+.react-calendar > button {
   margin: 3px;
   background-color: #98b481;
   border: 0;

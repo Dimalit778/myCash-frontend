@@ -15,6 +15,8 @@ import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
+//@ ---- >  NavBar on User Dashboard
+
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({

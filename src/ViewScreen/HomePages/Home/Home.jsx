@@ -56,7 +56,7 @@ const Home = () => {
           </Row>
         </Row>
         {/* SECTION 2  */}
-        <div className="home_section2">
+        {/* <div className="home_section2">
           <Row className=" h-75  w-75  mx-auto pt-5  ">
             <img
               src={yearView}
@@ -64,7 +64,7 @@ const Home = () => {
               alt="yearView"
             />
           </Row>
-        </div>
+        </div> */}
         {/* SECTION 3 */}
         <Row className="home_section3">
           <div className="row d-flex ">

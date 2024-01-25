@@ -1,13 +1,15 @@
 import { apiSlice } from './apiSlice';
 
 const USER_URL = '/api/v1/users';
+const AUTH_URL = '/api/v1/auth';
 
 export const userApiSlice = apiSlice.injectEndpoints({
+  // ---------->   { AUTH URL ROUTES  }
   endpoints: (builder) => ({
     //@ ---> Google Auth User
-    googleAuthFB: builder.mutation({
+    googleAuth: builder.mutation({
       query: (data) => ({
-        url: `${USER_URL}/googleAuthFB`,
+        url: `${AUTH_URL}/googleAuth`,
         method: 'POST',
         body: data,
       }),
@@ -16,24 +18,27 @@ export const userApiSlice = apiSlice.injectEndpoints({
     //? ---> Login User
     login: builder.mutation({
       query: (data) => ({
-        url: `${USER_URL}/login`,
+        url: `${AUTH_URL}/login`,
         method: 'POST',
         body: data,
-      }),
-    }),
-    //? ---> Logout User
-    logout: builder.mutation({
-      query: () => ({
-        url: `${USER_URL}/logout`,
-        method: 'POST',
       }),
     }),
     //? ---> Register User
     register: builder.mutation({
       query: (data) => ({
-        url: `${USER_URL}/register`,
+        url: `${AUTH_URL}/register`,
         method: 'POST',
         body: data,
+      }),
+    }),
+
+    // ---------->   { USER URL ROUTES  }
+
+    //? ---> Logout User
+    logout: builder.mutation({
+      query: () => ({
+        url: `${USER_URL}/logout`,
+        method: 'POST',
       }),
     }),
     //? ---> Update User
@@ -56,7 +61,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGoogleAuthFBMutation,
+  useGoogleAuthMutation,
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,

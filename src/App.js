@@ -19,12 +19,14 @@ import Footer from 'components/Footer/footer';
 import Expenses from 'ViewScreen/UserDashboard/Expenses/Expenses';
 import Dashboard from 'ViewScreen/HomePages/Dashboard/Dashboard';
 import Incomes from 'ViewScreen/UserDashboard/Incomes/Incomes';
-import Account from 'ViewScreen/UserDashboard/Account/Account.jsx';
+import Account from 'ViewScreen/UserDashboard/Account/Account';
 import Settings from 'ViewScreen/UserDashboard/Settings/Settings';
 import ContactUs from 'ViewScreen/UserDashboard/Contact/ContactUs';
 //? ---> Not Found && Private Route -->
 import NotFound from 'ViewScreen/NotFound';
-import PrivateRoute from 'components/PrivateRoute.jsx';
+import PrivateRoute from 'components/PrivateRoute';
+//? ---> Verify Email -->
+import EmailVerify from 'ViewScreen/EmailVerify';
 
 // axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:5000';
@@ -52,6 +54,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomeRoot />}>
         <Route index element={<Home />} />
         <Route path="login" element={<SignIn />} />
+        <Route path="verify-email" element={<EmailVerify />} />
         <Route path="register" element={<Register />} />
         <Route path="about" element={<About />} />
       </Route>

@@ -30,7 +30,12 @@ export const UpdateUser = () => {
       }).unwrap();
 
       dispatch(
-        setCredentials({ _id: res._id, name: res.name, email: res.email })
+        setCredentials({
+          _id: res._id,
+          name: res.name,
+          email: res.email,
+          imageUrl: res.imageUrl,
+        })
       );
       toast.success('Profile updated successfully');
     } catch (err) {

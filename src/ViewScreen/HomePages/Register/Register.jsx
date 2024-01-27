@@ -19,9 +19,10 @@ const Register = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
   const [register, { isLoading }] = useRegisterMutation();
+  const [msg, setMsg] = useState(false);
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo?.isVerified) {
       navigate('/dashboard');
     }
   }, [navigate, userInfo]);
@@ -31,7 +32,7 @@ const Register = () => {
     try {
       const res = await register({ name, email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate('/');
+      setMsg(true);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -42,6 +43,8 @@ const Register = () => {
       <div className="wrapper d-flex align-items-center justify-content-center w-100">
         <div className="login ">
           <h3 className="p my-4  text-center">Register Here</h3>
+          {msg && <p>Link was sent yo you</p>}
+
           <form
             onSubmit={submitHandler}
             className="signInForm d-grid gap-4 p-2"

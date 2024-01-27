@@ -54,7 +54,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomeRoot />}>
         <Route index element={<Home />} />
         <Route path="login" element={<SignIn />} />
-        <Route path="verify-email" element={<EmailVerify />} />
+        <Route path="/api/v1/auth/verify-email" element={<EmailVerify />} />
         <Route path="register" element={<Register />} />
         <Route path="about" element={<About />} />
       </Route>

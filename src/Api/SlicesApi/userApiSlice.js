@@ -31,7 +31,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    verifyEmil: builder.mutation({
+    //? --->   Verify Email
+    verifyEmail: builder.mutation({
       query: (data) => ({
         url: `${AUTH_URL}/verify-email`,
         method: 'POST',
@@ -69,7 +70,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGoogleAuthMutation,
-  useVerifyEmilMutation,
+  useVerifyEmailMutation,
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,

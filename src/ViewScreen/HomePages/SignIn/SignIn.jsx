@@ -27,7 +27,7 @@ const SignIn = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo?.isVerified) {
       navigate('/dashboard');
     }
   }, [navigate, userInfo]);

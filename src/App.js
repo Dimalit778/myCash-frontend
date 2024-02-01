@@ -27,6 +27,8 @@ import NotFound from 'ViewScreen/NotFound';
 import PrivateRoute from 'components/PrivateRoute';
 //? ---> Verify Email -->
 import EmailVerify from 'ViewScreen/EmailVerify';
+import ForgotPassword from 'ViewScreen/ForgotPassword';
+import ResetPassword from 'ViewScreen/ResetPassword';
 
 // axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:5000';
@@ -54,7 +56,15 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomeRoot />}>
         <Route index element={<Home />} />
         <Route path="login" element={<SignIn />} />
-        <Route path="/api/v1/auth/verify-email" element={<EmailVerify />} />
+        <Route
+          path="/api/v1/auth/verify-email/:emailToken"
+          element={<EmailVerify />}
+        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route
+          path="/api/v1/auth/reset-password/:id/:token"
+          element={<ResetPassword />}
+        />
         <Route path="register" element={<Register />} />
         <Route path="about" element={<About />} />
       </Route>

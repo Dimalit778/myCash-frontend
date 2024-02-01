@@ -23,7 +23,6 @@ const EmailVerify = () => {
   useEffect(() => {
     (async () => {
       if (userInfo?.isVerified) {
-        console.log('Verified');
         setTimeout(() => {
           return navigate('/dashboard');
         }, 6000);

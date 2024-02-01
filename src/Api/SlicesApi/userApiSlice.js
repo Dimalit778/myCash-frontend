@@ -39,6 +39,22 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    //? --->   Forgot password
+    forgotPassword: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/forgot-password`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    //? --->   Reset password
+    resetPassword: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/reset-password`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
 
     // ---------->   { USER URL ROUTES  }
 
@@ -76,4 +92,6 @@ export const {
   useRegisterMutation,
   useUpdateUserMutation,
   useUploadImageMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
 } = userApiSlice;

@@ -74,7 +74,7 @@ const SignIn = () => {
                 }
                 type="text"
                 className=" form-control"
-                placeholder="Username"
+                placeholder="Email"
               />
             </div>
             {/* ---> Password input <--- */}
@@ -114,7 +114,7 @@ const SignIn = () => {
             {/* ---> Reset Password <--- */}
             <Link
               className="text d-flex justify-content-center text-decoration-none  "
-              to="/resetPassword"
+              to="/forgot-password"
             >
               Forgot password?
             </Link>

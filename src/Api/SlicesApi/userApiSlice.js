@@ -1,7 +1,7 @@
 import { apiSlice } from './apiSlice';
 
-const USER_URL = '/api/v1/users';
-const AUTH_URL = '/api/v1/auth';
+const USER_URL = '/api/users';
+const AUTH_URL = '/api/auth';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   // ---------->   { AUTH URL ROUTES  }
@@ -47,10 +47,17 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    //? --->   Verify reset Link
+    verifyLink: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/reset-password/${data.id}/${data.token}`,
+        method: 'GET',
+      }),
+    }),
     //? --->   Reset password
     resetPassword: builder.mutation({
       query: (data) => ({
-        url: `${AUTH_URL}/reset-password`,
+        url: `${AUTH_URL}/reset-password/${data.id}/${data.token}`,
         method: 'POST',
         body: data,
       }),
@@ -94,4 +101,5 @@ export const {
   useUploadImageMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
+  useVerifyLinkMutation,
 } = userApiSlice;

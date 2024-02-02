@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { success } from '../assets/success.png';
+import successImg from '../assets/success.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useVerifyEmailMutation } from 'Api/SlicesApi/userApiSlice.js';
-import Loader from 'components/Loader';
+
 import { toast } from 'react-hot-toast';
 import { Alert } from 'react-bootstrap';
 import { setCredentials } from 'Api/SlicesApi/authSlice';
@@ -65,6 +65,7 @@ const EmailVerify = () => {
         {isLoading ? (
           <div className="loader">
             <Alert severity="success">Email successfully verified ...</Alert>
+            <img src={successImg} alt="success" />
           </div>
         ) : (
           <div>

@@ -55,6 +55,7 @@ const UploadImage = () => {
             name: result.name,
             email: result.email,
             imageUrl: result.imageUrl,
+            isVerified: result.isVerified,
           })
         );
         toast.success('Profile updated successfully');

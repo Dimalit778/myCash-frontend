@@ -1,6 +1,6 @@
 import { apiSlice } from './apiSlice';
 
-const URL = '/api/v1/transactions';
+const URL = '/api/transactions';
 
 export const incomeApiSlice = apiSlice.injectEndpoints({
   tagTypes: ['Income'],

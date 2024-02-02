@@ -5,9 +5,6 @@ import CalendarYearMonth from 'components/Calender/CalendarYearMonth';
 import PieActiveArc from 'components/Charts/PieActiveArc';
 import { useSelector } from 'react-redux';
 import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
-import { PayPalButtons } from '@paypal/react-paypal-js';
-import { ProgressBar } from 'react-bootstrap';
-import ProgressBars from 'components/ProgressBars/ProgressBars';
 
 const Expenses = () => {
   // --------> Calender get Date

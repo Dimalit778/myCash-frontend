@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Stats } from 'components/Stats/Stats';
+import './mainPage.css';
 
 import BalanceStats from 'components/Stats/BalanceStats';
 import { useSelector } from 'react-redux';
@@ -49,44 +50,23 @@ const Main = () => {
   return (
     <div className="container min-vh-100 ">
       {/* --> Year Selection <-- */}
-      <div className="d-flex justify-content-center pt-1     ">
-        <div
-          style={{
-            backgroundColor: '#FF6F61',
-            border: '2px solid #2F4F4F',
-            width: '50vw',
-          }}
-          className=" d-flex gap-3 p-2 justify-content-around"
-        >
-          {/* -- PREV BUTTON -- */}
+      <div className=" d-flex justify-content-center pt-2 ">
+        <div className="yearHeader d-flex gap-2  justify-content-around">
           <div
-            style={{
-              backgroundColor: '#E9897E',
-              border: '1px solid black',
-              cursor: 'pointer',
-              borderRadius: '15px',
-              padding: '0px 5px 0px 5px',
-            }}
+            className="yearBtn"
             onClick={() => setChosenYear(chosenYear - 1)}
           >
-            <h1>{prev}</h1>
+            <h2>{prev}</h2>
           </div>
-          {/* -- YEAR TEXT -- */}
-          <div style={{ color: '#2F4F4F' }}>
+
+          <div>
             <h1>{chosenYear}</h1>
           </div>
-          {/* -- NEXT BUTTON -- */}
           <div
-            style={{
-              backgroundColor: '#E9897E',
-              border: '1px solid black',
-              cursor: 'pointer',
-              borderRadius: '15px',
-              padding: '0px 5px 0px 5px',
-            }}
+            className="yearBtn"
             onClick={() => setChosenYear(chosenYear + 1)}
           >
-            <h1>{next}</h1>
+            <h2>{next}</h2>
           </div>
         </div>
       </div>

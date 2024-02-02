@@ -35,6 +35,7 @@ export const UpdateUser = () => {
           name: res.name,
           email: res.email,
           imageUrl: res.imageUrl,
+          isVerified: res.isVerified,
         })
       );
       toast.success('Profile updated successfully');

@@ -8,7 +8,6 @@ import { calculateTotal } from 'Hooks/calculateTotal';
 import Loader from 'components/Loader';
 import TableView from 'forms/TableView';
 import { numberFormat } from 'Hooks/numberFormat';
-import ProgressBars from 'components/ProgressBars/ProgressBars';
 
 const ExpenseList = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);

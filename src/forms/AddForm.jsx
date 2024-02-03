@@ -12,7 +12,6 @@ const AddForm = ({ actionType, date }) => {
   const { userInfo } = useSelector((state) => state.auth);
   const [addIncome] = useAddIncomeMutation();
   const [addExpense] = useAddExpenseMutation();
-  // let S_date = date.toLocaleDateString('en-US');
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -42,6 +41,7 @@ const AddForm = ({ actionType, date }) => {
       // Case Income
       case 'income':
         added = await addIncome(newAction);
+
         if (!added.error) {
           handleClose();
           return toast.success('Successfully added');
@@ -52,9 +52,19 @@ const AddForm = ({ actionType, date }) => {
         added = await addExpense(newAction);
         if (!added.error) {
           handleClose();
-          return toast.success('Successfully added');
+          return toast.success('Successfully added.', {
+            iconTheme: {
+              primary: 'green',
+              secondary: '#FFFAEE',
+            },
+          });
         }
-        return toast.error('Missing Data - Try again');
+        return toast.error('Missing data , Try again.', {
+          iconTheme: {
+            primary: 'red',
+            secondary: '#FFFAEE',
+          },
+        });
 
       default:
         return null;

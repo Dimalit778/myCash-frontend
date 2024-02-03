@@ -39,7 +39,10 @@ const HomeRoot = () => {
   return (
     <>
       <div className="homeRoot">
-        <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
+        <Toaster
+          position="top-right"
+          toastOptions={{ duration: 3000, style: { marginTop: '5rem' } }}
+        />
         <NavbarComp />
         <Outlet />
         <Footer />
@@ -59,7 +62,7 @@ const router = createBrowserRouter(
         <Route path="/api/v1/auth/verify-email" element={<EmailVerify />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route
-          path="/api/v1/auth/reset-password/:id/:token"
+          path="/api/auth/reset-password/:id/:token"
           element={<ResetPassword />}
         />
         <Route path="register" element={<Register />} />

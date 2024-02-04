@@ -43,7 +43,9 @@ const Register = () => {
       <div className="wrapper d-flex align-items-center justify-content-center w-100">
         <div className="login ">
           <h3 className="p my-4  text-center">Register Here</h3>
-          {msg && <p>Link was sent yo you</p>}
+          {msg && (
+            <div className="link">Link verification sent to your email </div>
+          )}
 
           <form
             onSubmit={submitHandler}
@@ -88,11 +90,8 @@ const Register = () => {
             {isLoading && <Loader />}
             {/* ! ----- SUBMIT ------!*/}
             <div className="formSubmit">
-              <button
-                type="submit"
-                className="form-control btn btn-outline-dark  submit px-3"
-              >
-                Sign Up
+              <button type="submit" className="form-control bn31 ">
+                <span className="bn31span">Sign Up</span>
               </button>
             </div>
 

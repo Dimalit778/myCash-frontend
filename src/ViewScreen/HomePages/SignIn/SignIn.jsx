@@ -9,8 +9,11 @@ import {
 } from 'Api/SlicesApi/userApiSlice';
 import { setCredentials } from 'Api/SlicesApi/authSlice';
 import Loader from 'components/Loader';
+import { Form } from 'react-bootstrap';
 
 import { GoogleAuth } from 'Api/FireBase/Firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
@@ -66,52 +69,47 @@ const SignIn = () => {
         <div className="login ">
           <h3 className=" text-center mt-auto ">Log In Here</h3>
           <form className="signInForm d-grid gap-4 p-2" onSubmit={loginUser}>
-            {/* ---> Email input <--- */}
-            <div className="form-group ">
-              <input
+            {/* ---> EMAIL INPUT <--- */}
+            <Form.Group className="form-group" controlId="name">
+              <Form.Control
+                type="name"
+                placeholder="Enter Email"
                 onChange={(e) =>
                   setUserData({ ...userData, email: e.target.value })
                 }
-                type="text"
-                className=" form-control"
-                placeholder="Email"
-              />
-            </div>
-            {/* ---> Password input <--- */}
-            <div className="form-group">
-              <input
+              ></Form.Control>
+            </Form.Group>
+            {/* ---> PASSWORD INPUT <--- */}
+            <Form.Group className="form-group" controlId="password">
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                required
                 onChange={(e) =>
                   setUserData({ ...userData, password: e.target.value })
                 }
-                id="password-field"
-                type="password"
-                className=" form-control"
-                placeholder="Password"
-                required
-              />
+              ></Form.Control>
               <span
                 toggle="#password-field"
                 className="fa fa-fw fa-eye field-icon toggle-password"
               ></span>
-            </div>
+            </Form.Group>
+            {/* ---> LOADER <--- */}
             {isLoading && <Loader />}
-            {/* ---> Login Submit button <--- */}
+            {/* ---> LOGIN SUBMIT BUTTON <--- */}
             <div className="formSubmit">
-              <button
-                type="submit"
-                className="form-control btn btn-outline-dark submit px-3"
-              >
-                Log In
+              <button type="submit" className="form-control bn31 ">
+                <span className="bn31span">Login</span>
               </button>
             </div>
-            {/* ---> Google Log In <--- */}
-            <button
-              onClick={signGoogleClick}
-              className="form-control btn btn-outline-dark submit px-3"
-            >
-              Sign with Google
+            {/* ---> GOOGLE LOG IN <--- */}
+            <button onClick={signGoogleClick} className="form-control bn9  ">
+              <span className="">
+                <FontAwesomeIcon icon={faGoogle} size="lg" className=" pe-3" />
+                Sign with Google
+              </span>
             </button>
-            {/* ---> Reset Password <--- */}
+            {/* ---> RESET PASSWORD <--- */}
             <Link
               className="text d-flex justify-content-center text-decoration-none  "
               to="/forgot-password"

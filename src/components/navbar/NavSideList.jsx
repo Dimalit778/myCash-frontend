@@ -110,11 +110,7 @@ const NavSideList = ({ open, setOpen }) => {
         icon: <img src={incomeIcon} alt="" />,
         link: 'incomes',
       },
-      {
-        title: 'Account',
-        icon: <img src={accountIcon} alt="" />,
-        link: 'account',
-      },
+
       {
         title: 'Contact',
         icon: <img src={contactIcon} alt="" />,

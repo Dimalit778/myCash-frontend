@@ -19,7 +19,7 @@ const About = () => {
           <Col md={6}>
             <div className="Home_text d-inline-flex flex-column gap-4 mt-3 ">
               <div className="d-flex justify-content-center ">
-                <h3>About Us</h3>
+                <h3 className="text-white-50">About Us</h3>
               </div>
               <p>
                 CashFlow is a financial planning firm based in Jerusalem,
@@ -49,7 +49,9 @@ const About = () => {
           </div>
 
           <div className="editView col-md-6  text-center ">
-            <h3>You can Add , Edit and Delete transaction</h3>
+            <h3 className="text-white-50">
+              You can Add , Edit and Delete transaction
+            </h3>
             <img src={editView} alt="editView" className="aboutImages" />
           </div>
         </Row>

@@ -25,21 +25,21 @@
 /* User Name button */
 .userProfile {
   border: 2px solid black;
-  width: 6rem;
+
   font-weight: bolder;
   font-size: large;
   border-radius: 10px;
   background-color: rgb(163, 170, 151);
 }
 .dropdown-toggle::after {
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 }
 /* Profile / Logout  */
 .dropdown-menu {
   --bs-dropdown-min-width: 5.5rem;
   --bs-dropdown-link-hover-bg: rgb(195, 190, 199);
   background-color: rgb(163, 170, 151);
-  border: 2px solid black;
+  border-top: 2px solid black;
   border-radius: 0px 0px 5px 5px;
   font-size: large;
   position: absolute;

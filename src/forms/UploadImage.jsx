@@ -35,11 +35,12 @@ const UploadImage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(userImage);
     if (!userImage) return toast.error('Please add an image');
     try {
       // Upload the image file to CloudDinary database
       const res = await uploadImage({ userImage });
+      console.log(res);
 
       //?  Update image to User Schema
       if (res) {
@@ -49,6 +50,7 @@ const UploadImage = () => {
           imageUrl: res.data.public_id,
         }).unwrap();
         // add to userInfo in the local storage  the imageUrl
+        console.log(result);
         dispatch(
           setCredentials({
             _id: result._id,

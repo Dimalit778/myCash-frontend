@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUpdateUserMutation } from '../Api/SlicesApi/userApiSlice';
 import { setCredentials } from '../Api/SlicesApi/authSlice';
 import { toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 export const UpdateUser = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  // const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const [updateProfile, { isLoading }] = useUpdateUserMutation();
 
-  useEffect(() => {
-    setName(userInfo.name);
-    setEmail(userInfo.email);
-  }, [userInfo.email, userInfo.name]);
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const res = await updateProfile({
         _id: userInfo._id,
         name,
-        email,
+        password,
       }).unwrap();
 
       dispatch(
@@ -45,44 +40,38 @@ export const UpdateUser = () => {
   };
 
   return (
-    <div
-      style={{ border: '2px solid black' }}
-      className=" d-flex justify-content-center   "
-    >
-      <Form onSubmit={submitHandler}>
-        <Form.Group className="my-2" controlId="name">
-          <Form.Label>Name</Form.Label>
+    <div className=" d-flex justify-content-center h-auto text-center     ">
+      <Form className="editUser " onSubmit={submitHandler}>
+        <h3 className=" text-center">Edit User</h3>
+        <Form.Group className=" mb-4" controlId="name">
+          <Form.Label className="editLabel d-block">
+            <p>Enter Name</p>
+          </Form.Label>
           <Form.Control
+            className=" text-center "
             type="name"
-            placeholder="Enter name"
+            placeholder="New Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group className="my-2" controlId="email">
-          <Form.Label>Email Address</Form.Label>
+
+        <Form.Group className="my-2" controlId="password">
+          <Form.Label className="editLabel d-block   ">
+            <p>Enter Password</p>
+          </Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        {/* <Form.Group className="my-2" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+            className=" text-center "
             type="password"
-            placeholder="Enter password"
+            placeholder="New Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
-        </Form.Group> */}
-
-        <Button type="submit" variant="primary" className="mt-3">
-          Update
-        </Button>
-
+        </Form.Group>
         {isLoading && <Loader />}
+        <button type="submit" className="bn3637 bn36 mt-3">
+          SAVE
+        </button>
       </Form>
     </div>
   );

@@ -63,7 +63,7 @@ const NavbarComp = () => {
             {!userInfo ? (
               <>
                 {/* --- > LOGIN AND REGISTER BUTTONS < --- */}
-                <div className=" d-flex gap-3 pe-3 justify-content-center    ">
+                <div className=" d-flex gap-3 pe-3 justify-content-center mx-auto     ">
                   <button className="logRegBtn">
                     <Nav.Link as={Link} to="/register" className=" me-2">
                       Register
@@ -81,7 +81,7 @@ const NavbarComp = () => {
               <NavDropdown
                 title={userInfo.name}
                 id="username"
-                className="userProfile mx-auto     "
+                className="userProfile mx-auto p-1     "
               >
                 <NavDropdown.Item onClick={() => navigate('/dashboard')}>
                   Profile

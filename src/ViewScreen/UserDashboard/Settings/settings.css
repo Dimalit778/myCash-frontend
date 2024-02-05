@@ -49,3 +49,13 @@
   transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
   background-color: rgb(51, 145, 145);
 }
+
+/* UPLOAD IMAGE CSS */
+
+.searchImage {
+  border: 2px solid black;
+  padding: 5px;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+}

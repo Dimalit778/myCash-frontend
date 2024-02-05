@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUpdateUserMutation } from '../Api/SlicesApi/userApiSlice';
 import { setCredentials } from '../Api/SlicesApi/authSlice';
@@ -9,13 +9,15 @@ import { Form } from 'react-bootstrap';
 export const UpdateUser = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [userData, setUserData] = useState({
+    name: '',
+    password: '',
+  });
   const dispatch = useDispatch();
   const [updateProfile, { isLoading }] = useUpdateUserMutation();
 
   const submitHandler = async (e) => {
+    const { name, password } = userData;
     e.preventDefault();
     try {
       const res = await updateProfile({
@@ -51,8 +53,7 @@ export const UpdateUser = () => {
             className=" text-center "
             type="name"
             placeholder="New Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
           ></Form.Control>
         </Form.Group>
 
@@ -61,11 +62,12 @@ export const UpdateUser = () => {
             <p>Enter Password</p>
           </Form.Label>
           <Form.Control
-            className=" text-center "
-            type="password"
+            className="form-control"
+            id="password"
             placeholder="New Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) =>
+              setUserData({ ...userData, password: e.target.value })
+            }
           ></Form.Control>
         </Form.Group>
         {isLoading && <Loader />}

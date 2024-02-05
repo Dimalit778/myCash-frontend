@@ -63,6 +63,7 @@ const SignIn = () => {
       toast.error(err.data?.message || err.error);
     }
   };
+  console.log(userData);
   return (
     <>
       <div className="wrapper d-flex align-items-center justify-content-center w-100      ">

@@ -29,6 +29,7 @@ const Register = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    // if (!name || !email || !password) return toast.error('Missing fields');
     try {
       const res = await register({ name, email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
@@ -79,6 +80,7 @@ const Register = () => {
                 type="password"
                 placeholder="Enter password"
                 value={password}
+                autoComplete="on"
                 onChange={(e) => setPassword(e.target.value)}
               ></Form.Control>
               <span

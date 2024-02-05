@@ -1,5 +1,5 @@
 import { setCredentials } from 'Api/SlicesApi/authSlice';
-
+import { Image, Transformation } from 'cloudinary-react';
 import {
   useUpdateUserMutation,
   useUploadImageMutation,
@@ -7,9 +7,11 @@ import {
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
+import uploadUserImg from './../assets/uploadUserImg.png';
 
 const UploadImage = () => {
   const [userImage, setUserImage] = useState('');
+  const [imagePreview, setImagePreview] = useState('');
   const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -18,6 +20,7 @@ const UploadImage = () => {
 
   const handleChange = (e) => {
     const file = e.target.files[0];
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
     transformFile(file);
   };
 
@@ -68,21 +71,66 @@ const UploadImage = () => {
     }
   };
   return (
-    <form className="text-center" onSubmit={handleSubmit}>
-      <div>
-        <input
-          className=" w-50 "
-          type="file"
-          placeholder=""
-          accept="image/"
-          onChange={handleChange}
-        />
+    <form className="text-center " onSubmit={handleSubmit}>
+      <div className="imgDiv mb-4  ">
+        {/* if user have image  */}
+        {userInfo.imageUrl && (
+          <Image
+            cloudName="dx6oxmki4"
+            publicId={userInfo.imageUrl}
+            className="cloudImage"
+          >
+            <Transformation
+              width="200"
+              height="200"
+              gravity="auto"
+              crop="fill"
+              quality="auto"
+            />
+          </Image>
+        )}
+        {/* if user choose image show the image */}
+        {imagePreview && (
+          <img
+            style={{ height: '20vh', widows: '20vw' }}
+            src={imagePreview}
+            alt="imagePreview"
+          ></img>
+        )}
+        {/* if not user image and user not choose to upload image show Avatar Image */}
+        {!userInfo.imageUrl && !imagePreview && (
+          <div className="">
+            <img
+              style={{ height: '150px' }}
+              src={uploadUserImg}
+              alt="uploadUserImg"
+            />
+          </div>
+        )}
+      </div>
+
+      {/* upload button */}
+      <div className="">
+        <label>
+          <input
+            style={{ display: 'none' }}
+            className=" mx-auto ps-5"
+            type="file"
+            accept="image/"
+            onChange={handleChange}
+          />
+          <span className="searchImage">Add Image</span>
+        </label>
         <button
           style={{
             backgroundColor: 'grey',
             border: '2px solid black',
+            color: 'white',
             padding: '5px',
+            borderRadius: '5px',
+            width: '75px',
           }}
+          className="mx-auto"
           type="submit"
         >
           Upload

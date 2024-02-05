@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import successImg from '../assets/success.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useVerifyEmailMutation } from 'Api/SlicesApi/userApiSlice.js';
 
-import { toast } from 'react-hot-toast';
 import { Alert } from 'react-bootstrap';
 import { setCredentials } from 'Api/SlicesApi/authSlice';
 
@@ -19,7 +18,6 @@ const EmailVerify = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   useEffect(() => {
     (async () => {
       if (userInfo?.isVerified) {

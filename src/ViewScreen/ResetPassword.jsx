@@ -27,7 +27,7 @@ const ResetPassword = () => {
       toast.success('Link verified');
       setValidUser(true);
     } catch (err) {
-      toast.success(err.data?.message || err.message);
+      toast.error(err.data?.message || err.message);
       setValidUser(false);
     }
   };

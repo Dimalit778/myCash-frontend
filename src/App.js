@@ -59,7 +59,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="login" element={<SignIn />} />
         <Route
-          path="/api/auth/verify-email:emailToken"
+          path="/api/auth/verify-email/:emailToken"
           element={<EmailVerify />}
         />
         <Route path="/forgot-password" element={<ForgotPassword />} />

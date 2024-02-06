@@ -10,7 +10,7 @@
   padding-top: 1.5rem;
 }
 
-/* ------------ UPDATE USER STYLES ---------- */
+/* ------------ UPDATE -- USER --  STYLES ---------- */
 .editUser {
   border: 3px solid #706a6a;
   background-color: rgb(167, 164, 170);
@@ -58,4 +58,7 @@
   font-weight: 700;
   border-radius: 5px;
   cursor: pointer;
+}
+/* ------------ UPDATE -- IMAGE --  STYLES ---------- */
+.deletePhoto {
 }

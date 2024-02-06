@@ -78,19 +78,21 @@ const NavbarComp = () => {
               </>
             ) : (
               // {/* --- > USERNAME AND LINK TO PROFILE < --- */}
-              <NavDropdown
-                title={userInfo.name}
-                id="username"
-                className="userProfile mx-auto p-1     "
-              >
-                <NavDropdown.Item onClick={() => navigate('/dashboard')}>
-                  Profile
-                </NavDropdown.Item>
+              <div className="userName pe-3">
+                <NavDropdown
+                  title={userInfo.name}
+                  id="username"
+                  className="userProfile mx-auto p-1 text-center "
+                >
+                  <NavDropdown.Item onClick={() => navigate('/dashboard')}>
+                    Profile
+                  </NavDropdown.Item>
 
-                <NavDropdown.Item onClick={logoutHandler}>
-                  Logout
-                </NavDropdown.Item>
-              </NavDropdown>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </div>
             )}
           </Nav>
         </Navbar.Collapse>

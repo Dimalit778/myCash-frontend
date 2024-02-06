@@ -2,7 +2,6 @@ import React from 'react';
 import './settings.css';
 
 import { UpdateUser } from 'forms/UpdateUser';
-import avatarLogo from 'assets/avatar.jpg';
 import { useSelector } from 'react-redux';
 import UploadImage from 'forms/UploadImage';
 
@@ -21,7 +20,7 @@ const Settings = () => {
             <UploadImage />
           </div>
           <div className="userInfo d-flex flex-column  ">
-            <p className=" mx-auto ">{userInfo.name}</p>
+            <p className=" mx-auto text-capitalize">{userInfo.name}</p>
             <p className="mx-auto  ">{userInfo.email}</p>
           </div>
         </Col>

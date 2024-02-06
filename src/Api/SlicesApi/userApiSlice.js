@@ -80,10 +80,18 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: rest,
       }),
     }),
-    //? ---> Upload Image
+    //@ ---> Upload Image
     uploadImage: builder.mutation({
       query: (data) => ({
         url: `${USER_URL}/uploadImage`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    //@ ---> Delete Image From Cloudinary
+    deleteImage: builder.mutation({
+      query: (data) => ({
+        url: `${USER_URL}/deleteImage`,
         method: 'POST',
         body: data,
       }),
@@ -99,6 +107,7 @@ export const {
   useRegisterMutation,
   useUpdateUserMutation,
   useUploadImageMutation,
+  useDeleteImageMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useVerifyLinkMutation,

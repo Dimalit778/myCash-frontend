@@ -29,7 +29,6 @@ const Register = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // if (!name || !email || !password) return toast.error('Missing fields');
     try {
       const res = await register({ name, email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
@@ -48,7 +47,7 @@ const Register = () => {
             <div className="link">Link verification sent to your email </div>
           )}
 
-          <form
+          <Form
             onSubmit={submitHandler}
             className="signInForm d-grid gap-4 p-2"
           >
@@ -109,7 +108,7 @@ const Register = () => {
                 Login
               </button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </>

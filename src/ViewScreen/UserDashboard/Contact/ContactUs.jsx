@@ -9,28 +9,28 @@ import '../header.css';
 const ContactUs = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  // const [name, setName] = useState('');
+  const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
 
   const sendEmail = (e) => {
     e.preventDefault();
-    const serviceId = 'service_pgot89o';
-    const templateId = 'template_n2cr6u9';
-    const publicKey = 'DsCLHuGCJtDHKVfG_';
+    const serviceId = process.env.REACT_APP_SERVICE_ID;
+    const templateId = process.env.REACT_APP_TEMPLATE_ID;
+    const publicKey = process.env.REACT_APP_PUBLIC_KEY;
 
     const templateParams = {
-      from_name: name,
-      from_email: email,
+      from_name: userInfo.name,
+      from_email: userInfo.email,
       to_name: 'MyCash Support',
+      subject: subject,
       message: message,
     };
 
     emailjs.send(serviceId, templateId, templateParams, publicKey).then(
       (result) => {
         console.log('email sent successfully', result);
-        setName('');
-        setEmail('');
+
         setMessage('');
         toast.success('Email Sent successfully');
       },
@@ -61,9 +61,7 @@ const ContactUs = () => {
               Our support team can help you with every question you have, You
               can contact us and our team will response you within 24 hours.
             </h5>
-            <h4 className=" ">
-              Please fill your'e Name , Email and your'e Message.{' '}
-            </h4>
+            <h4 className=" ">Waiting to hear from you.</h4>
           </div>
         </div>
         {/* Right Div - Content Form */}
@@ -79,45 +77,32 @@ const ContactUs = () => {
           >
             <div>
               <input
-                style={{
-                  border: '2px solid black',
-                  borderRadius: 5,
-                }}
                 type="text"
-                placeholder="Your Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="mt-2">
-              <input
-                style={{ border: '2px solid black', borderRadius: 5 }}
-                type="email"
-                placeholder="Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Subject ..."
+                value={subject}
+                required
+                onChange={(e) => setSubject(e.target.value)}
               />
             </div>
             <div>
               <textarea
                 style={{
-                  width: '70%',
+                  width: '90%',
                   height: 150,
                   marginTop: 30,
                   border: '2px solid black',
                   borderRadius: 5,
                 }}
+                placeholder="You Message ..."
+                required
                 cols="20"
                 rows="10"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
             </div>
-            <button
-              style={{ border: '2px solid black', borderRadius: 5, width: 100 }}
-              type="submit"
-            >
-              Send Email
+            <button className="bn3637 bn36 fs-6  " type="submit">
+              SEND EMAIL
             </button>
           </form>
         </div>

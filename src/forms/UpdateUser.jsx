@@ -9,15 +9,17 @@ import { Form } from 'react-bootstrap';
 export const UpdateUser = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [userData, setUserData] = useState({
-    name: '',
-    password: '',
-  });
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState();
+
   const dispatch = useDispatch();
   const [updateProfile, { isLoading }] = useUpdateUserMutation();
 
+  useEffect(() => {
+    setName(userInfo.name);
+  }, [userInfo]);
+
   const submitHandler = async (e) => {
-    const { name, password } = userData;
     e.preventDefault();
     try {
       const res = await updateProfile({
@@ -25,7 +27,6 @@ export const UpdateUser = () => {
         name,
         password,
       }).unwrap();
-
       dispatch(
         setCredentials({
           _id: res._id,
@@ -35,6 +36,7 @@ export const UpdateUser = () => {
           isVerified: res.isVerified,
         })
       );
+
       toast.success('Profile updated successfully');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
@@ -52,8 +54,8 @@ export const UpdateUser = () => {
           <Form.Control
             className=" text-center "
             type="name"
-            placeholder="New Name"
-            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+            placeholder={name}
+            onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -62,12 +64,10 @@ export const UpdateUser = () => {
             <p>Enter Password</p>
           </Form.Label>
           <Form.Control
-            className="form-control"
-            id="password"
+            className="form-control text-center "
             placeholder="New Password"
-            onChange={(e) =>
-              setUserData({ ...userData, password: e.target.value })
-            }
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
         {isLoading && <Loader />}

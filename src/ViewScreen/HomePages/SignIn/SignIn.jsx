@@ -63,7 +63,7 @@ const SignIn = () => {
       toast.error(err.data?.message || err.error);
     }
   };
-  console.log(userData);
+
   return (
     <>
       <div className="wrapper d-flex align-items-center justify-content-center w-100      ">
@@ -86,6 +86,7 @@ const SignIn = () => {
                 type="password"
                 placeholder="Password"
                 required
+                autoComplete="on"
                 onChange={(e) =>
                   setUserData({ ...userData, password: e.target.value })
                 }

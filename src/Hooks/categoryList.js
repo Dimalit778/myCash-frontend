@@ -1,4 +1,4 @@
-export const categories = [
+export const expCategories = [
   {
     value: '',
     label: 'Choose a category',

@@ -1,4 +1,4 @@
-export const incomeCateList = [
+export const incCategories = [
   {
     value: '',
     label: 'Choose a category',

@@ -8,7 +8,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -18,11 +17,10 @@ import { useDeleteExpenseMutation } from 'Api/SlicesApi/expenseApiSlice';
 import { useDeleteIncomeMutation } from 'Api/SlicesApi/incomeApiSlice';
 import { Delete } from '@mui/icons-material';
 import EditForm from './EditForm';
-import { text } from '@fortawesome/fontawesome-svg-core';
 
 function Row({ item, actionType }) {
   const [open, setOpen] = useState(false);
-  const { title, category, amount, date, description } = item;
+  const { title, category, amount, date } = item;
   //! ------{ use RTK Query to Delete Item from the list }
   const [deleteExpense] = useDeleteExpenseMutation();
   const [deleteIncome] = useDeleteIncomeMutation();
@@ -42,13 +40,10 @@ function Row({ item, actionType }) {
   };
 
   return (
-    //? Display each item in row
     <>
-      <TableRow
-        sx={{ '& > *': { borderBottom: 'unset' } }}
-        style={{ backgroundColor: 'LightGray' }}
-      >
-        <TableCell>
+      {/* //? Display each item in row */}
+      <TableRow style={{ backgroundColor: 'LightGrey' }}>
+        <TableCell style={{ padding: '0' }}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -63,24 +58,20 @@ function Row({ item, actionType }) {
         <TableCell>{numberFormat(amount)}</TableCell>
         <TableCell>{category}</TableCell>
       </TableRow>
+      {/* //? when open the item  */}
       <TableRow>
-        {/* //? when open the item  */}
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ padding: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Details
-              </Typography>
+            <Box>
               {/*//@ Table Head Details */}
               <Table size="small">
                 <TableHead>
                   {/*//@ Row details */}
                   <TableRow>
                     <TableCell>Title</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Category</TableCell>
-                    <TableCell align="right">Description</TableCell>
-                    <TableCell align="right">Date</TableCell>
+                    <TableCell align="center">Amount</TableCell>
+                    <TableCell align="center">Category</TableCell>
+                    <TableCell align="center">Date</TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -89,26 +80,30 @@ function Row({ item, actionType }) {
                     <TableCell component="th" scope="row">
                       {title}
                     </TableCell>
-                    <TableCell align="right">{numberFormat(amount)}</TableCell>
-                    <TableCell align="right">{category}</TableCell>
-                    <TableCell align="right" Box={text}>
-                      {description}
-                    </TableCell>
-                    <TableCell align="right">{date}</TableCell>
+                    <TableCell align="center">{numberFormat(amount)}</TableCell>
+                    <TableCell align="center">{category}</TableCell>
+                    <TableCell align="center">{date}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
               {/*//@ Table  Actions */}
               <Table size="small">
                 <TableRow>
-                  <TableCell align="right">Edit</TableCell>
+                  <TableCell style={{ fontWeight: 700, textAlign: 'right' }}>
+                    Edit
+                  </TableCell>
                   <TableCell align="right">
                     <EditForm item={item} actionType={actionType} />
                   </TableCell>
-                  <TableCell align="right">Delete</TableCell>
+                  <TableCell style={{ fontWeight: 700, textAlign: 'right' }}>
+                    Delete
+                  </TableCell>
                   <TableCell align="right">
                     <button
-                      style={{ backgroundColor: 'red' }}
+                      style={{
+                        backgroundColor: 'red',
+                        borderRadius: '5px',
+                      }}
                       className="btn_Upd_dlt"
                       onClick={() => handleDelete(item._id)}
                     >
@@ -127,7 +122,10 @@ function Row({ item, actionType }) {
 
 export default function TableView({ list, actionType }) {
   return (
-    <TableContainer component={Paper} style={{ maxHeight: '330px' }}>
+    <TableContainer
+      component={Paper}
+      style={{ maxHeight: '330px', maxWidth: '600px' }}
+    >
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow style={{ backgroundColor: 'DarkGrey' }}>
@@ -137,7 +135,9 @@ export default function TableView({ list, actionType }) {
             <TableCell>Category</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody style={{ scrollBehavior: 'auto', height: '200' }}>
+        <TableBody
+          style={{ scrollBehavior: 'auto', height: '200', width: '100px' }}
+        >
           {list.map((item) => (
             <Row key={item._id} item={item} actionType={actionType} />
           ))}

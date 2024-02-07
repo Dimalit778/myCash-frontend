@@ -60,5 +60,11 @@
   cursor: pointer;
 }
 /* ------------ UPDATE -- IMAGE --  STYLES ---------- */
-.deletePhoto {
+.deletePhotoBth {
+  border: 3px solid red;
+  font-weight: 600;
+  &:hover {
+    background-color: red;
+    color: aliceblue;
+  }
 }

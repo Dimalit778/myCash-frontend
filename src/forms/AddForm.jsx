@@ -5,8 +5,9 @@ import { toast } from 'react-hot-toast';
 import { useAddIncomeMutation } from '../Api/SlicesApi/incomeApiSlice';
 import { useSelector } from 'react-redux';
 import { useAddExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
-import { categories } from '../Hooks/categoryList';
-import { incomeCateList } from 'Hooks/incomeCateList';
+import { expCategories } from '../Hooks/categoryList.js';
+import { incCategories } from 'Hooks/incomeCateList.js';
+import './model.css';
 
 const AddForm = ({ actionType, date }) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -146,14 +147,14 @@ const AddForm = ({ actionType, date }) => {
                 }
               >
                 {actionType === 'expense'
-                  ? categories.map((category) => {
+                  ? expCategories.map((category) => {
                       return (
                         <option key={category.value} value={category.value}>
                           {category.label}
                         </option>
                       );
                     })
-                  : incomeCateList.map((category) => {
+                  : incCategories.map((category) => {
                       return (
                         <option key={category.value} value={category.value}>
                           {category.label}

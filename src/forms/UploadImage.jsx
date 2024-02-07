@@ -171,8 +171,13 @@ const UploadImage = () => {
         </button>
       </div>
       {userInfo?.imageUrl && (
-        <div className="deletePhoto mt-3">
-          <button onClick={(e) => handleDeleteImage(e)}>Delete Photo</button>
+        <div className="mt-3">
+          <button
+            className="deletePhotoBth"
+            onClick={(e) => handleDeleteImage(e)}
+          >
+            Delete Photo
+          </button>
         </div>
       )}
     </form>

@@ -16,7 +16,6 @@ import {
 } from '@mui/material';
 
 import incomeIcon from 'assets/manuIcons/incomeIcom.png';
-import accountIcon from 'assets/manuIcons/accountIcon.png';
 import dashIcon2 from 'assets/manuIcons/dashIcon2.png';
 import expenseIcon from 'assets/manuIcons/expenseIcon.png';
 import settingIcon from 'assets/manuIcons/settingIcon.png';

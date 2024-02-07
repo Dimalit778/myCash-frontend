@@ -6,7 +6,8 @@ import { toast } from 'react-hot-toast';
 
 import { useUpdateIncomeMutation } from '../Api/SlicesApi/incomeApiSlice';
 import { useUpdateExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
-import { categories } from '../Hooks/categoryList';
+import { expCategories } from '../Hooks/categoryList.js';
+import { incCategories } from '../Hooks/incomeCateList.js';
 
 const EditForm = ({ item, actionType }) => {
   const [updateIncome] = useUpdateIncomeMutation();
@@ -58,7 +59,7 @@ const EditForm = ({ item, actionType }) => {
   return (
     <>
       <button
-        style={{ backgroundColor: 'green' }}
+        style={{ backgroundColor: 'green', borderRadius: '5px' }}
         className="btn_Upd_dlt"
         onClick={handleShow}
       >
@@ -132,13 +133,21 @@ const EditForm = ({ item, actionType }) => {
                   setNewAction({ ...newAction, category: e.target.value })
                 }
               >
-                {categories.map((category) => {
-                  return (
-                    <option key={category.value} value={category.value}>
-                      {category.label}
-                    </option>
-                  );
-                })}
+                {actionType === 'expense'
+                  ? expCategories.map((category) => {
+                      return (
+                        <option key={category.value} value={category.value}>
+                          {category.label}
+                        </option>
+                      );
+                    })
+                  : incCategories.map((category) => {
+                      return (
+                        <option key={category.value} value={category.value}>
+                          {category.label}
+                        </option>
+                      );
+                    })}
               </select>
             </div>
             {/*//@ ---->  DESCRIPTION <---- */}
@@ -150,7 +159,6 @@ const EditForm = ({ item, actionType }) => {
                 }
                 value={newAction.description}
                 type="text"
-                required={true}
                 className=" form-control  "
               />
             </div>
@@ -167,4 +175,3 @@ const EditForm = ({ item, actionType }) => {
 };
 
 export default EditForm;
-// 659c235c5079d06ab97aa01e

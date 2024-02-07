@@ -41,9 +41,9 @@ const ContactUs = () => {
     );
   };
   return (
-    <div className="container">
-      <h1 className="header text-center m-5">Contact Us</h1>
-      <div className="row pb-5 g-5 ">
+    <div style={{ backgroundColor: 'rgb(252, 242, 229)' }}>
+      <h1 className="header text-center p-4 ">Contact Us</h1>
+      <div className="row p-5 g-5 ">
         {/* Left Div - Text */}
         {/* d-flex flex-column justify-content-between      */}
         <div className=" col-md-6 ">

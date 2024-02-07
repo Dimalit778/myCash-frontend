@@ -14,7 +14,6 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-
     //? ---> Login User
     login: builder.mutation({
       query: (data) => ({
@@ -96,6 +95,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    //? -- ADMIN -> GET ALL USERS
+    allUsers: builder.query({
+      query: (id) => `${USER_URL}/getAll/${id}`,
+    }),
   }),
 });
 
@@ -111,4 +114,5 @@ export const {
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useVerifyLinkMutation,
+  useAllUsersQuery,
 } = userApiSlice;

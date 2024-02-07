@@ -91,7 +91,7 @@ const LineChart = ({ allExpenses, allIncomes }) => {
       style={{
         position: 'relative',
         margin: 'auto',
-        width: '80vw',
+        width: 'auto',
         height: '60vh',
       }}
     >

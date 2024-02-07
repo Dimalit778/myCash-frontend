@@ -12,6 +12,7 @@ import { Menu } from '@mui/icons-material';
 import { useState } from 'react';
 import NavSideList from './NavSideList';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -37,6 +38,8 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 export default function NavbarApp() {
+  const { userInfo } = useSelector((state) => state.auth);
+
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -52,7 +55,7 @@ export default function NavbarApp() {
       <AppBar position="fixed" open={open}>
         <Toolbar>
           {/* IF USER EXIST */}
-
+          {/* COLLAPSE ICON */}
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -66,6 +69,7 @@ export default function NavbarApp() {
           >
             <Menu />
           </IconButton>
+          {/* MY CASH LOGO */}
           <Tooltip title="Go back to home page">
             <IconButton sx={{ mr: 1 }} onClick={() => navigate('/')}>
               <img
@@ -76,6 +80,7 @@ export default function NavbarApp() {
               />
             </IconButton>
           </Tooltip>
+          {/* MY CASH TITLE */}
           <Typography
             variant="h6"
             noWrap
@@ -84,6 +89,11 @@ export default function NavbarApp() {
           >
             MyCash
           </Typography>
+          {userInfo?.isAdmin && (
+            <button className="adminButton" onClick={() => navigate('admin')}>
+              <span>Admin</span>
+            </button>
+          )}
         </Toolbar>
       </AppBar>
       {/* --- NavSideList Display Nav side and components ----*/}

@@ -29,6 +29,7 @@ import EmailVerify from 'ViewScreen/EmailVerify';
 //@ ---> Forgot && Reset - Password -->
 import ForgotPassword from 'ViewScreen/ForgotPassword';
 import ResetPassword from 'ViewScreen/ResetPassword';
+import Admin from 'ViewScreen/AdminDashboard/Admin';
 
 // axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:5000';
@@ -75,6 +76,8 @@ const router = createBrowserRouter(
         {/* Dashboard Routes */}
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="" element={<Main />} />
+          {/* --- Private Admin Route ---- */}
+          <Route path="admin" element={<Admin />} />
           <Route path="settings" element={<Settings />} />
           <Route path="expenses" element={<Expenses />} />
           <Route path="incomes" element={<Incomes />} />

@@ -11,7 +11,7 @@ import SignIn from 'ViewScreen/HomePages/SignIn/SignIn';
 import Home from 'ViewScreen/HomePages/Home/Home';
 import About from 'ViewScreen/HomePages/About/About';
 //@ ---> NavBar && Footer -->
-import NavbarComp from 'components/Navbar/NavbarComp';
+import NavbarComp from 'components/navbar/NavbarComp';
 import Main from 'ViewScreen/UserDashboard/Main/Main';
 
 import Footer from 'components/Footer/footer';

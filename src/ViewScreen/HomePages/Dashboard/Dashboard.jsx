@@ -1,4 +1,4 @@
-import NavbarApp from '../../../components/Navbar/NavbarApp';
+import NavbarApp from '../../../components/navbar/NavbarApp';
 import { Toaster } from 'react-hot-toast';
 
 export default function Dashboard() {

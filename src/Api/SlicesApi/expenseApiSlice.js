@@ -1,5 +1,5 @@
 import { apiSlice } from './apiSlice';
-const URL = '/api/transactions';
+const URL = 'https://mycash-ra2a.onrender.com/api/transactions';
 
 export const expenseApiSlice = apiSlice.injectEndpoints({
   tagTypes: ['Expense'],

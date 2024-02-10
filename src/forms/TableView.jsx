@@ -18,7 +18,7 @@ import { useDeleteIncomeMutation } from 'Api/SlicesApi/incomeApiSlice';
 import { Delete } from '@mui/icons-material';
 import EditForm from './EditForm';
 
-function Row({ item, actionType }) {
+function Row({ item, actionType, index }) {
   const [open, setOpen] = useState(false);
   const { title, category, amount, date } = item;
   //! ------{ use RTK Query to Delete Item from the list }
@@ -49,9 +49,11 @@ function Row({ item, actionType }) {
             size="small"
             onClick={() => setOpen(!open)}
           >
+            {index}
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
+
         <TableCell component="th" scope="row">
           {title}
         </TableCell>
@@ -138,8 +140,13 @@ export default function TableView({ list, actionType }) {
         <TableBody
           style={{ scrollBehavior: 'auto', height: '200', width: '100px' }}
         >
-          {list.map((item) => (
-            <Row key={item._id} item={item} actionType={actionType} />
+          {list.map((item, index) => (
+            <Row
+              key={item._id}
+              item={item}
+              index={index + 1}
+              actionType={actionType}
+            />
           ))}
         </TableBody>
       </Table>

@@ -23,8 +23,9 @@ const Incomes = () => {
   if (error) return <div>error..!!</div>;
   return (
     <>
-      <div className="row d-flex text-center   ">
-        <div className="col col-md-6 p-5   ">
+      <div className="row d-flex    ">
+        {/*//@ left div */}
+        <div className="col col-md-6 text-center p-3 ">
           <h2>Monthly Incomes </h2>
           {isLoading ? (
             'Loading'
@@ -32,10 +33,10 @@ const Incomes = () => {
             <PieActiveArc list={allIncomes} date={date} />
           )}
         </div>
-
-        <div className="col col-md-6  ">
+        {/*//@ right div */}
+        <div className="col col-md-6  text-center  ">
           <CalendarYearMonth onChange={onChange} date={date} />
-          <div className="cakeChart d-flex justify-content-center mt-5 ">
+          <div className="d-flex justify-content-center mt-4">
             <IncomesTable date={date} />
           </div>
         </div>

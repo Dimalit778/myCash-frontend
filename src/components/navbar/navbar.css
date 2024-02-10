@@ -29,7 +29,7 @@
   font-size: large;
   border-radius: 10px;
   background-color: rgb(163, 170, 151);
-  width: 6rem;
+  width: auto;
 }
 .dropdown-toggle::after {
   margin-left: 2rem;

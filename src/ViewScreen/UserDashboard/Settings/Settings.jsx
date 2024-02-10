@@ -2,13 +2,36 @@ import React from 'react';
 import './settings.css';
 
 import { UpdateUser } from 'forms/UpdateUser';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import UploadImage from 'forms/UploadImage';
-
+import { logout } from 'Api/SlicesApi/authSlice';
 import { Col, Container, Row } from 'react-bootstrap';
+import {
+  useDeleteUserMutation,
+  useLogoutMutation,
+} from 'Api/SlicesApi/userApiSlice';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
   const { userInfo } = useSelector((state) => state.auth);
+
+  const [deleteUser] = useDeleteUserMutation();
+  const [logoutApiCall] = useLogoutMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteUser(id);
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+      if (res) return toast.success('User data deleted successfully');
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   return (
     <Container fluid className="settings">
@@ -28,6 +51,11 @@ const Settings = () => {
           <UpdateUser />
         </Col>
       </Row>
+      <div className=" text-center p-3">
+        <button onClick={() => handleDelete(userInfo._id)}>
+          Delete Your User
+        </button>
+      </div>
     </Container>
   );
 };

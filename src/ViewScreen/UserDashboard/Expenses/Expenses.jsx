@@ -36,7 +36,6 @@ const Expenses = () => {
           ) : (
             <PieActiveArc list={allExpenses} date={date} />
           )}
-          {/* <PayPalButtons /> */}
         </div>
         {/*//@ right div */}
         <div className="col col-md-6  text-center  ">
@@ -46,7 +45,6 @@ const Expenses = () => {
           </div>
         </div>
       </div>
-      {/* <ProgressBars props={{ bgcolor: 'red', completed: 60 }} /> */}
     </>
   );
 };

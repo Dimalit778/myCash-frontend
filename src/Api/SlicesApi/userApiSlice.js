@@ -13,6 +13,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      providesTags: ['User'],
     }),
     //? ---> Login User
     login: builder.mutation({
@@ -21,6 +22,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      providesTags: ['User'],
     }),
     //? ---> Register User
     register: builder.mutation({
@@ -29,6 +31,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      providesTags: ['User'],
     }),
     //? --->   Verify Email
     verifyEmail: builder.mutation({
@@ -95,9 +98,18 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    //? -- ADMIN -> GET ALL USERS
+    //?~~~~~~~~~~ -- ADMIN -> GET ALL USERS
     allUsers: builder.query({
       query: (id) => `${USER_URL}/getAll/${id}`,
+      providesTags: ['User'],
+    }),
+    //?~~~~~~~~~~ -- DELETE USER
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `${USER_URL}/deleteUser/${id}`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['User'],
     }),
   }),
 });
@@ -115,4 +127,5 @@ export const {
   useResetPasswordMutation,
   useVerifyLinkMutation,
   useAllUsersQuery,
+  useDeleteUserMutation,
 } = userApiSlice;

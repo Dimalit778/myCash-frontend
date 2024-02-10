@@ -6,30 +6,30 @@ import { Outlet, Route, createRoutesFromElements } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 //@---> Home Pages -->
-import Register from 'ViewScreen/HomePages/Register/Register';
-import SignIn from 'ViewScreen/HomePages/SignIn/SignIn';
-import Home from 'ViewScreen/HomePages/Home/Home';
-import About from 'ViewScreen/HomePages/About/About';
+import Register from 'viewScreen/homePages/register/Register';
+import SignIn from 'viewScreen/homePages/signIn/SignIn';
+import Home from 'viewScreen/homePages/home/Home';
+import About from 'viewScreen/homePages/about/About';
 //@ ---> NavBar && Footer -->
 import NavbarComp from 'components/navbar/NavbarComp';
-import Main from 'ViewScreen/UserDashboard/Main/Main';
+import Main from 'viewScreen/userDashboard/main/Main';
 
 import Footer from 'components/footer/footer';
 //@ ---> UserDashboard -->
-import Expenses from 'ViewScreen/UserDashboard/Expenses/Expenses';
-import Dashboard from 'ViewScreen/HomePages/Dashboard/Dashboard';
-import Incomes from 'ViewScreen/UserDashboard/Incomes/Incomes';
-import Settings from 'ViewScreen/UserDashboard/Settings/Settings';
-import ContactUs from 'ViewScreen/UserDashboard/Contact/ContactUs';
+import Expenses from 'viewScreen/userDashboard/expenses/Expenses';
+import Dashboard from 'viewScreen/homePages/dashboard/Dashboard';
+import Incomes from 'viewScreen/userDashboard/incomes/Incomes';
+import Settings from 'viewScreen/userDashboard/settings/Settings';
+import ContactUs from 'viewScreen/userDashboard/contact/ContactUs';
 //@ ---> Not Found && Private Route -->
-import NotFound from 'ViewScreen/NotFound';
+import NotFound from 'viewScreen/NotFound';
 import PrivateRoute from 'components/PrivateRoute';
 //@ ---> Verify Email -->
-import EmailVerify from 'ViewScreen/EmailVerify';
+import EmailVerify from 'viewScreen/EmailVerify';
 //@ ---> Forgot && Reset - Password -->
-import ForgotPassword from 'ViewScreen/ForgotPassword';
-import ResetPassword from 'ViewScreen/ResetPassword';
-import Admin from 'ViewScreen/adminDashboard/Admin';
+import ForgotPassword from 'viewScreen/ForgotPassword';
+import ResetPassword from 'viewScreen/ResetPassword';
+import Admin from 'viewScreen/adminDashboard/Admin';
 
 // axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:5000';

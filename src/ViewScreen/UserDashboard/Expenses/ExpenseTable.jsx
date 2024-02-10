@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetAllExpensesQuery } from 'Api/slicesApi/expenseApiSlice';
+import { useGetAllExpensesQuery } from 'api/slicesApi/expenseApiSlice';
 
 import AddForm from '../../../forms/AddForm';
 import { filterByMonthAndYear } from 'hooks/filterByMonthYear';

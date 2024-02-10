@@ -4,7 +4,7 @@ import ExpenseTable from './ExpenseTable';
 import CalendarYearMonth from 'components/calender/CalendarYearMonth';
 import PieActiveArc from 'components/charts/PieActiveArc';
 import { useSelector } from 'react-redux';
-import { useGetAllExpensesQuery } from 'Api/slicesApi/expenseApiSlice';
+import { useGetAllExpensesQuery } from 'api/slicesApi/expenseApiSlice';
 
 const Expenses = () => {
   // --------> Calender get Date

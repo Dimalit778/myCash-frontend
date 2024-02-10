@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
 
-import { useUpdateIncomeMutation } from '../Api/slicesApi/incomeApiSlice';
-import { useUpdateExpenseMutation } from '../Api/slicesApi/expenseApiSlice';
+import { useUpdateIncomeMutation } from '../api/slicesApi/incomeApiSlice';
+import { useUpdateExpenseMutation } from '../api/slicesApi/expenseApiSlice';
 import { expCategories } from '../hooks/categoryList.js';
 import { incCategories } from '../hooks/incomeCateList.js';
 

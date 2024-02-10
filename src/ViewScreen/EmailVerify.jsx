@@ -3,10 +3,10 @@ import successImg from '../assets/success.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useVerifyEmailMutation } from 'Api/slicesApi/userApiSlice.js';
+import { useVerifyEmailMutation } from 'api/slicesApi/userApiSlice.js';
 
 import { Alert } from 'react-bootstrap';
-import { setCredentials } from 'Api/slicesApi/authSlice';
+import { setCredentials } from 'api/slicesApi/authSlice';
 
 const EmailVerify = () => {
   const { userInfo } = useSelector((state) => state.auth);

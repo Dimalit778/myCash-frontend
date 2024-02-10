@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetAllIncomesQuery } from 'Api/slicesApi/incomeApiSlice';
+import { useGetAllIncomesQuery } from 'api/slicesApi/incomeApiSlice';
 import AddForm from 'forms/AddForm';
 import { filterByMonthAndYear } from 'hooks/filterByMonthYear';
 import { calculateTotal } from 'hooks/calculateTotal';

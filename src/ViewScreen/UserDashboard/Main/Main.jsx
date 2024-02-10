@@ -4,8 +4,8 @@ import './mainPage.css';
 
 import BalanceStats from 'components/stats/BalanceStats';
 import { useSelector } from 'react-redux';
-import { useGetAllExpensesQuery } from 'Api/slicesApi/expenseApiSlice';
-import { useGetAllIncomesQuery } from 'Api/slicesApi/incomeApiSlice';
+import { useGetAllExpensesQuery } from 'api/slicesApi/expenseApiSlice';
+import { useGetAllIncomesQuery } from 'api/slicesApi/incomeApiSlice';
 import Loader from 'components/Loader';
 import { calculateTotal } from 'hooks/calculateTotal';
 import { totalBalance } from 'hooks/totalBalance';

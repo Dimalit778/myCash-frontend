@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import IncomesTable from './IncomesTable';
 import CalendarYearMonth from '../../../components/calender/CalendarYearMonth';
 import { useSelector } from 'react-redux';
-import { useGetAllIncomesQuery } from 'Api/slicesApi/incomeApiSlice';
+import { useGetAllIncomesQuery } from 'api/slicesApi/incomeApiSlice';
 import PieActiveArc from 'components/charts/PieActiveArc';
 
 const Incomes = () => {

@@ -10,7 +10,7 @@ import {
 import {
   useAllUsersQuery,
   useDeleteUserMutation,
-} from 'Api/slicesApi/userApiSlice.js';
+} from 'api/slicesApi/userApiSlice.js';
 import { Image, Transformation } from 'cloudinary-react';
 import Loader from 'components/Loader';
 import React, { useEffect } from 'react';

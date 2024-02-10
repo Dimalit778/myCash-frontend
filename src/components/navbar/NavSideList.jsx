@@ -27,8 +27,8 @@ import { useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLogoutMutation } from 'Api/slicesApi/userApiSlice';
-import { logout } from 'Api/slicesApi/authSlice';
+import { useLogoutMutation } from 'api/slicesApi/userApiSlice';
+import { logout } from 'api/slicesApi/authSlice';
 import { Image, Transformation } from 'cloudinary-react';
 
 const drawerWidth = 240;

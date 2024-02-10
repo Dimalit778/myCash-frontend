@@ -25,10 +25,10 @@ import logoutIcon from 'assets/manuIcons/logoutIcon.png';
 import MuiDrawer from '@mui/material/Drawer';
 import { useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Footer from '../Footer/footer';
+import Footer from '../footer/footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLogoutMutation } from 'Api/SlicesApi/userApiSlice';
-import { logout } from 'Api/SlicesApi/authSlice';
+import { useLogoutMutation } from 'Api/slicesApi/userApiSlice';
+import { logout } from 'Api/slicesApi/authSlice';
 import { Image, Transformation } from 'cloudinary-react';
 
 const drawerWidth = 240;

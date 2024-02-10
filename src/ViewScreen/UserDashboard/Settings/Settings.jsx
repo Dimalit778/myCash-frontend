@@ -4,12 +4,12 @@ import './settings.css';
 import { UpdateUser } from 'forms/UpdateUser';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadImage from 'forms/UploadImage';
-import { logout } from 'Api/SlicesApi/authSlice';
+import { logout } from 'Api/slicesApi/authSlice';
 import { Col, Container, Row } from 'react-bootstrap';
 import {
   useDeleteUserMutation,
   useLogoutMutation,
-} from 'Api/SlicesApi/userApiSlice';
+} from 'Api/slicesApi/userApiSlice';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 

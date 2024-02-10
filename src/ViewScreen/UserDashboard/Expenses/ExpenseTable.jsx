@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
+import { useGetAllExpensesQuery } from 'Api/slicesApi/expenseApiSlice';
 
 import AddForm from '../../../forms/AddForm';
-import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
-import { calculateTotal } from 'Hooks/calculateTotal';
+import { filterByMonthAndYear } from 'hooks/filterByMonthYear';
+import { calculateTotal } from 'hooks/calculateTotal';
 import Loader from 'components/Loader';
 import TableView from 'forms/TableView';
-import { numberFormat } from 'Hooks/numberFormat';
+import { numberFormat } from 'hooks/numberFormat';
 
 const ExpenseList = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);

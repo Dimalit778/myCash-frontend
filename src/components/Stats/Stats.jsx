@@ -1,6 +1,6 @@
 import React from 'react';
-import incomeIcon from 'assets/BalanceIcons/incomes.png';
-import expenseIcon from 'assets/BalanceIcons/expenses.png';
+import incomeIcon from 'assets/balanceIcons/incomes.png';
+import expenseIcon from 'assets/balanceIcons/expenses.png';
 import './stats.css';
 
 export const Stats = ({ type, expenses, incomes }) => {

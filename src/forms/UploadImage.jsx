@@ -1,10 +1,10 @@
-import { setCredentials } from 'Api/SlicesApi/authSlice';
+import { setCredentials } from 'Api/slicesApi/authSlice';
 import { Image, Transformation } from 'cloudinary-react';
 import {
   useDeleteImageMutation,
   useUpdateUserMutation,
   useUploadImageMutation,
-} from 'Api/SlicesApi/userApiSlice';
+} from 'Api/slicesApi/userApiSlice';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';

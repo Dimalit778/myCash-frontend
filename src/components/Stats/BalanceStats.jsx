@@ -1,10 +1,10 @@
 import React from 'react';
 import './stats.css';
 
-import ArrowUpIcon from '../../assets/BalanceIcons/arrowUpIcon.png';
-import ArrowDownIcon from '../../assets/BalanceIcons/arrowDownIcon.png';
-import BalanceIcon from '../../assets/BalanceIcons/balance.png';
-import { numberFormat } from 'Hooks/numberFormat';
+import ArrowUpIcon from '../../assets/balanceIcons/arrowUpIcon.png';
+import ArrowDownIcon from '../../assets/balanceIcons/arrowDownIcon.png';
+import BalanceIcon from '../../assets/balanceIcons/balance.png';
+import { numberFormat } from 'hooks/numberFormat';
 
 const BalanceStats = ({ total }) => {
   return (

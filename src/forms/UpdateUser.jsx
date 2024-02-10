@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useUpdateUserMutation } from '../Api/SlicesApi/userApiSlice';
-import { setCredentials } from '../Api/SlicesApi/authSlice';
+import { useUpdateUserMutation } from '../Api/slicesApi/userApiSlice';
+import { setCredentials } from '../Api/slicesApi/authSlice';
 import { toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
 import { Form } from 'react-bootstrap';

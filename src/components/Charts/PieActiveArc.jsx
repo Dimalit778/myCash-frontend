@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { PolarArea } from 'react-chartjs-2';
-import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
+import { filterByMonthAndYear } from 'hooks/filterByMonthYear';
 
 export default function PieActiveArc({ list, date }) {
-  //?------{  Filter the list by Month and Year }
+  //?------{  npm starFilter the list by Month and Year }
   const filteredList = filterByMonthAndYear(list, date);
 
   const categoryTotals = filteredList.reduce((acc, transaction) => {

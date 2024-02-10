@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   useGoogleAuthMutation,
   useLoginMutation,
-} from 'Api/SlicesApi/userApiSlice';
-import { setCredentials } from 'Api/SlicesApi/authSlice';
+} from 'Api/slicesApi/userApiSlice';
+import { setCredentials } from 'Api/slicesApi/authSlice';
 import Loader from 'components/Loader';
 import { Form } from 'react-bootstrap';
 
-import { GoogleAuth } from 'Api/FireBase/Firebase';
+import { GoogleAuth } from 'Api/fireBase/Firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 

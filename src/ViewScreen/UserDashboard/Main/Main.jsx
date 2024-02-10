@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Stats } from 'components/Stats/Stats';
+import { Stats } from 'components/stats/Stats';
 import './mainPage.css';
 
-import BalanceStats from 'components/Stats/BalanceStats';
+import BalanceStats from 'components/stats/BalanceStats';
 import { useSelector } from 'react-redux';
-import { useGetAllExpensesQuery } from 'Api/SlicesApi/expenseApiSlice';
-import { useGetAllIncomesQuery } from 'Api/SlicesApi/incomeApiSlice';
+import { useGetAllExpensesQuery } from 'Api/slicesApi/expenseApiSlice';
+import { useGetAllIncomesQuery } from 'Api/slicesApi/incomeApiSlice';
 import Loader from 'components/Loader';
-import { calculateTotal } from 'Hooks/calculateTotal';
-import { totalBalance } from 'Hooks/totalBalance';
-import { numberFormat } from 'Hooks/numberFormat';
-import LineChart from 'components/Charts/LineChart';
-import { filterByYear } from 'Hooks/filterByYear';
+import { calculateTotal } from 'hooks/calculateTotal';
+import { totalBalance } from 'hooks/totalBalance';
+import { numberFormat } from 'hooks/numberFormat';
+import LineChart from 'components/charts/LineChart';
+import { filterByYear } from 'hooks/filterByYear';
 
 const Main = () => {
   // User info

@@ -4,10 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
 
-import { useUpdateIncomeMutation } from '../Api/SlicesApi/incomeApiSlice';
-import { useUpdateExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
-import { expCategories } from '../Hooks/categoryList.js';
-import { incCategories } from '../Hooks/incomeCateList.js';
+import { useUpdateIncomeMutation } from '../Api/slicesApi/incomeApiSlice';
+import { useUpdateExpenseMutation } from '../Api/slicesApi/expenseApiSlice';
+import { expCategories } from '../hooks/categoryList.js';
+import { incCategories } from '../hooks/incomeCateList.js';
 
 const EditForm = ({ item, actionType }) => {
   const [updateIncome] = useUpdateIncomeMutation();

@@ -12,9 +12,9 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useState } from 'react';
-import { numberFormat } from 'Hooks/numberFormat';
-import { useDeleteExpenseMutation } from 'Api/SlicesApi/expenseApiSlice';
-import { useDeleteIncomeMutation } from 'Api/SlicesApi/incomeApiSlice';
+import { numberFormat } from 'hooks/numberFormat';
+import { useDeleteExpenseMutation } from 'Api/slicesApi/expenseApiSlice';
+import { useDeleteIncomeMutation } from 'Api/slicesApi/incomeApiSlice';
 import { Delete } from '@mui/icons-material';
 import EditForm from './EditForm';
 

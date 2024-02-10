@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { groupByMonth } from 'Hooks/GroupByMonth';
+import { groupByMonth } from 'hooks/GroupByMonth';
 
 ChartJS.register(
   CategoryScale,

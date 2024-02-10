@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetAllIncomesQuery } from 'Api/SlicesApi/incomeApiSlice';
+import { useGetAllIncomesQuery } from 'Api/slicesApi/incomeApiSlice';
 import AddForm from 'forms/AddForm';
-import { filterByMonthAndYear } from 'Hooks/filterByMonthYear';
-import { calculateTotal } from 'Hooks/calculateTotal';
+import { filterByMonthAndYear } from 'hooks/filterByMonthYear';
+import { calculateTotal } from 'hooks/calculateTotal';
 import TableView from 'forms/TableView';
-import { numberFormat } from 'Hooks/numberFormat';
+import { numberFormat } from 'hooks/numberFormat';
 
 const IncomesTable = ({ date }) => {
   const { userInfo } = useSelector((state) => state.auth);

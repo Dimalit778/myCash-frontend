@@ -14,7 +14,7 @@ import About from 'ViewScreen/HomePages/About/About';
 import NavbarComp from 'components/navbar/NavbarComp';
 import Main from 'ViewScreen/UserDashboard/Main/Main';
 
-import Footer from 'components/Footer/footer';
+import Footer from 'components/footer/footer';
 //@ ---> UserDashboard -->
 import Expenses from 'ViewScreen/UserDashboard/Expenses/Expenses';
 import Dashboard from 'ViewScreen/HomePages/Dashboard/Dashboard';
@@ -29,7 +29,7 @@ import EmailVerify from 'ViewScreen/EmailVerify';
 //@ ---> Forgot && Reset - Password -->
 import ForgotPassword from 'ViewScreen/ForgotPassword';
 import ResetPassword from 'ViewScreen/ResetPassword';
-import Admin from 'ViewScreen/AdminDashboard/Admin';
+import Admin from 'ViewScreen/adminDashboard/Admin';
 
 // axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:5000';

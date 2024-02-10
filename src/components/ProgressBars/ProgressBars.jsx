@@ -1,4 +1,4 @@
-import { calculateTotal } from 'Hooks/calculateTotal';
+import { calculateTotal } from 'hooks/calculateTotal';
 import React from 'react';
 
 const ProgressBars = ({ list }) => {

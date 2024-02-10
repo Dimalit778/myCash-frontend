@@ -1,4 +1,4 @@
-import { useForgotPasswordMutation } from 'Api/SlicesApi/userApiSlice';
+import { useForgotPasswordMutation } from 'Api/slicesApi/userApiSlice';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';

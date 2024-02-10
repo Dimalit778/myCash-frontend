@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   useResetPasswordMutation,
   useVerifyLinkMutation,
-} from 'Api/SlicesApi/userApiSlice';
+} from 'Api/slicesApi/userApiSlice';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';

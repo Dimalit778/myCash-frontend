@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import IncomesTable from './IncomesTable';
-import CalendarYearMonth from '../../../components/Calender/CalendarYearMonth';
+import CalendarYearMonth from '../../../components/calender/CalendarYearMonth';
 import { useSelector } from 'react-redux';
-import { useGetAllIncomesQuery } from 'Api/SlicesApi/incomeApiSlice';
-import PieActiveArc from 'components/Charts/PieActiveArc';
+import { useGetAllIncomesQuery } from 'Api/slicesApi/incomeApiSlice';
+import PieActiveArc from 'components/charts/PieActiveArc';
 
 const Incomes = () => {
   const [date, setDate] = useState(new Date());

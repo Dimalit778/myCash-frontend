@@ -4,8 +4,8 @@ import './register.css';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../../components/Loader';
-import { useRegisterMutation } from '../../../Api/SlicesApi/userApiSlice';
-import { setCredentials } from '../../../Api/SlicesApi/authSlice';
+import { useRegisterMutation } from '../../../Api/slicesApi/userApiSlice';
+import { setCredentials } from '../../../Api/slicesApi/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
 

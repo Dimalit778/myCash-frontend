@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
-import { useAddIncomeMutation } from '../Api/SlicesApi/incomeApiSlice';
+import { useAddIncomeMutation } from '../Api/slicesApi/incomeApiSlice';
 import { useSelector } from 'react-redux';
-import { useAddExpenseMutation } from '../Api/SlicesApi/expenseApiSlice';
-import { expCategories } from '../Hooks/categoryList.js';
-import { incCategories } from 'Hooks/incomeCateList.js';
+import { useAddExpenseMutation } from '../Api/slicesApi/expenseApiSlice';
+import { expCategories } from '../hooks/categoryList.js';
+import { incCategories } from 'hooks/incomeCateList.js';
 import './model.css';
 
 const AddForm = ({ actionType, date }) => {

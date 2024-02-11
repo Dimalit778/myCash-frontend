@@ -1,7 +1,7 @@
 import { apiSlice } from './apiSlice';
 
-const USER_URL = 'https://mycash-ra2a.onrender.com/api/users';
-const AUTH_URL = 'https://mycash-ra2a.onrender.com/api/auth';
+const USER_URL = '/api/users';
+const AUTH_URL = '/api/auth';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   // ---------->   { AUTH URL ROUTES  }

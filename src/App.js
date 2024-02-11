@@ -30,6 +30,7 @@ import EmailVerify from 'viewScreen/EmailVerify';
 import ForgotPassword from 'viewScreen/ForgotPassword';
 import ResetPassword from 'viewScreen/ResetPassword';
 import Admin from 'viewScreen/adminDashboard/Admin';
+import { Helmet } from 'react-helmet';
 
 // axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:5000';
@@ -39,6 +40,9 @@ const HomeRoot = () => {
   return (
     <>
       <div className="homeRoot">
+        <Helmet>
+          <title>MyCash</title>
+        </Helmet>
         <Toaster
           position="top-right"
           toastOptions={{ duration: 3000, style: { marginTop: '5rem' } }}

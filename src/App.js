@@ -31,8 +31,9 @@ import ForgotPassword from 'viewScreen/ForgotPassword';
 import ResetPassword from 'viewScreen/ResetPassword';
 import Admin from 'viewScreen/adminDashboard/Admin';
 import { Helmet } from 'react-helmet';
+import { axios } from 'axios';
 
-// axios.defaults.baseURL = 'https://mycash-ra2a.onrender.com/';
+axios.defaults.baseURL = 'https://mycash-ra2a-yxco.onrender.com';
 // axios.defaults.baseURL = 'http://localhost:5000';
 // axios.defaults.withCredentials = true;
 

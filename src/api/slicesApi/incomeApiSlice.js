@@ -1,6 +1,6 @@
 import { apiSlice } from './apiSlice';
 
-const URL = 'https://mycash-ra2a-yxco.onrender.com/api/transactions';
+const URL = '/api/transactions';
 
 export const incomeApiSlice = apiSlice.injectEndpoints({
   tagTypes: ['Income'],

@@ -7,7 +7,7 @@ export const menuItems = [
   },
   {
     id: 2,
-    title: 'Epxenses',
+    title: 'Expenses',
     icon: '',
     link: 'expenses',
   },

@@ -23,7 +23,6 @@ const EditForm = ({ item, actionType }) => {
       title: item.title,
       amount: item.amount,
       category: item.category,
-      description: item.description,
       date: item.date,
     });
     setShow(true);
@@ -34,7 +33,6 @@ const EditForm = ({ item, actionType }) => {
     title: '',
     amount: '',
     category: '',
-    description: '',
     date: '',
   });
 
@@ -150,18 +148,7 @@ const EditForm = ({ item, actionType }) => {
                     })}
               </select>
             </div>
-            {/*//@ ---->  DESCRIPTION <---- */}
-            <div className="form-group ">
-              <label className="label ms-1">Description</label>
-              <input
-                onChange={(e) =>
-                  setNewAction({ ...newAction, description: e.target.value })
-                }
-                value={newAction.description}
-                type="text"
-                className=" form-control  "
-              />
-            </div>
+
             <div className="btnSumbit d-flex justify-content-end mt-5 ">
               <Button type="submit" variant="primary">
                 Save

@@ -28,7 +28,6 @@ const AddForm = ({ actionType, date }) => {
     title: '',
     amount: '',
     category: '',
-    description: '',
     date: '',
   };
 
@@ -163,17 +162,7 @@ const AddForm = ({ actionType, date }) => {
                     })}
               </select>
             </div>
-            {/*//@ ---->  DESCRIPTION <---- */}
-            <div className="form-group pb-2">
-              <label className="label ms-1">Description</label>
-              <input
-                onChange={(e) =>
-                  setNewAction({ ...newAction, description: e.target.value })
-                }
-                type="text"
-                className=" form-control  "
-              />
-            </div>
+
             <div className="btnSumbit d-flex justify-content-end mt-5 ">
               <Button type="submit" variant="primary">
                 Add new

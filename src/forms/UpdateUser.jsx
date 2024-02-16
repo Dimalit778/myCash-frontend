@@ -9,7 +9,7 @@ import { Form } from 'react-bootstrap';
 export const UpdateUser = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState();
   const [password, setPassword] = useState();
 
   const dispatch = useDispatch();

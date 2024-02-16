@@ -29,6 +29,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     register: builder.mutation({
       query: (data) => ({
         url: `${AUTH_URL}/register`,
+        credentials: 'include',
         method: 'POST',
         body: data,
       }),
@@ -79,6 +80,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     updateUser: builder.mutation({
       query: ({ _id, ...rest }) => ({
         url: `${USER_URL}/updateUser/${_id}`,
+        credentials: 'include',
         method: 'PATCH',
         body: rest,
       }),
@@ -87,6 +89,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     uploadImage: builder.mutation({
       query: (data) => ({
         url: `${USER_URL}/uploadImage`,
+        credentials: 'include',
         method: 'POST',
         body: data,
       }),
@@ -95,6 +98,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     deleteImage: builder.mutation({
       query: (data) => ({
         url: `${USER_URL}/deleteImage`,
+        credentials: 'include',
         method: 'POST',
         body: data,
       }),

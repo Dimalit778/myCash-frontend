@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Row = ({ item, index }) => {
   const { createdAt, email, name, imageUrl, isVerified } = item;
-  const createDate = createdAt.slice(0, 9);
+  const createDate = createdAt.slice(0, 10);
   const [deleteUser] = useDeleteUserMutation();
 
   const handleDelete = async (id) => {

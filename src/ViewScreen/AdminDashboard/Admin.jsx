@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Row = ({ item, index }) => {
   const { createdAt, email, name, imageUrl, isVerified } = item;
-
+  const createDate = createdAt.slice(0, 9);
   const [deleteUser] = useDeleteUserMutation();
 
   const handleDelete = async (id) => {
@@ -63,7 +63,7 @@ const Row = ({ item, index }) => {
           {isVerified ? 'Verified' : 'Unverified'}
         </TableCell>
         <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>
-          {createdAt}
+          {createDate}
         </TableCell>
         <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>
           <button className="bg-danger" onClick={() => handleDelete(item._id)}>

@@ -120,7 +120,7 @@ const Admin = () => {
               style={{ scrollBehavior: 'auto', height: '200', width: '100px' }}
             >
               {allUsers?.map((item, index) => (
-                <Row key={item._id} item={item} index={index} />
+                <Row key={item._id} item={item} index={index + 1} />
               ))}
             </TableBody>
           </Table>

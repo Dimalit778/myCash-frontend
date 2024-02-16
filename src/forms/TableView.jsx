@@ -138,7 +138,7 @@ export default function TableView({ list, actionType }) {
           </TableRow>
         </TableHead>
         <TableBody
-          style={{ scrollBehavior: 'auto', height: '200', width: '100px' }}
+          style={{ scrollBehavior: 'auto', height: '200', width: '102px' }}
         >
           {list.map((item, index) => (
             <Row

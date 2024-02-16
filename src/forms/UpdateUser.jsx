@@ -21,6 +21,7 @@ export const UpdateUser = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!name || !password) return toast.error('Please enter data');
     try {
       const res = await updateProfile({
         _id: userInfo._id,

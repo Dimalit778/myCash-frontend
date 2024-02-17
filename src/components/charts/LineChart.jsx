@@ -23,12 +23,10 @@ ChartJS.register(
 const LineChart = ({ allExpenses, allIncomes }) => {
   let groupedIncomes = 0;
   let groupedExpenses = 0;
-
   if (allExpenses && allIncomes) {
     groupedIncomes = groupByMonth(allIncomes);
     groupedExpenses = groupByMonth(allExpenses);
   }
-
   const allMonths = [
     'January',
     'February',
@@ -43,12 +41,9 @@ const LineChart = ({ allExpenses, allIncomes }) => {
     'November',
     'December',
   ];
-
   const labels = allMonths;
-
   const dataIncomes = allMonths.map((month) => groupedIncomes[month] || 0);
   const dataExpenses = allMonths.map((month) => groupedExpenses[month] || 0);
-
   const data = {
     labels: labels,
     datasets: [
@@ -69,11 +64,9 @@ const LineChart = ({ allExpenses, allIncomes }) => {
       },
     ],
   };
-
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-
     plugins: {
       legend: {
         position: 'top',
@@ -85,7 +78,6 @@ const LineChart = ({ allExpenses, allIncomes }) => {
       },
     },
   };
-
   return (
     <div
       style={{

@@ -98,7 +98,6 @@ const Admin = () => {
                 <TableCell>Photo</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell>Email</TableCell>
-
                 <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>
                   Verified
                 </TableCell>
@@ -115,7 +114,6 @@ const Admin = () => {
                 </TableCell>
               </TableRow>
             </TableHead>
-
             <TableBody
               style={{ scrollBehavior: 'auto', height: '200', width: '100px' }}
             >

@@ -46,7 +46,6 @@ const Register = () => {
           {msg && (
             <div className="link">Link verification sent to your email </div>
           )}
-
           <Form
             onSubmit={submitHandler}
             className="signInForm d-grid gap-4 p-2"
@@ -60,7 +59,6 @@ const Register = () => {
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
             {/* ! ----- EMAIL FORM ------!*/}
             <Form.Group className="form-group" controlId="email">
               <Form.Label>Email Address</Form.Label>
@@ -71,7 +69,6 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
             {/* ! ----- PASSWORD FORM ------!*/}
             <Form.Group className="my-2" controlId="password">
               <Form.Label>Password</Form.Label>
@@ -87,7 +84,6 @@ const Register = () => {
                 className="fa fa-fw fa-eye field-icon toggle-password"
               ></span>
             </Form.Group>
-
             {isLoading && <Loader />}
             {/* ! ----- SUBMIT ------!*/}
             <div className="formSubmit">
@@ -95,7 +91,6 @@ const Register = () => {
                 <span className="bn31span">Sign Up</span>
               </button>
             </div>
-
             <div className="d-flex align-items-center justify-content-center gap-3">
               <p className=" mb-0 ">Already have an account?</p>
               <button

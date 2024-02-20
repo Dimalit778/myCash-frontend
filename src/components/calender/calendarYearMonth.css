@@ -27,11 +27,13 @@
 .react-calendar__navigation__prev-button {
   background-color: grey;
   font-weight: bold;
+  color: white;
 }
 /* ----> NEXT YEAR BUTTON */
 .react-calendar__navigation__next-button {
   background-color: grey;
   font-weight: bold;
+  color: white;
 }
 
 /* ----> MONTHS BUTTONS */

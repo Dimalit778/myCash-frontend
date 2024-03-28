@@ -17,7 +17,6 @@ import { useSelector } from 'react-redux';
 const drawerWidth = 240;
 
 //@ ---- >  NavBar on User Dashboard
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -39,15 +38,11 @@ const AppBar = styled(MuiAppBar, {
 
 export default function NavbarApp() {
   const { userInfo } = useSelector((state) => state.auth);
-
   const [open, setOpen] = useState(false);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const navigate = useNavigate();
-
   return (
     // <ThemeProvider>
     <Box sx={{ display: 'flex' }}>
@@ -99,6 +94,5 @@ export default function NavbarApp() {
       {/* --- NavSideList Display Nav side and components ----*/}
       <NavSideList {...{ open, setOpen }} />
     </Box>
-    // </ThemeProvider>
   );
 }

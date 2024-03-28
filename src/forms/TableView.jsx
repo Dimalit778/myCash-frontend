@@ -53,7 +53,6 @@ function Row({ item, actionType, index }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-
         <TableCell component="th" scope="row">
           {title}
         </TableCell>
@@ -76,7 +75,6 @@ function Row({ item, actionType, index }) {
                     <TableCell align="center">Date</TableCell>
                   </TableRow>
                 </TableHead>
-
                 <TableBody>
                   <TableRow>
                     <TableCell component="th" scope="row">
@@ -121,7 +119,6 @@ function Row({ item, actionType, index }) {
     </>
   );
 }
-
 export default function TableView({ list, actionType }) {
   return (
     <TableContainer

@@ -30,7 +30,7 @@ const ContactUs = () => {
     emailjs.send(serviceId, templateId, templateParams, publicKey).then(
       (result) => {
         console.log('email sent successfully', result);
-
+        setSubject('');
         setMessage('');
         toast.success('Email Sent successfully');
       },

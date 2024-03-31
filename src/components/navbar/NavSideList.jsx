@@ -96,7 +96,9 @@ const NavSideList = ({ open, setOpen }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        await axios.get('http://localhost:5000/api/users/getUser');
+        await axios.get(
+          'https://mycash-ra2a-yxco.onrender.com/api/users/getUser'
+        );
       } catch (error) {
         dispatch(logout());
         navigate('/login');

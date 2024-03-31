@@ -30,7 +30,7 @@ const SignIn = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (userInfo?.isVerified) {
+    if (userInfo?.verified) {
       navigate('/dashboard');
     }
   }, [navigate, userInfo]);
@@ -55,6 +55,11 @@ const SignIn = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     const { email, password } = userData;
+
+    if (!email) {
+      return toast.error('Email Address Not Valid');
+    }
+    if (!password) return toast.error('Enter Password');
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));

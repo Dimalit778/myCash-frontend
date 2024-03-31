@@ -23,13 +23,14 @@ import contactIcon from 'assets/manuIcons/contact.png';
 import logoutIcon from 'assets/manuIcons/logoutIcon.png';
 
 import MuiDrawer from '@mui/material/Drawer';
-import { useMemo, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLogoutMutation } from 'api/slicesApi/userApiSlice';
 import { logout } from 'api/slicesApi/authSlice';
 import { Image, Transformation } from 'cloudinary-react';
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -82,47 +83,63 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const NavSideList = ({ open, setOpen }) => {
+  axios.defaults.withCredentials = true;
+  // GET URL PATH
+  const { pathname } = useLocation();
+  const pathLink = pathname.substring(pathname.lastIndexOf('/') + 1);
   const { userInfo } = useSelector((state) => state.auth);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // CHECK IF user Token Is Exist
+  // if cookie Token expried Navigate to Login page
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        await axios.get('http://localhost:5000/api/users/getUser');
+      } catch (error) {
+        dispatch(logout());
+        navigate('/login');
+      }
+    };
+    fetchUser();
+  }, [pathLink]);
+
+  const [selectedLink, setSelectedLink] = useState(pathLink);
+
   const [logoutApiCall] = useLogoutMutation();
 
-  const [selectedLink, setSelectedLink] = useState('');
-
   // ----->  List of nav side components
-  const list = useMemo(
-    () => [
-      {
-        title: 'Main',
-        icon: <img src={dashIcon2} alt="" />,
-        link: '',
-      },
+  const list = [
+    {
+      title: 'Main',
+      icon: <img src={dashIcon2} alt="" />,
+      link: '',
+    },
 
-      {
-        title: 'Expenses',
-        icon: <img src={expenseIcon} alt="" />,
-        link: 'expenses',
-      },
-      {
-        title: 'Incomes',
-        icon: <img src={incomeIcon} alt="" />,
-        link: 'incomes',
-      },
+    {
+      title: 'Expenses',
+      icon: <img src={expenseIcon} alt="" />,
+      link: 'expenses',
+    },
+    {
+      title: 'Incomes',
+      icon: <img src={incomeIcon} alt="" />,
+      link: 'incomes',
+    },
 
-      {
-        title: 'Contact',
-        icon: <img src={contactIcon} alt="" />,
-        link: 'contact',
-      },
-      {
-        title: 'Settings',
-        icon: <img src={settingIcon} alt="" />,
-        link: 'settings',
-      },
-    ],
-    []
-  );
+    {
+      title: 'Contact',
+      icon: <img src={contactIcon} alt="" />,
+      link: 'contact',
+    },
+    {
+      title: 'Settings',
+      icon: <img src={settingIcon} alt="" />,
+      link: 'settings',
+    },
+  ];
+
   // ? Logout user
   const logoutHandler = async () => {
     try {
@@ -215,6 +232,7 @@ const NavSideList = ({ open, setOpen }) => {
       <Box component="main" sx={{ flexGrow: 1 }} width={'80%'}>
         <DrawerHeader />
         {/* Outlet - Display all components */}
+
         <Outlet />
         <Footer />
       </Box>

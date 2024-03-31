@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './register.css';
-
+import Swal from 'sweetalert2';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../../components/Loader';
 import { useRegisterMutation } from '../../../api/slicesApi/userApiSlice';
-import { setCredentials } from '../../../api/slicesApi/authSlice';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
+import { validEmail } from 'hooks/validedForm';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -15,11 +16,9 @@ const Register = () => {
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
   const [register, { isLoading }] = useRegisterMutation();
-  const [msg, setMsg] = useState(false);
 
   useEffect(() => {
     if (userInfo?.isVerified) {
@@ -27,12 +26,32 @@ const Register = () => {
     }
   }, [navigate, userInfo]);
 
+  // ---> Alert pop
+  const alert = () => {
+    Swal.fire({
+      title: 'Link sent successfully',
+      text: 'Click on the link in your email to confirm your account',
+      icon: 'success',
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+    });
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!name || !email || !password) {
+      return toast.error('All fields are required');
+    }
+
+    if (!validEmail(email)) return toast.error('Email Address Not Valid');
+
+    if (password.length < 6)
+      return toast.error('Password must be at least 6 characters');
+
     try {
-      const res = await register({ name, email, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
-      setMsg(true);
+      await register({ name, email, password }).unwrap();
+      alert();
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -43,9 +62,7 @@ const Register = () => {
       <div className="wrapper d-flex align-items-center justify-content-center w-100">
         <div className="login ">
           <h3 className="p my-4  text-center">Register Here</h3>
-          {msg && (
-            <div className="link">Link verification sent to your email </div>
-          )}
+
           <Form
             onSubmit={submitHandler}
             className="signInForm d-grid gap-4 p-2"

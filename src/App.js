@@ -32,10 +32,6 @@ import ResetPassword from 'viewScreen/ResetPassword';
 import Admin from 'viewScreen/adminDashboard/Admin';
 import { Helmet } from 'react-helmet';
 
-// Axios.defaults.baseURL = 'https://mycash-ra2a-yxco.onrender.com';
-
-// Axios.defaults.withCredentials = true;
-
 const HomeRoot = () => {
   return (
     <>

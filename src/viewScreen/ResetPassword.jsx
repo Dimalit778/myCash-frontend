@@ -8,13 +8,15 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [resetPassword] = useResetPasswordMutation();
   const [verifyLink] = useVerifyLinkMutation();
-  const [validUser, setValidUser] = useState(true);
-  const data = useParams();
+  const [validUser, setValidUser] = useState(false);
+
+  const { id, token } = useParams();
 
   const navigate = useNavigate();
 
@@ -23,11 +25,18 @@ const ResetPassword = () => {
   // function to verify the link
   const userValid = async () => {
     try {
-      await verifyLink(data).unwrap();
-      toast.success('Link verified');
+      await verifyLink({ id, token }).unwrap();
+      Swal.fire({
+        title: 'Welcome Back',
+        text: 'Please Enter New Password',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+      });
       setValidUser(true);
     } catch (err) {
       toast.error(err.data?.message || err.message);
+
       setValidUser(false);
     }
   };
@@ -39,7 +48,6 @@ const ResetPassword = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const { id, token } = data;
     try {
       await resetPassword({ id, token, newPassword }).unwrap();
       toast.success('Password Successfully Changed.', {

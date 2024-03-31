@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [forgotPassword] = useForgotPasswordMutation();
-  const [msg, setMsg] = useState(false);
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -21,8 +21,14 @@ const ForgotPassword = () => {
     e.preventDefault();
     try {
       await forgotPassword({ email }).unwrap();
-      toast.success('Link Successfully Sent To Your Email');
-      setMsg(true);
+      Swal.fire({
+        title: 'Link sent successfully',
+        text: 'Click on the link in your email to Reset Password',
+        icon: 'success',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -32,18 +38,7 @@ const ForgotPassword = () => {
       <div className="wrapper d-flex align-items-center justify-content-center w-100      ">
         <div className="login ">
           <h3 className=" text-center mt-auto  ">Enter Your Email</h3>
-          {msg && (
-            <h4
-              style={{
-                color: 'green',
-                border: '2px solid green',
-                borderRadius: '10px',
-              }}
-              className="p-1 text-center mt-auto "
-            >
-              Link was sent to you
-            </h4>
-          )}
+
           <form className="signInForm d-grid gap-4 p-2" onSubmit={sendMail}>
             {/* ---> Email input <--- */}
             <div className="form-group ">

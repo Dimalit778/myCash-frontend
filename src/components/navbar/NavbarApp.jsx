@@ -43,6 +43,7 @@ export default function NavbarApp() {
     setOpen(true);
   };
   const navigate = useNavigate();
+
   return (
     // <ThemeProvider>
     <Box sx={{ display: 'flex' }}>

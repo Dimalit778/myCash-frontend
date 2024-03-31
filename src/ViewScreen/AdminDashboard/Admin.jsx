@@ -7,9 +7,10 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+
 import {
+  useAdminDeleteUserMutation,
   useAllUsersQuery,
-  useDeleteUserMutation,
 } from 'api/slicesApi/userApiSlice.js';
 import { Image, Transformation } from 'cloudinary-react';
 import Loader from 'components/Loader';
@@ -22,11 +23,11 @@ import { useNavigate } from 'react-router-dom';
 const Row = ({ item, index }) => {
   const { createdAt, email, name, imageUrl, isVerified } = item;
   const createDate = createdAt.slice(0, 10);
-  const [deleteUser] = useDeleteUserMutation();
+  const [adminDeleteUser] = useAdminDeleteUserMutation();
 
   const handleDelete = async (id) => {
     try {
-      const res = await deleteUser(id);
+      const res = await adminDeleteUser({ id }).unwrap();
 
       if (res) return toast.success('User deleted successfully');
     } catch (e) {
@@ -77,15 +78,16 @@ const Row = ({ item, index }) => {
 
 const Admin = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const { data: allUsers, isLoading } = useAllUsersQuery(userInfo._id);
+  const { data: allUsers, isLoading } = useAllUsersQuery();
+
   const navigate = useNavigate();
-  // const index = 0;
 
   useEffect(() => {
     if (!userInfo.isAdmin) navigate('/dashboard');
-  }, [allUsers]);
+  }, [userInfo]);
 
   if (isLoading) return <Loader />;
+
   return (
     <>
       <div className="container vh-100 ">

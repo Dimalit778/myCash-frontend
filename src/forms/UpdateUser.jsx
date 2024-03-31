@@ -24,13 +24,11 @@ export const UpdateUser = () => {
 
     try {
       const res = await updateProfile({
-        _id: userInfo._id,
         name,
         password,
       }).unwrap();
       dispatch(
         setCredentials({
-          _id: res._id,
           name: res.name,
           email: res.email,
           imageUrl: res.imageUrl,

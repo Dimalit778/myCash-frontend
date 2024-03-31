@@ -3,14 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-hot-toast';
 import { useAddIncomeMutation } from '../api/slicesApi/incomeApiSlice';
-import { useSelector } from 'react-redux';
+
 import { useAddExpenseMutation } from '../api/slicesApi/expenseApiSlice';
 import { expCategories } from '../hooks/categoryList.js';
 import { incCategories } from 'hooks/incomeCateList.js';
 import './model.css';
 
 const AddForm = ({ actionType, date }) => {
-  const { userInfo } = useSelector((state) => state.auth);
   const [addIncome] = useAddIncomeMutation();
   const [addExpense] = useAddExpenseMutation();
 
@@ -24,7 +23,6 @@ const AddForm = ({ actionType, date }) => {
     setShow(true);
   };
   const initialAction = {
-    userId: userInfo._id,
     title: '',
     amount: '',
     category: '',

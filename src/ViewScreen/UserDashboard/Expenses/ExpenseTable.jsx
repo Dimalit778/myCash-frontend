@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
 import { useGetAllExpensesQuery } from 'api/slicesApi/expenseApiSlice';
 
 import AddForm from '../../../forms/AddForm';
@@ -10,13 +10,8 @@ import TableView from 'forms/TableView';
 import { numberFormat } from 'hooks/numberFormat';
 
 const ExpenseList = ({ date }) => {
-  const { userInfo } = useSelector((state) => state.auth);
   const actionType = 'expense';
-  const {
-    data: allExpenses,
-    error,
-    isLoading,
-  } = useGetAllExpensesQuery(userInfo._id);
+  const { data: allExpenses, error, isLoading } = useGetAllExpensesQuery();
 
   if (error) return <div>error..!!</div>;
   if (isLoading) return <Loader />;

@@ -3,7 +3,6 @@ import { Stats } from 'components/stats/Stats';
 import './mainPage.css';
 
 import BalanceStats from 'components/stats/BalanceStats';
-import { useSelector } from 'react-redux';
 import { useGetAllExpensesQuery } from 'api/slicesApi/expenseApiSlice';
 import { useGetAllIncomesQuery } from 'api/slicesApi/incomeApiSlice';
 import Loader from 'components/Loader';
@@ -14,8 +13,6 @@ import LineChart from 'components/charts/LineChart';
 import { filterByYear } from 'hooks/filterByYear';
 
 const Main = () => {
-  // User info
-  const { userInfo } = useSelector((state) => state.auth);
   // Year Date
   const currentYear = new Date();
   const year = `${currentYear.getFullYear()}`;
@@ -25,10 +22,11 @@ const Main = () => {
   const next = '>>';
 
   // Get data from Database
-  const { data: allExpenses } = useGetAllExpensesQuery(userInfo._id);
-  const { data: allIncomes } = useGetAllIncomesQuery(userInfo._id);
+  const { data: allExpenses, isLoading: loadExpenses } =
+    useGetAllExpensesQuery();
+  const { data: allIncomes, isLoading: loadIncomes } = useGetAllIncomesQuery();
   // Loader comp until we get the data
-  if (!allExpenses && allIncomes) return <Loader />;
+  if (loadIncomes || loadExpenses) return <Loader />;
 
   let expenses = 0;
   let incomes = 0;

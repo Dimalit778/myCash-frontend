@@ -1,6 +1,6 @@
 import React from 'react';
 import './settings.css';
-
+import Swal from 'sweetalert2';
 import { UpdateUser } from 'forms/UpdateUser';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadImage from 'forms/UploadImage';
@@ -10,7 +10,7 @@ import {
   useDeleteUserMutation,
   useLogoutMutation,
 } from 'api/slicesApi/userApiSlice';
-import toast from 'react-hot-toast';
+
 import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
@@ -21,13 +21,37 @@ const Settings = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDelete = async (id) => {
+  const deleteAlert = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'All your data will be deleted',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Delete Account',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleDelete(id);
+      }
+    });
+  };
+
+  const handleDelete = async () => {
     try {
-      const res = await deleteUser(id);
+      await deleteUser();
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate('/login');
-      if (res) return toast.success('User data deleted successfully');
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'Your Account has been deleted.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (e) {
       console.log(e.message);
     }
@@ -51,9 +75,9 @@ const Settings = () => {
           <UpdateUser />
         </Col>
       </Row>
-      <div className=" text-center p-3">
-        <button onClick={() => handleDelete(userInfo._id)}>
-          Delete Your User
+      <div className=" text-center p-3 ">
+        <button className="deleteAccountBtn" onClick={() => deleteAlert()}>
+          <span>Delete Account</span>
         </button>
       </div>
     </Container>

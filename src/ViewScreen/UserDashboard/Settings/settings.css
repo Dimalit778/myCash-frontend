@@ -68,3 +68,11 @@
     color: aliceblue;
   }
 }
+.deleteAccountBtn {
+  background-color: red;
+  border-radius: 5px;
+}
+.deleteAccountBtn > span {
+  color: white;
+  font-weight: 700;
+}

@@ -37,20 +37,12 @@ const UploadImage = () => {
       await deleteImage({ imageUrl });
 
       const res = await updateUser({
-        _id: userInfo._id,
         imageUrl: null,
       }).unwrap();
       if (!res) return toast.error('User update failed');
 
       // add to userInfo in the local storage  the imageUrl
-      dispatch(
-        setCredentials({
-          _id: userInfo._id,
-          name: userInfo.name,
-          email: userInfo.email,
-          isVerified: userInfo.isVerified,
-        })
-      );
+      dispatch(setCredentials({ ...res }));
 
       return toast.success('Photo was deleted ');
     } catch (e) {
@@ -82,17 +74,12 @@ const UploadImage = () => {
       if (res) {
         // if upload successfully -> update the user with imageUrl
         const result = await updateUser({
-          _id: userInfo._id,
           imageUrl: res.data.public_id,
         }).unwrap();
         // add to userInfo in the local storage  the imageUrl
         dispatch(
           setCredentials({
-            _id: result._id,
-            name: result.name,
-            email: result.email,
-            imageUrl: result.imageUrl,
-            isVerified: result.isVerified,
+            ...result,
           })
         );
         toast.success('Profile updated successfully');

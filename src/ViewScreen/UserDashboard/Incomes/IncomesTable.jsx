@@ -1,23 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
 import { useGetAllIncomesQuery } from 'api/slicesApi/incomeApiSlice';
 import AddForm from 'forms/AddForm';
 import { filterByMonthAndYear } from 'hooks/filterByMonthYear';
 import { calculateTotal } from 'hooks/calculateTotal';
 import TableView from 'forms/TableView';
 import { numberFormat } from 'hooks/numberFormat';
+import Loader from 'components/Loader';
 
 const IncomesTable = ({ date }) => {
-  const { userInfo } = useSelector((state) => state.auth);
   const actionType = 'income';
-  const {
-    data: allIncomes,
-    error,
-    isLoading,
-  } = useGetAllIncomesQuery(userInfo._id);
+  const { data: allIncomes, error, isLoading } = useGetAllIncomesQuery();
 
   if (error) return <div>error..!!</div>;
-  if (isLoading) return <div>Loading..!!</div>;
+  if (isLoading) return <Loader />;
 
   // //! ------{  Filter the list by Month and Year }
   const filteredList = filterByMonthAndYear(allIncomes, date);

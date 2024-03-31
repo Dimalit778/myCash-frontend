@@ -8,19 +8,25 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
     //? -- GET Expense
     getExpense: builder.query({
       query: (expenseId) => `${URL}/getExpense/${expenseId}`,
+      credentials: 'include',
       providesTags: ['Expense'],
     }),
     //? -- GET ALL EXPENSES
     getAllExpenses: builder.query({
-      query: (userId) => `${URL}/getAllExpenses/${userId}`,
+      query: () => ({
+        url: `${URL}/getAllExpenses`,
+        method: 'GET',
+        credentials: 'include',
+      }),
       providesTags: ['Expense'],
     }),
     //? -- ADD  EXPENSE
     addExpense: builder.mutation({
-      query: ({ userId, ...rest }) => ({
-        url: `${URL}/addExpense/${userId}`,
+      query: (data) => ({
+        url: `${URL}/addExpense`,
         method: 'POST',
-        body: rest,
+        credentials: 'include',
+        body: data,
       }),
       invalidatesTags: ['Expense'],
     }),
@@ -29,6 +35,7 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
       query: ({ _id, ...rest }) => ({
         url: `${URL}/updateExpense/${_id}`,
         method: 'PATCH',
+        credentials: 'include',
         body: rest,
       }),
       invalidatesTags: ['Expense'],
@@ -38,6 +45,7 @@ export const expenseApiSlice = apiSlice.injectEndpoints({
       query: (expenseId) => ({
         url: `${URL}/deleteExpense/${expenseId}`,
         method: 'DELETE',
+        credentials: 'include',
       }),
       invalidatesTags: ['Expense'],
     }),

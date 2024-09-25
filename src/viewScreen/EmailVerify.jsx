@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from "react";
 
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
-import { useVerifyEmailMutation } from 'api/slicesApi/userApiSlice.js';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+import { useVerifyEmailMutation } from "api/slicesApi/userApiSlice.js";
+import { useParams } from "react-router-dom";
 
-import { setCredentials } from 'api/slicesApi/authSlice';
-import Loader from 'components/Loader';
+import { setCredentials } from "api/slicesApi/authSlice";
+import Loader from "components/Loader";
 
 const EmailVerify = () => {
   const [verifyEmail] = useVerifyEmailMutation();
-  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,27 +26,23 @@ const EmailVerify = () => {
           dispatch(setCredentials({ ...res }));
           Swal.fire({
             title: `Hello ${res.name}`,
-            text: 'Email Successfully Verified',
-            icon: 'success',
+            text: "Email Successfully Verified",
+            icon: "success",
             showConfirmButton: false,
             timer: 3000,
           });
 
           setTimeout(() => {
-            navigate('/dashboard');
+            navigate("/dashboard");
           }, 3000);
         } catch (err) {
           console.log(err);
         }
       }
     })();
-  }, []);
+  }, [emailToken, navigate, dispatch, verifyEmail]);
 
-  return (
-    <div className="verifyEmail d-flex vh-100 justify-content-center align-items-center  ">
-      {isLoading ? <Loader /> : null}
-    </div>
-  );
+  return <div className="verifyEmail d-flex vh-100 justify-content-center align-items-center  ">{<Loader />}</div>;
 };
 
 export default EmailVerify;

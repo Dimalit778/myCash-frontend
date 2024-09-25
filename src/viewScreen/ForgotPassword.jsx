@@ -1,30 +1,30 @@
-import { useForgotPasswordMutation } from 'api/slicesApi/userApiSlice';
-import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { useForgotPasswordMutation } from "api/slicesApi/userApiSlice";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [forgotPassword] = useForgotPasswordMutation();
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (userInfo?.isVerify) {
-      navigate('dashboard');
+      navigate("dashboard");
     }
-  }, []);
+  }, [navigate, userInfo]);
 
   const sendMail = async (e) => {
     e.preventDefault();
     try {
       await forgotPassword({ email }).unwrap();
       Swal.fire({
-        title: 'Link sent successfully',
-        text: 'Click on the link in your email to Reset Password',
-        icon: 'success',
+        title: "Link sent successfully",
+        text: "Click on the link in your email to Reset Password",
+        icon: "success",
         showConfirmButton: false,
         allowOutsideClick: false,
         allowEscapeKey: false,
@@ -51,10 +51,7 @@ const ForgotPassword = () => {
             </div>
 
             <div className="formSubmit">
-              <button
-                type="submit"
-                className="form-control btn btn-outline-dark submit px-3"
-              >
+              <button type="submit" className="form-control btn btn-outline-dark submit px-3">
                 Reset Password
               </button>
             </div>

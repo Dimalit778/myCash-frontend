@@ -1,11 +1,11 @@
-import React from 'react';
-import './navbar.css';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import React from "react";
+import "./navbar.css";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 // import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLogoutMutation } from 'api/slicesApi/userApiSlice';
-import { logout } from 'api/slicesApi/authSlice';
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLogoutMutation } from "api/slicesApi/userApiSlice";
+import { logout } from "api/slicesApi/authSlice";
 
 //@ --->  NAVBAR HOME PAGES
 const NavbarComp = () => {
@@ -20,7 +20,7 @@ const NavbarComp = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +47,7 @@ const NavbarComp = () => {
             </span>
           </div>
         </Navbar.Brand>
-        <Navbar.Toggle className=" me-4 " aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle className=" me-4 " aria-controls="basic-navbar-nav " />
         <Navbar.Collapse id="basic-navbar-nav">
           {/* Links ---> Home , About us */}
           <Nav className=" mx-auto gap-3">
@@ -65,13 +65,13 @@ const NavbarComp = () => {
                 {/* --- > LOGIN AND REGISTER BUTTONS < --- */}
                 <div className=" d-flex gap-3 pe-3 justify-content-center mx-auto     ">
                   <button className="logRegBtn">
-                    <Nav.Link as={Link} to="/register" className=" me-2">
-                      Register
+                    <Nav.Link as={Link} to="/register" className="">
+                      SIGN UP
                     </Nav.Link>
                   </button>
                   <button className="logRegBtn">
-                    <Nav.Link as={Link} to="/login" className=" me-2">
-                      Login
+                    <Nav.Link as={Link} to="/login" className="">
+                      LOGIN
                     </Nav.Link>
                   </button>
                 </div>
@@ -79,18 +79,10 @@ const NavbarComp = () => {
             ) : (
               // {/* --- > USERNAME AND LINK TO PROFILE < --- */}
               <div className="userName pe-3">
-                <NavDropdown
-                  title={userInfo.name}
-                  id="username"
-                  className="userProfile mx-auto p-1 text-center "
-                >
-                  <NavDropdown.Item onClick={() => navigate('/dashboard')}>
-                    Profile
-                  </NavDropdown.Item>
+                <NavDropdown title={userInfo.name} id="username" className="userProfile mx-auto p-1 text-center ">
+                  <NavDropdown.Item onClick={() => navigate("/dashboard")}>Profile</NavDropdown.Item>
 
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               </div>
             )}

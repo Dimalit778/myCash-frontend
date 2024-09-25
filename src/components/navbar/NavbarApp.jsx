@@ -1,35 +1,28 @@
-import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Toolbar,
-  CssBaseline,
-  Typography,
-  IconButton,
-  Tooltip,
-} from '@mui/material';
-import MuiAppBar from '@mui/material/AppBar';
-import { Menu } from '@mui/icons-material';
-import { useState } from 'react';
-import NavSideList from './NavSideList';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { styled } from "@mui/material/styles";
+import { Box, Toolbar, CssBaseline, Typography, IconButton, Tooltip } from "@mui/material";
+import MuiAppBar from "@mui/material/AppBar";
+import { Menu } from "@mui/icons-material";
+import { useState } from "react";
+import NavSideList from "./NavSideList";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
 //@ ---- >  NavBar on User Dashboard
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  backgroundColor: 'rgb(196, 206, 207)',
-  transition: theme.transitions.create(['width', 'margin'], {
+  backgroundColor: "rgb(196, 206, 207)",
+  transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -38,6 +31,7 @@ const AppBar = styled(MuiAppBar, {
 
 export default function NavbarApp() {
   const { userInfo } = useSelector((state) => state.auth);
+
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -46,7 +40,7 @@ export default function NavbarApp() {
 
   return (
     // <ThemeProvider>
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -59,15 +53,15 @@ export default function NavbarApp() {
             edge="start"
             sx={{
               marginRight: 5,
-              ...(open && { display: 'none' }),
-              color: 'black',
+              ...(open && { display: "none" }),
+              color: "black",
             }}
           >
             <Menu />
           </IconButton>
           {/* MY CASH LOGO */}
           <Tooltip title="Go back to home page">
-            <IconButton sx={{ mr: 1 }} onClick={() => navigate('/')}>
+            <IconButton sx={{ mr: 1 }} onClick={() => navigate("/")}>
               <img
                 width="40"
                 height="40"
@@ -77,16 +71,11 @@ export default function NavbarApp() {
             </IconButton>
           </Tooltip>
           {/* MY CASH TITLE */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, color: 'black' }}
-          >
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, color: "black" }}>
             MyCash
           </Typography>
           {userInfo?.isAdmin && (
-            <button className="adminButton" onClick={() => navigate('admin')}>
+            <button className="adminButton" onClick={() => navigate("admin")}>
               <span>Admin</span>
             </button>
           )}

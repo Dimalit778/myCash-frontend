@@ -1,27 +1,26 @@
-import React from 'react';
+import React, { useMemo } from "react";
 
-import { useGetAllExpensesQuery } from 'api/slicesApi/expenseApiSlice';
+import { useGetAllExpensesQuery } from "api/slicesApi/expenseApiSlice";
 
-import AddForm from '../../../forms/AddForm';
-import { filterByMonthAndYear } from 'hooks/filterByMonthYear';
-import { calculateTotal } from 'hooks/calculateTotal';
-import Loader from 'components/Loader';
-import TableView from 'forms/TableView';
-import { numberFormat } from 'hooks/numberFormat';
+import AddForm from "../../../forms/AddForm";
+import { filterByMonthAndYear } from "hooks/filterByMonthYear";
+import { calculateTotal } from "hooks/calculateTotal";
+import Loader from "components/Loader";
+import TableView from "forms/TableView";
+import { numberFormat } from "hooks/numberFormat";
 
 const ExpenseList = ({ date }) => {
-  const actionType = 'expense';
+  const actionType = "expense";
   const { data: allExpenses, error, isLoading } = useGetAllExpensesQuery();
+  const filteredList = useMemo(() => {
+    if (!allExpenses) return [];
+    return filterByMonthAndYear(allExpenses, date);
+  }, [allExpenses, date]);
+
+  const total = useMemo(() => calculateTotal(filteredList), [filteredList]);
 
   if (error) return <div>error..!!</div>;
   if (isLoading) return <Loader />;
-
-  //?------{  Filter the list by Month and Year }
-  const filteredList = filterByMonthAndYear(allExpenses, date);
-  //?-----------> {  Calculate Total Amount of filtered Month }
-
-  const total = calculateTotal(filteredList);
-
   return (
     <div className="container">
       <div className="data-box">
@@ -37,4 +36,4 @@ const ExpenseList = ({ date }) => {
   );
 };
 
-export default ExpenseList;
+export default React.memo(ExpenseList);

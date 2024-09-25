@@ -1,22 +1,22 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useState } from 'react';
-import { numberFormat } from 'hooks/numberFormat';
-import { useDeleteExpenseMutation } from 'api/slicesApi/expenseApiSlice';
-import { useDeleteIncomeMutation } from 'api/slicesApi/incomeApiSlice';
-import { Delete } from '@mui/icons-material';
-import EditForm from './EditForm';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useState } from "react";
+import { numberFormat } from "hooks/numberFormat";
+import { useDeleteExpenseMutation } from "api/slicesApi/expenseApiSlice";
+import { useDeleteIncomeMutation } from "api/slicesApi/incomeApiSlice";
+import { Delete } from "@mui/icons-material";
+import EditForm from "./EditForm";
 
 function Row({ item, actionType, index }) {
   const [open, setOpen] = useState(false);
@@ -28,10 +28,10 @@ function Row({ item, actionType, index }) {
   // ----> Delete Item Function <----
   const handleDelete = async (id) => {
     switch (actionType) {
-      case 'income':
+      case "income":
         return await deleteIncome(id);
 
-      case 'expense':
+      case "expense":
         return await deleteExpense(id);
 
       default:
@@ -42,14 +42,10 @@ function Row({ item, actionType, index }) {
   return (
     <>
       {/* //? Display each item in row */}
-      <TableRow style={{ backgroundColor: 'LightGrey' }}>
-        <TableCell style={{ padding: '0' }}>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {index}
+      <TableRow style={{ backgroundColor: "LightGrey" }}>
+        <TableCell style={{ padding: "0" }}>
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+            <span style={{ padding: "0 10px", fontWeight: "bold" }}>{index}</span>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -89,20 +85,16 @@ function Row({ item, actionType, index }) {
               {/*//@ Table  Actions */}
               <Table size="small">
                 <TableRow>
-                  <TableCell style={{ fontWeight: 700, textAlign: 'right' }}>
-                    Edit
-                  </TableCell>
+                  <TableCell style={{ fontWeight: 700, textAlign: "right" }}>Edit</TableCell>
                   <TableCell align="right">
                     <EditForm item={item} actionType={actionType} />
                   </TableCell>
-                  <TableCell style={{ fontWeight: 700, textAlign: 'right' }}>
-                    Delete
-                  </TableCell>
+                  <TableCell style={{ fontWeight: 700, textAlign: "right" }}>Delete</TableCell>
                   <TableCell align="right">
                     <button
                       style={{
-                        backgroundColor: 'red',
-                        borderRadius: '5px',
+                        backgroundColor: "red",
+                        borderRadius: "5px",
                       }}
                       className="btn_Upd_dlt"
                       onClick={() => handleDelete(item._id)}
@@ -121,29 +113,19 @@ function Row({ item, actionType, index }) {
 }
 export default function TableView({ list, actionType }) {
   return (
-    <TableContainer
-      component={Paper}
-      style={{ maxHeight: '330px', maxWidth: '600px' }}
-    >
+    <TableContainer component={Paper} style={{ maxHeight: "330px", maxWidth: "600px" }}>
       <Table aria-label="collapsible table">
         <TableHead>
-          <TableRow style={{ backgroundColor: 'DarkGrey' }}>
+          <TableRow style={{ backgroundColor: "DarkGrey" }}>
             <TableCell />
             <TableCell>Title</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Category</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody
-          style={{ scrollBehavior: 'auto', height: '200', width: '102px' }}
-        >
+        <TableBody style={{ scrollBehavior: "auto", height: "200", width: "102px" }}>
           {list.map((item, index) => (
-            <Row
-              key={item._id}
-              item={item}
-              index={index + 1}
-              actionType={actionType}
-            />
+            <Row key={item._id} item={item} index={index + 1} actionType={actionType} />
           ))}
         </TableBody>
       </Table>

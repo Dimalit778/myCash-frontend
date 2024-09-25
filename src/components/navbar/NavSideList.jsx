@@ -1,4 +1,4 @@
-import { ChevronLeft } from '@mui/icons-material';
+import { ChevronLeft } from "@mui/icons-material";
 
 import {
   Avatar,
@@ -13,72 +13,72 @@ import {
   styled,
   Tooltip,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 
-import incomeIcon from 'assets/manuIcons/incomeIcom.png';
-import dashIcon2 from 'assets/manuIcons/dashIcon2.png';
-import expenseIcon from 'assets/manuIcons/expenseIcon.png';
-import settingIcon from 'assets/manuIcons/settingIcon.png';
-import contactIcon from 'assets/manuIcons/contact.png';
-import logoutIcon from 'assets/manuIcons/logoutIcon.png';
+import incomeIcon from "assets/manuIcons/incomeIcom.png";
+import dashIcon2 from "assets/manuIcons/dashIcon2.png";
+import expenseIcon from "assets/manuIcons/expenseIcon.png";
+import settingIcon from "assets/manuIcons/settingIcon.png";
+import contactIcon from "assets/manuIcons/contact.png";
+import logoutIcon from "assets/manuIcons/logoutIcon.png";
 
-import MuiDrawer from '@mui/material/Drawer';
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import Footer from '../footer/footer';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLogoutMutation } from 'api/slicesApi/userApiSlice';
-import { logout } from 'api/slicesApi/authSlice';
-import { Image, Transformation } from 'cloudinary-react';
-import axios from 'axios';
+import MuiDrawer from "@mui/material/Drawer";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import Footer from "../footer/footer";
+import { useDispatch, useSelector } from "react-redux";
+import { useLogoutMutation } from "api/slicesApi/userApiSlice";
+import { logout } from "api/slicesApi/authSlice";
+import { Image, Transformation } from "cloudinary-react";
+import axios from "axios";
 
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
-  transition: theme.transitions.create('width', {
+  transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  overflowX: 'hidden',
+  overflowX: "hidden",
 });
 
 const closedMixin = (theme) => ({
-  transition: theme.transitions.create('width', {
+  transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX: 'hidden',
+  overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  backgroundColor: 'rgb(196, 206, 207)',
+  backgroundColor: "rgb(196, 206, 207)",
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
 const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
-  whiteSpace: 'nowrap',
-  boxSizing: 'border-box',
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
   ...(open && {
     ...openedMixin(theme),
-    '& .MuiDrawer-paper': openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
   }),
   ...(!open && {
     ...closedMixin(theme),
-    '& .MuiDrawer-paper': closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
 
@@ -86,7 +86,7 @@ const NavSideList = ({ open, setOpen }) => {
   axios.defaults.withCredentials = true;
   // GET URL PATH
   const { pathname } = useLocation();
-  const pathLink = pathname.substring(pathname.lastIndexOf('/') + 1);
+  const pathLink = pathname.substring(pathname.lastIndexOf("/") + 1);
   const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -96,16 +96,15 @@ const NavSideList = ({ open, setOpen }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        await axios.get(
-          'https://mycash-ra2a-yxco.onrender.com/api/users/getUser'
-        );
+        // await axios.get("https://mycash-ra2a-yxco.onrender.com/api/users/getUser");
+        await axios.get("http://localhost:5000/api/users/getUser");
       } catch (error) {
         dispatch(logout());
-        navigate('/login');
+        navigate("/login");
       }
     };
     fetchUser();
-  }, [pathLink]);
+  }, [pathLink, dispatch, navigate]);
 
   const [selectedLink, setSelectedLink] = useState(pathLink);
 
@@ -114,31 +113,31 @@ const NavSideList = ({ open, setOpen }) => {
   // ----->  List of nav side components
   const list = [
     {
-      title: 'Main',
+      title: "Main",
       icon: <img src={dashIcon2} alt="" />,
-      link: '',
+      link: "",
     },
 
     {
-      title: 'Expenses',
+      title: "Expenses",
       icon: <img src={expenseIcon} alt="" />,
-      link: 'expenses',
+      link: "expenses",
     },
     {
-      title: 'Incomes',
+      title: "Incomes",
       icon: <img src={incomeIcon} alt="" />,
-      link: 'incomes',
+      link: "incomes",
     },
 
     {
-      title: 'Contact',
+      title: "Contact",
       icon: <img src={contactIcon} alt="" />,
-      link: 'contact',
+      link: "contact",
     },
     {
-      title: 'Settings',
+      title: "Settings",
       icon: <img src={settingIcon} alt="" />,
-      link: 'settings',
+      link: "settings",
     },
   ];
 
@@ -147,7 +146,7 @@ const NavSideList = ({ open, setOpen }) => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -164,11 +163,11 @@ const NavSideList = ({ open, setOpen }) => {
         <Divider />
         <List>
           {list.map((item) => (
-            <ListItem key={item.title} disablePadding sx={{ display: 'block' }}>
+            <ListItem key={item.title} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
                 onClick={() => navigate(item.link, setSelectedLink(item.link))}
@@ -177,51 +176,34 @@ const NavSideList = ({ open, setOpen }) => {
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText
-                  primary={item.title}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
+                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
         <Divider />
         {/*//? BOX => User image || Avatar icon */}
-        <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
+        <Box sx={{ mx: "auto", mt: 3, mb: 1 }}>
           {userInfo.imageUrl && !open && (
             <Image cloudName="dx6oxmki4" publicId={userInfo.imageUrl}>
-              <Transformation
-                width="50"
-                height="50"
-                gravity="auto"
-                crop="fill"
-                radius="max"
-              />
+              <Transformation width="50" height="50" gravity="auto" crop="fill" radius="max" />
             </Image>
           )}
           {userInfo.imageUrl && open && (
             <Image cloudName="dx6oxmki4" publicId={userInfo.imageUrl}>
-              <Transformation
-                width="150"
-                height="150"
-                gravity="auto"
-                crop="fill"
-                radius="max"
-              />
+              <Transformation width="150" height="150" gravity="auto" crop="fill" radius="max" />
             </Image>
           )}
-          {!userInfo.imageUrl && (
-            <Avatar {...(open && { sx: { width: 100, height: 100 } })} />
-          )}
+          {!userInfo.imageUrl && <Avatar {...(open && { sx: { width: 100, height: 100 } })} />}
         </Box>
         {/* [ BOX ] -- { Nav side => bottom user info } -- */}
-        <Box sx={{ textAlign: 'center' }}>
+        <Box sx={{ textAlign: "center" }}>
           <Typography variant="body2"> {userInfo.name}</Typography>
           {open && <Typography variant="body2">{userInfo.email}</Typography>}
           <Tooltip title="Logout" sx={{ mt: 1 }}>
@@ -231,7 +213,7 @@ const NavSideList = ({ open, setOpen }) => {
           </Tooltip>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1 }} width={'80%'}>
+      <Box component="main" sx={{ flexGrow: 1 }} width={"80%"}>
         <DrawerHeader />
         {/* Outlet - Display all components */}
 

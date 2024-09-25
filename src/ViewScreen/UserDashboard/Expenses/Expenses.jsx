@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import ExpenseTable from './ExpenseTable';
-import CalendarYearMonth from 'components/calender/CalendarYearMonth';
-import PieActiveArc from 'components/charts/PieActiveArc';
-import { useGetAllExpensesQuery } from 'api/slicesApi/expenseApiSlice';
+import ExpenseTable from "./ExpenseTable";
+import CalendarYearMonth from "components/calender/CalendarYearMonth";
+import PieActiveArc from "components/charts/PieActiveArc";
+import { useGetAllExpensesQuery } from "api/slicesApi/expenseApiSlice";
 
-import Loader from 'components/Loader';
+import Loader from "components/Loader";
 
 const Expenses = () => {
   // --------> Calender get Date

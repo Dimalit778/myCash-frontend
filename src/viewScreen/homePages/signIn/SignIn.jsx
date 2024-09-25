@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import './signin.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  useGoogleAuthMutation,
-  useLoginMutation,
-} from 'api/slicesApi/userApiSlice';
-import { setCredentials } from 'api/slicesApi/authSlice';
-import Loader from 'components/Loader';
-import { Form } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import "./signin.css";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useGoogleAuthMutation, useLoginMutation } from "api/slicesApi/userApiSlice";
+import { setCredentials } from "api/slicesApi/authSlice";
+import Loader from "components/Loader";
+import { Form } from "react-bootstrap";
 
-import { GoogleAuth } from 'api/fireBase/Firebase';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { GoogleAuth } from "api/fireBase/Firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const SignIn = () => {
   const [userData, setUserData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -31,7 +28,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (userInfo?.verified) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     }
   }, [navigate, userInfo]);
   //@  Google Auth -->
@@ -44,7 +41,7 @@ const SignIn = () => {
         const res = await googleAuth(user).unwrap();
 
         dispatch(setCredentials({ ...res }));
-        navigate('/dashboard');
+        navigate("/dashboard");
       } catch (err) {
         console.log(err);
         toast.error(err?.data?.message || err.error);
@@ -57,13 +54,18 @@ const SignIn = () => {
     const { email, password } = userData;
 
     if (!email) {
-      return toast.error('Email Address Not Valid');
+      return toast.error("Email Address Not Valid");
     }
-    if (!password) return toast.error('Enter Password');
+    if (!password) return toast.error("Enter Password");
     try {
       const res = await login({ email, password }).unwrap();
+
+      if (!res.isVerified) {
+        toast.error("Please Verify Your Email");
+        return;
+      }
       dispatch(setCredentials({ ...res }));
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
       toast.error(err.data?.message || err.error);
     }
@@ -80,9 +82,7 @@ const SignIn = () => {
               <Form.Control
                 type="name"
                 placeholder="Enter Email"
-                onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
-                }
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
               ></Form.Control>
             </Form.Group>
             {/* ---> PASSWORD INPUT <--- */}
@@ -92,14 +92,9 @@ const SignIn = () => {
                 placeholder="Password"
                 required
                 autoComplete="on"
-                onChange={(e) =>
-                  setUserData({ ...userData, password: e.target.value })
-                }
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
               ></Form.Control>
-              <span
-                toggle="#password-field"
-                className="fa fa-fw fa-eye field-icon toggle-password"
-              ></span>
+              <span toggle="#password-field" className="fa fa-fw fa-eye field-icon toggle-password"></span>
             </Form.Group>
             {/* ---> LOADER <--- */}
             {isLoading && <Loader />}
@@ -117,20 +112,13 @@ const SignIn = () => {
               </span>
             </button>
             {/* ---> RESET PASSWORD <--- */}
-            <Link
-              className="text d-flex justify-content-center text-decoration-none  "
-              to="/forgot-password"
-            >
+            <Link className="text d-flex justify-content-center text-decoration-none  " to="/forgot-password">
               Forgot password?
             </Link>
             {/* ---> Div navigate to Register Page  <--- */}
             <div className="d-flex align-items-center justify-content-center gap-3">
               <p className=" text-dark mb-0 ">Don't have an account?</p>
-              <button
-                type="button"
-                className="btn btn-outline-dark btn-sm"
-                onClick={() => navigate('/register')}
-              >
+              <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => navigate("/register")}>
                 Register
               </button>
             </div>
